@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  QuizApp
-//
-//  Created by Ivan Kulundžić on 12.07.2022..
-//
-
 import UIKit
 
 final class LoginViewController: UIViewController {

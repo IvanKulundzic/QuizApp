@@ -1,20 +1,5 @@
-//
-//  LoginView.swift
-//  QuizApp
-//
-//  Created by Ivan Kulundžić on 12.07.2022..
-//
-
 import UIKit
 import SnapKit
-
-protocol ConstructViewsProtocol {
-
-    func createViews()
-    func styleViews()
-    func defineLayoutForViews()
-
-}
 
 final class LoginView: UIView {
 
