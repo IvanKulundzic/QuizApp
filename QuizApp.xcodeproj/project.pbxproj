@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB4E6199287DB20E009A64E7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E6198287DB20E009A64E7 /* LoginView.swift */; };
 		EB4E619D287DB57E009A64E7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E619C287DB57E009A64E7 /* Colors.swift */; };
 		EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB4E61A4287DB92D009A64E7 /* SnapKit */; };
 		EB4E61A8287DBA84009A64E7 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */; };
@@ -22,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EB4E6198287DB20E009A64E7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EB4E619C287DB57E009A64E7 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		EB4E61A9287DBB20009A64E7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */,
-				EB4E6198287DB20E009A64E7 /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -245,7 +242,6 @@
 				EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */,
 				EB4E619D287DB57E009A64E7 /* Colors.swift in Sources */,
 				EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */,
-				EB4E6199287DB20E009A64E7 /* LoginView.swift in Sources */,
 				EB4E61AA287DBB20009A64E7 /* Fonts.swift in Sources */,
 				EB4E61AF287DC594009A64E7 /* ConstructViewsProtocol.swift in Sources */,
 				EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */,

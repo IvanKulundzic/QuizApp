@@ -4,7 +4,7 @@ enum Colors {
 
     /// Login screen
     case loginBackground
-    
+
 }
 
 extension Colors {
