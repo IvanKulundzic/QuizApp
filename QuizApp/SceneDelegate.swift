@@ -38,7 +38,7 @@ private extension SceneDelegate {
     func setupInitialScene(with scene: UIWindowScene) {
         let window = UIWindow(windowScene: scene)
         self.window = window
-        let initialViewController = ViewController()
+        let initialViewController = LoginViewController()
         window.rootViewController = initialViewController
         window.makeKeyAndVisible()
     }

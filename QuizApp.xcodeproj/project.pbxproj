@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB4E6199287DB20E009A64E7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E6198287DB20E009A64E7 /* LoginView.swift */; };
+		EB4E619D287DB57E009A64E7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E619C287DB57E009A64E7 /* Colors.swift */; };
 		EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */; };
 		EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */; };
-		EBC9BC0C287D6A6500052DF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC0B287D6A6500052DF9 /* ViewController.swift */; };
+		EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */; };
 		EBC9BC11287D6A6600052DF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBC9BC10287D6A6600052DF9 /* Assets.xcassets */; };
 		EBC9BC14287D6A6600052DF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBC9BC12287D6A6600052DF9 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB4E6198287DB20E009A64E7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		EB4E619C287DB57E009A64E7 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EBC9BC04287D6A6500052DF9 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EBC9BC0B287D6A6500052DF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EBC9BC10287D6A6600052DF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBC9BC13287D6A6600052DF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBC9BC15287D6A6600052DF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,6 +39,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB4E6195287DB1E2009A64E7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EB4E6196287DB1F4009A64E7 /* Screens */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EB4E6196287DB1F4009A64E7 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				EB4E6197287DB1FB009A64E7 /* Login */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		EB4E6197287DB1FB009A64E7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */,
+				EB4E6198287DB20E009A64E7 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		EB4E619A287DB4A2009A64E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EB4E619B287DB56C009A64E7 /* Colors */,
+				EBC9BC10287D6A6600052DF9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EB4E619B287DB56C009A64E7 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				EB4E619C287DB57E009A64E7 /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		EBC9BBFB287D6A6500052DF9 = {
 			isa = PBXGroup;
 			children = (
@@ -57,10 +103,10 @@
 		EBC9BC06287D6A6500052DF9 /* QuizApp */ = {
 			isa = PBXGroup;
 			children = (
+				EB4E6195287DB1E2009A64E7 /* App */,
+				EB4E619A287DB4A2009A64E7 /* Resources */,
 				EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */,
 				EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */,
-				EBC9BC0B287D6A6500052DF9 /* ViewController.swift */,
-				EBC9BC10287D6A6600052DF9 /* Assets.xcassets */,
 				EBC9BC12287D6A6600052DF9 /* LaunchScreen.storyboard */,
 				EBC9BC15287D6A6600052DF9 /* Info.plist */,
 			);
@@ -84,6 +130,8 @@
 			dependencies = (
 			);
 			name = QuizApp;
+			packageProductDependencies = (
+			);
 			productName = QuizApp;
 			productReference = EBC9BC04287D6A6500052DF9 /* QuizApp.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +160,8 @@
 				Base,
 			);
 			mainGroup = EBC9BBFB287D6A6500052DF9;
+			packageReferences = (
+			);
 			productRefGroup = EBC9BC05287D6A6500052DF9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -158,8 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBC9BC0C287D6A6500052DF9 /* ViewController.swift in Sources */,
+				EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */,
+				EB4E619D287DB57E009A64E7 /* Colors.swift in Sources */,
 				EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */,
+				EB4E6199287DB20E009A64E7 /* LoginView.swift in Sources */,
 				EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
