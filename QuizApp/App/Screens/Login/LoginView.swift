@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol ConstructViewsProtocol {
 
@@ -50,10 +51,15 @@ extension LoginView: ConstructViewsProtocol {
         backgroundColor = Colors.loginBackground.color
 
         titleLabel.text = "PopQuiz"
+        titleLabel.textColor = .white
+        titleLabel.font = Fonts.sourceSansProRegular32.font
     }
 
     func defineLayoutForViews() {
-
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalTo(safeAreaLayoutGuide)
+            $0.top.equalTo(safeAreaLayoutGuide).offset(80)
+        }
     }
 
 }

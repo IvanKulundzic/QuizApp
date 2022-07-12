@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		EB4E6199287DB20E009A64E7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E6198287DB20E009A64E7 /* LoginView.swift */; };
 		EB4E619D287DB57E009A64E7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E619C287DB57E009A64E7 /* Colors.swift */; };
+		EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB4E61A4287DB92D009A64E7 /* SnapKit */; };
+		EB4E61A8287DBA84009A64E7 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */; };
+		EB4E61AA287DBB20009A64E7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E61A9287DBB20009A64E7 /* Fonts.swift */; };
 		EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */; };
 		EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */; };
 		EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */; };
@@ -19,6 +22,8 @@
 /* Begin PBXFileReference section */
 		EB4E6198287DB20E009A64E7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EB4E619C287DB57E009A64E7 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		EB4E61A9287DBB20009A64E7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EBC9BC04287D6A6500052DF9 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +73,7 @@
 		EB4E619A287DB4A2009A64E7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EB4E61A6287DBA6E009A64E7 /* Fonts */,
 				EB4E619B287DB56C009A64E7 /* Colors */,
 				EBC9BC10287D6A6600052DF9 /* Assets.xcassets */,
 			);
@@ -79,6 +86,15 @@
 				EB4E619C287DB57E009A64E7 /* Colors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		EB4E61A6287DBA6E009A64E7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */,
+				EB4E61A9287DBB20009A64E7 /* Fonts.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		EBC9BBFB287D6A6500052DF9 = {
@@ -131,6 +147,7 @@
 			);
 			name = QuizApp;
 			packageProductDependencies = (
+				EB4E61A4287DB92D009A64E7 /* SnapKit */,
 			);
 			productName = QuizApp;
 			productReference = EBC9BC04287D6A6500052DF9 /* QuizApp.app */;
@@ -161,6 +178,7 @@
 			);
 			mainGroup = EBC9BBFB287D6A6500052DF9;
 			packageReferences = (
+				EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = EBC9BC05287D6A6500052DF9 /* Products */;
 			projectDirPath = "";
@@ -178,6 +196,7 @@
 			files = (
 				EBC9BC14287D6A6600052DF9 /* LaunchScreen.storyboard in Resources */,
 				EBC9BC11287D6A6600052DF9 /* Assets.xcassets in Resources */,
+				EB4E61A8287DBA84009A64E7 /* SourceSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +231,7 @@
 				EB4E619D287DB57E009A64E7 /* Colors.swift in Sources */,
 				EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */,
 				EB4E6199287DB20E009A64E7 /* LoginView.swift in Sources */,
+				EB4E61AA287DBB20009A64E7 /* Fonts.swift in Sources */,
 				EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +442,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB4E61A4287DB92D009A64E7 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EBC9BBFC287D6A6500052DF9 /* Project object */;
 }
