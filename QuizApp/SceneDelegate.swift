@@ -25,10 +25,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {}
 
     func sceneDidEnterBackground(_ scene: UIScene) {}
+
 }
 
 // MARK: - Private methods
 private extension SceneDelegate {
+
     func setupInitialScene(with scene: UIWindowScene) {
         let window = UIWindow(windowScene: scene)
         self.window = window
@@ -36,4 +38,5 @@ private extension SceneDelegate {
         window.rootViewController = initialViewController
         window.makeKeyAndVisible()
     }
+
 }
