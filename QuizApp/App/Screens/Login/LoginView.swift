@@ -52,7 +52,7 @@ extension LoginView: ConstructViewsProtocol {
 
         titleLabel.text = "PopQuiz"
         titleLabel.textColor = .white
-        titleLabel.font = Fonts.sourceSansProRegular32.font
+        titleLabel.font = Fonts.sourceSansProBold32.font
     }
 
     func defineLayoutForViews() {

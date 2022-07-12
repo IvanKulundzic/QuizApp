@@ -9,6 +9,7 @@ import UIKit
 
 enum Fonts {
     case sourceSansProRegular32
+    case sourceSansProBold32
 }
 
 extension Fonts {
@@ -16,6 +17,8 @@ extension Fonts {
         switch self {
         case .sourceSansProRegular32:
             return UIFont(name: "SourceSansPro-Regular", size: 32)!
+        case .sourceSansProBold32:
+            return UIFont(name: "SourceSansPro-Bold", size: 32)!
         }
     }
 }
