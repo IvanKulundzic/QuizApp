@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  QuizApp
-//
-//  Created by Ivan Kulundžić on 12.07.2022..
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -38,7 +31,7 @@ private extension SceneDelegate {
     func setupInitialScene(with scene: UIWindowScene) {
         let window = UIWindow(windowScene: scene)
         self.window = window
-        let initialViewController = ViewController()
+        let initialViewController = LoginViewController()
         window.rootViewController = initialViewController
         window.makeKeyAndVisible()
     }
