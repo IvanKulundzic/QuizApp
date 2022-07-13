@@ -16,3 +16,7 @@ extension UIView {
     }
 
 }
+
+extension UIImage {
+    static let showPassword = UIImage(named: "icnShowPassword")
+}

@@ -2,11 +2,7 @@ import UIKit
 
 final class InputField: UITextField {
 
-    var isActive: Bool = false {
-        didSet {
-            updateBorders()
-        }
-    }
+    private var showPasswordButton: UIButton!
 
     enum InputFieldType {
         case email
@@ -19,14 +15,41 @@ final class InputField: UITextField {
         case equalSpacing(CGFloat)
     }
 
-    func styleWith(_ type: InputFieldType) {
+    var type: InputFieldType = .email {
+        didSet {
+            style()
+        }
+    }
+
+    var isActive: Bool = false {
+        didSet {
+            updateBorders()
+        }
+    }
+
+    init(type: InputFieldType) {
+        super.init(frame: .zero)
+        self.type = type
+        style()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+}
+
+// MARK: - Private methods
+private extension InputField {
+
+    func style() {
         backgroundColor = .white.withAlphaComponent(0.3)
         layer.cornerRadius = 20
 
         textColor = .white
         tintColor = .white.withAlphaComponent(0.6)
         font = Fonts.sourceSansProSemiBold16.font
-
+        autocapitalizationType = .none
         isSecureTextEntry = type == .password ? true : false
 
         let titleString = type == .password ? "Password" : "Email"
@@ -38,13 +61,25 @@ final class InputField: UITextField {
         attributedPlaceholder = attributedPlaceholderString
 
         addPadding(padding: .left(21))
-        addPadding(padding: .right(21))
+        addPadding(padding: .right(45))
+
+        addShowPasswordButton()
     }
 
-}
+    func addShowPasswordButton() {
+        showPasswordButton = UIButton()
+        addSubview(showPasswordButton)
+        showPasswordButton.setImage(UIImage(named: "icnShowPassword"), for: .normal)
+        showPasswordButton.contentMode = .scaleToFill
 
-// MARK: - Private methods
-private extension InputField {
+        showPasswordButton.snp.makeConstraints {
+            $0.trailing.equalTo(safeAreaLayoutGuide).inset(20)
+            $0.centerY.equalTo(safeAreaLayoutGuide)
+            $0.width.height.equalTo(30)
+        }
+
+        showPasswordButton.isHidden = type == .password ? false : true
+    }
 
     func updateBorders() {
         layer.borderWidth = isActive ? 1 : 0

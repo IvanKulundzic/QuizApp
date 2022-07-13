@@ -42,11 +42,11 @@ extension LoginViewController: ConstructViewsProtocol {
         titleLabel = UILabel()
         view.addSubview(titleLabel)
 
-        emailTextField = InputField()
+        emailTextField = InputField(type: .email)
         view.addSubview(emailTextField)
         emailTextField.delegate = self
 
-        passwordTextField = InputField()
+        passwordTextField = InputField(type: .password)
         view.addSubview(passwordTextField)
         passwordTextField.delegate = self
     }
@@ -58,10 +58,6 @@ extension LoginViewController: ConstructViewsProtocol {
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
         titleLabel.font = Fonts.sourceSansProBold32.font
-
-        emailTextField.styleWith(.email)
-
-        passwordTextField.styleWith(.password)
     }
 
     func defineLayoutForViews() {
