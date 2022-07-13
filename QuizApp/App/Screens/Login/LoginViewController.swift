@@ -23,7 +23,7 @@ extension LoginViewController: ConstructViewsProtocol {
     }
 
     func styleViews() {
-        view.backgroundColor = Colors.loginBackground.color
+        view.backgroundColor = .loginBackground
 
         titleLabel.text = "PopQuiz"
         titleLabel.textColor = .white
@@ -36,7 +36,7 @@ extension LoginViewController: ConstructViewsProtocol {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(80)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(30)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-30)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
     }
 
