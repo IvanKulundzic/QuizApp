@@ -23,7 +23,7 @@ extension LoginViewController: ConstructViewsProtocol {
     }
 
     func styleViews() {
-        view.backgroundColor = .loginBackground
+        view.applyGradientWith([UIColor.loginBackgroundTop.cgColor, UIColor.loginBackgroundBottom.cgColor])
 
         titleLabel.text = "PopQuiz"
         titleLabel.textColor = .white
