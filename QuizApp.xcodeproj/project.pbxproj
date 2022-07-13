@@ -14,6 +14,8 @@
 		EB4E61AF287DC594009A64E7 /* ConstructViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E61AE287DC594009A64E7 /* ConstructViewsProtocol.swift */; };
 		EB917E19287EB54C00ECD5AD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E18287EB54C00ECD5AD /* UIColor+Extensions.swift */; };
 		EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */; };
+		EB917E1E287EDC2700ECD5AD /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E1D287EDC2700ECD5AD /* UITextField+Extensions.swift */; };
+		EB917E20287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */; };
 		EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */; };
 		EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */; };
 		EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */; };
@@ -28,6 +30,8 @@
 		EB4E61AE287DC594009A64E7 /* ConstructViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructViewsProtocol.swift; sourceTree = "<group>"; };
 		EB917E18287EB54C00ECD5AD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		EB917E1D287EDC2700ECD5AD /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		EBC9BC04287D6A6500052DF9 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 				EB4E61A9287DBB20009A64E7 /* Fonts.swift */,
 				EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */,
 				EB4E61AB287DBDD7009A64E7 /* SourceSansPro-Bold.ttf */,
+				EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -112,8 +117,9 @@
 		EB917E1A287ED42500ECD5AD /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */,
 				EB917E18287EB54C00ECD5AD /* UIColor+Extensions.swift */,
+				EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */,
+				EB917E1D287EDC2700ECD5AD /* UITextField+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			files = (
 				EBC9BC14287D6A6600052DF9 /* LaunchScreen.storyboard in Resources */,
 				EBC9BC11287D6A6600052DF9 /* Assets.xcassets in Resources */,
+				EB917E20287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf in Resources */,
 				EB4E61A8287DBA84009A64E7 /* SourceSansPro-Regular.ttf in Resources */,
 				EB4E61AC287DBDD7009A64E7 /* SourceSansPro-Bold.ttf in Resources */,
 			);
@@ -251,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */,
+				EB917E1E287EDC2700ECD5AD /* UITextField+Extensions.swift in Sources */,
 				EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */,
 				EB4E61AA287DBB20009A64E7 /* Fonts.swift in Sources */,
 				EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */,

@@ -1,6 +1,7 @@
 import UIKit
 
 extension UIView {
+
     func applyGradientWith(_ colors: [CGColor]) {
         let layer0 = CAGradientLayer()
         layer0.colors = colors
@@ -13,4 +14,5 @@ extension UIView {
         layer0.position = center
         layer.insertSublayer(layer0, at: 0)
     }
+
 }
