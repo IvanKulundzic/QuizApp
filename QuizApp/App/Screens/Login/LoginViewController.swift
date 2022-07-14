@@ -4,8 +4,9 @@ import SnapKit
 final class LoginViewController: UIViewController {
 
     private var titleLabel: UILabel!
-    private var emailTextField: InputField!
-    private var passwordTextField: InputField!
+    private var emailInputField: InputField!
+    private var passwordInputField: InputField!
+    private var loginButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +25,12 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == emailTextField {
-            emailTextField.isActive = true
-            passwordTextField.isActive = false
+        if textField == emailInputField {
+            emailInputField.isActive = true
+            passwordInputField.isActive = false
         } else {
-            emailTextField.isActive = false
-            passwordTextField.isActive = true
+            emailInputField.isActive = false
+            passwordInputField.isActive = true
         }
     }
 
@@ -42,13 +43,16 @@ extension LoginViewController: ConstructViewsProtocol {
         titleLabel = UILabel()
         view.addSubview(titleLabel)
 
-        emailTextField = InputField(type: .email)
-        view.addSubview(emailTextField)
-        emailTextField.delegate = self
+        emailInputField = InputField(type: .email)
+        view.addSubview(emailInputField)
+        emailInputField.delegate = self
 
-        passwordTextField = InputField(type: .password)
-        view.addSubview(passwordTextField)
-        passwordTextField.delegate = self
+        passwordInputField = InputField(type: .password)
+        view.addSubview(passwordInputField)
+        passwordInputField.delegate = self
+
+        loginButton = UIButton()
+        view.addSubview(loginButton)
     }
 
     func styleViews() {
@@ -58,6 +62,17 @@ extension LoginViewController: ConstructViewsProtocol {
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
         titleLabel.font = Fonts.sourceSansProBold32.font
+
+        loginButton.layer.cornerRadius = 20
+        loginButton.isEnabled = false
+        loginButton.backgroundColor = loginButton.isEnabled ? .white : .white.withAlphaComponent(0.6)
+        let titleString = NSAttributedString(
+            string: "Login",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.loginButtonTitle,
+                NSAttributedString.Key.font: Fonts.sourceSansProBold16.font]
+        )
+        loginButton.setAttributedTitle(titleString, for: .normal)
     }
 
     func defineLayoutForViews() {
@@ -68,7 +83,7 @@ extension LoginViewController: ConstructViewsProtocol {
             $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
 
-        emailTextField.snp.makeConstraints {
+        emailInputField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(144)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(32)
@@ -76,8 +91,16 @@ extension LoginViewController: ConstructViewsProtocol {
             $0.height.equalTo(44)
         }
 
-        passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(18)
+        passwordInputField.snp.makeConstraints {
+            $0.top.equalTo(emailInputField.snp.bottom).offset(18)
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(32)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(32)
+            $0.height.equalTo(44)
+        }
+
+        loginButton.snp.makeConstraints {
+            $0.top.equalTo(passwordInputField.snp.bottom).offset(18)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(32)
             $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(32)
