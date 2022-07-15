@@ -5,14 +5,18 @@ final class InputField: UITextField {
     private var showPasswordButton: UIButton!
 
     enum InputFieldType {
+
         case email
         case password
+
     }
 
     enum PaddingSpace {
+
         case left(CGFloat)
         case right(CGFloat)
         case equalSpacing(CGFloat)
+
     }
 
     var type: InputFieldType = .email {
