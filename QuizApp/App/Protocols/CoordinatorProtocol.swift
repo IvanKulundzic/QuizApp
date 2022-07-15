@@ -1,6 +1,6 @@
 import UIKit
 
-protocol Coordinator {
+protocol CoordinatorProtocol {
 
     @discardableResult func start() -> UIViewController
 

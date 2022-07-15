@@ -1,19 +1,19 @@
 import UIKit
 
-final class LoginCoordinator: Coordinator {
+final class Coordinator: CoordinatorProtocol {
 
     private var navigationController: UINavigationController?
 
     func start() -> UIViewController {
-        showLoginScreen()
+        startLoginFlow()
     }
 
 }
 
 // MARK: - Private methods
-private extension LoginCoordinator {
+private extension Coordinator {
 
-    func showLoginScreen() -> UIViewController {
+    func startLoginFlow() -> UIViewController {
         let loginViewController = LoginViewController()
         let navigationController = UINavigationController()
         self.navigationController = navigationController

@@ -5,7 +5,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     /// It is safe to force unwrap a coordinator here, as we want the app to crash
     /// if something is not setup correctly.
-    private var appCoordinator: Coordinator!
+    private var coordinator: CoordinatorProtocol!
 
     func scene(
         _ scene: UIScene,
@@ -34,8 +34,8 @@ private extension SceneDelegate {
     func setupInitialScene(with scene: UIWindowScene) {
         let window = UIWindow(windowScene: scene)
         self.window = window
-        appCoordinator = AppCoordinator()
-        let initialViewController = appCoordinator.start()
+        coordinator = Coordinator()
+        let initialViewController = coordinator.start()
         window.rootViewController = initialViewController
         window.makeKeyAndVisible()
     }
