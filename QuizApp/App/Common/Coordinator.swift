@@ -2,9 +2,13 @@ import UIKit
 
 final class Coordinator: CoordinatorProtocol {
 
-    private var navigationController: UINavigationController?
+    var navigationController: UINavigationController
 
-    func start() -> UIViewController {
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+
+    func showLogin() -> UIViewController {
         startLoginFlow()
     }
 
@@ -15,8 +19,6 @@ private extension Coordinator {
 
     func startLoginFlow() -> UIViewController {
         let loginViewController = LoginViewController()
-        let navigationController = UINavigationController()
-        self.navigationController = navigationController
         navigationController.pushViewController(loginViewController, animated: true)
         return navigationController
     }
