@@ -3,6 +3,9 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    /// It is safe to force unwrap a coordinator here, as we want the app to crash
+    /// if something is not setup correctly.
+    private var coordinator: CoordinatorProtocol!
 
     func scene(
         _ scene: UIScene,
@@ -31,9 +34,11 @@ private extension SceneDelegate {
     func setupInitialScene(with scene: UIWindowScene) {
         let window = UIWindow(windowScene: scene)
         self.window = window
-        let initialViewController = LoginViewController()
-        window.rootViewController = initialViewController
+        let navigationController = UINavigationController()
+        coordinator = Coordinator(navigationController: navigationController)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        coordinator.showLogin()
     }
 
 }
