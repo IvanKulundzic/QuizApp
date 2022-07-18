@@ -36,9 +36,9 @@ private extension SceneDelegate {
         self.window = window
         let navigationController = UINavigationController()
         coordinator = Coordinator(navigationController: navigationController)
-        let initialViewController = coordinator.showLogin()
-        window.rootViewController = initialViewController
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        coordinator.showLogin()
     }
 
 }

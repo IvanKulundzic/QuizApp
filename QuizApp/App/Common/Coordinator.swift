@@ -8,7 +8,7 @@ final class Coordinator: CoordinatorProtocol {
         self.navigationController = navigationController
     }
 
-    func showLogin() -> UIViewController {
+    func showLogin() {
         startLoginFlow()
     }
 
@@ -17,10 +17,9 @@ final class Coordinator: CoordinatorProtocol {
 // MARK: - Private methods
 private extension Coordinator {
 
-    func startLoginFlow() -> UIViewController {
+    func startLoginFlow() {
         let loginViewController = LoginViewController()
         navigationController.pushViewController(loginViewController, animated: true)
-        return navigationController
     }
 
 }
