@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Combine
 
 final class LoginViewController: UIViewController {
 
@@ -7,6 +8,7 @@ final class LoginViewController: UIViewController {
     private var emailInputField: InputField!
     private var passwordInputField: InputField!
     private var loginButton: UIButton!
+    private var cancellables = Set<AnyCancellable>()
     private let loginViewModel: LoginViewModel
 
     // MARK: - Init
@@ -27,6 +29,7 @@ final class LoginViewController: UIViewController {
         createViews()
         styleViews()
         defineLayoutForViews()
+        addCallbacks()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -123,9 +126,20 @@ extension LoginViewController: ConstructViewsProtocol {
         }
     }
 
+    func addCallbacks() {
+        loginViewModel
+            .$errorLoggingIn
+            .sink { error in
+                print("Error logging in: \(error)")
+            }
+            .store(in: &cancellables)
+    }
+
     @objc func loginButtonTapped() {
         Task(priority: .background) {
-            await loginViewModel.loginUser()
+            let password = passwordInputField.text ?? ""
+            let username = emailInputField.text ?? ""
+            await loginViewModel.loginUser(password: password, username: username)
         }
     }
 

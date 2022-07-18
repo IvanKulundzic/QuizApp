@@ -1,9 +1,9 @@
 import Foundation
+import Combine
 
 final class LoginViewModel {
 
-    var onErrorLogingIn: ((String) -> Void)?
-
+    @Published var errorLoggingIn: String = ""
     private let loginService: LoginServiceProtocol
 
     // MARK: - Init
@@ -16,12 +16,12 @@ final class LoginViewModel {
 
 extension LoginViewModel {
 
-    func loginUser() async {
-        let password = "navi55"
-        let username = "ivan.kulundzic@endava.com"
+    func loginUser(password: String, username: String) async {
         do {
             let token = try await loginService.loginUser(password, username: username)
-            print("Token: \(token)")
+            /// Save the token to Keychain
+            let keychainService = KeychainService()
+            keychainService.save(token.accessToken)
         } catch {
             handleError(error)
         }
@@ -32,7 +32,7 @@ extension LoginViewModel {
 private extension LoginViewModel {
 
     func handleError(_ error: Error) {
-        onErrorLogingIn?(error.localizedDescription)
+        errorLoggingIn = error.localizedDescription
     }
 
 }

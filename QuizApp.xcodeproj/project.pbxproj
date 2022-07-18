@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB059B4E28858FE10075AB21 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = EB059B4D28858FE10075AB21 /* KeychainAccess */; };
+		EB059B5028858FF70075AB21 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB059B4F28858FF70075AB21 /* KeychainService.swift */; };
 		EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */; };
 		EB1BE4BF2881608C00E5865B /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */; };
 		EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4C42881805200E5865B /* Coordinator.swift */; };
@@ -34,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB059B4F28858FF70075AB21 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		EB1BE4C42881805200E5865B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB059B4E28858FE10075AB21 /* KeychainAccess in Frameworks */,
 				EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +177,7 @@
 			children = (
 				EBADB54928855B9D00F7EF81 /* NetworkService.swift */,
 				EBADB55028856E5E00F7EF81 /* LoginService.swift */,
+				EB059B4F28858FF70075AB21 /* KeychainService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			name = QuizApp;
 			packageProductDependencies = (
 				EB4E61A4287DB92D009A64E7 /* SnapKit */,
+				EB059B4D28858FE10075AB21 /* KeychainAccess */,
 			);
 			productName = QuizApp;
 			productReference = EBC9BC04287D6A6500052DF9 /* QuizApp.app */;
@@ -285,6 +291,7 @@
 			mainGroup = EBC9BBFB287D6A6500052DF9;
 			packageReferences = (
 				EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				EB059B4C28858FE10075AB21 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = EBC9BC05287D6A6500052DF9 /* Products */;
 			projectDirPath = "";
@@ -349,6 +356,7 @@
 				EBADB5542885893300F7EF81 /* NetworkingConstants.swift in Sources */,
 				EB917E19287EB54C00ECD5AD /* UIColor+Extensions.swift in Sources */,
 				EBADB54C2885603A00F7EF81 /* LoginViewModel.swift in Sources */,
+				EB059B5028858FF70075AB21 /* KeychainService.swift in Sources */,
 				EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */,
 				EB4E61AF287DC594009A64E7 /* ConstructViewsProtocol.swift in Sources */,
 				EBADB54A28855B9D00F7EF81 /* NetworkService.swift in Sources */,
@@ -564,6 +572,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EB059B4C28858FE10075AB21 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -575,6 +591,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EB059B4D28858FE10075AB21 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB059B4C28858FE10075AB21 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		EB4E61A4287DB92D009A64E7 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */;

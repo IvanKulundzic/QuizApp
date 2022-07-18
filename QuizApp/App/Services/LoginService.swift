@@ -23,7 +23,15 @@ final class LoginService: LoginServiceProtocol {
         request.httpMethod = HTTPRequestMethods.post.rawValue
         request.httpBody = try? JSONEncoder().encode(LoginRequestBody(password: password, username: username))
 
-        let value: LoginResponseModel = try await networkService.executeUrlRequest(request)
+        var value = LoginResponseModel(accessToken: "")
+
+        do {
+            let response: LoginResponseModel = try await networkService.executeUrlRequest(request)
+            value = response
+        } catch {
+            throw RequestError.responseError
+        }
+
         return value
     }
 }
