@@ -7,6 +7,20 @@ final class LoginViewController: UIViewController {
     private var emailInputField: InputField!
     private var passwordInputField: InputField!
     private var loginButton: UIButton!
+    private let loginViewModel: LoginViewModel
+
+    // MARK: - Init
+
+    init(loginViewModel: LoginViewModel) {
+        self.loginViewModel = loginViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +67,7 @@ extension LoginViewController: ConstructViewsProtocol {
 
         loginButton = UIButton()
         view.addSubview(loginButton)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     }
 
     func styleViews() {
@@ -64,7 +79,7 @@ extension LoginViewController: ConstructViewsProtocol {
         titleLabel.font = Fonts.sourceSansProBold32.font
 
         loginButton.layer.cornerRadius = 20
-        loginButton.isEnabled = false
+        loginButton.isEnabled = true
         loginButton.backgroundColor = loginButton.isEnabled ? .white : .white.withAlphaComponent(0.6)
         let titleString = NSAttributedString(
             string: "Login",
@@ -105,6 +120,12 @@ extension LoginViewController: ConstructViewsProtocol {
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(32)
             $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(32)
             $0.height.equalTo(44)
+        }
+    }
+
+    @objc func loginButtonTapped() {
+        Task(priority: .background) {
+            await loginViewModel.loginUser()
         }
     }
 
