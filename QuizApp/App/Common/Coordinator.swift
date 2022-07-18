@@ -2,7 +2,7 @@ import UIKit
 
 final class Coordinator: CoordinatorProtocol {
 
-    var navigationController: UINavigationController
+    private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -19,7 +19,7 @@ private extension Coordinator {
 
     func startLoginFlow() {
         let loginViewController = LoginViewController()
-        navigationController.pushViewController(loginViewController, animated: true)
+        navigationController.setViewControllers([loginViewController], animated: true)
     }
 
 }
