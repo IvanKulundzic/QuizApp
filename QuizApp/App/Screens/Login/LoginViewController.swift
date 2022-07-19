@@ -143,10 +143,9 @@ extension LoginViewController: ConstructViewsProtocol {
     func bindViewModel() {
         loginViewModel
             .$errorMessage
-            .sink { [weak self] error in
-                guard let self = self else { return }
-
-                DispatchQueue.main.async {
+            .sink { error in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     self.errorLabel.isHidden = false
                     self.errorLabel.text = error
                 }

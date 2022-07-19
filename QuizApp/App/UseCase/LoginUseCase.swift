@@ -9,13 +9,15 @@ protocol LoginUseCaseProtocol {
 final class LoginUseCase: LoginUseCaseProtocol {
 
     private let loginDataSource: LoginDataSourceProtocol
+    private let secureStorage: SecureStorageProtocol
 
-    init(loginDataSource: LoginDataSourceProtocol) {
+    init(loginDataSource: LoginDataSourceProtocol, secureStorage: SecureStorageProtocol) {
         self.loginDataSource = loginDataSource
+        self.secureStorage = secureStorage
     }
 
     func login(username: String, password: String) async throws {
         let token = try await loginDataSource.login(username: username, password: password).accessToken
-        SecureStorage.shared.save(token)
+        secureStorage.save(token)
     }
 }
