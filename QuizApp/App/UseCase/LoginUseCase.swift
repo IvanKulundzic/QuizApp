@@ -2,7 +2,7 @@ import Foundation
 
 protocol LoginUseCaseProtocol {
 
-    func login(_ username: String, password: String) async
+    func login(username: String, password: String) async throws
 
 }
 
@@ -14,10 +14,8 @@ final class LoginUseCase: LoginUseCaseProtocol {
         self.loginDataSource = loginDataSource
     }
 
-    func login(_ username: String, password: String) async {
-        guard let token = try? await loginDataSource.login(username, password: password).accessToken else {
-            return
-        }
+    func login(username: String, password: String) async throws {
+        let token = try await loginDataSource.login(username: username, password: password).accessToken
         SecureStorage.shared.save(token)
     }
 }

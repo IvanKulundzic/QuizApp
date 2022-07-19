@@ -1,7 +1,19 @@
 import Foundation
 import KeychainAccess
 
-final class SecureStorage {
+protocol SecureStorageProtocol {
+
+    func save(_ token: String)
+
+}
+
+final class SecureStorage: SecureStorageProtocol {
+
+    enum Key: String {
+
+        case accessToken
+
+    }
 
     static let shared = SecureStorage()
     private let keychainService = Keychain(service: "com.ivankulundzic.QuizApp")
@@ -9,7 +21,7 @@ final class SecureStorage {
     private init() { }
 
     func save(_ token: String) {
-        keychainService["accessToken"] = token
+        keychainService[Key.accessToken.rawValue] = token
     }
 
 }

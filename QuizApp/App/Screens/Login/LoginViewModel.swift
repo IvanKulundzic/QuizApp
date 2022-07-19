@@ -3,10 +3,8 @@ import Combine
 
 final class LoginViewModel {
 
-    @Published var errorLoggingIn = ""
+    @Published var errorMessage = ""
     private let loginUseCase: LoginUseCaseProtocol
-
-    // MARK: - Init
 
     init(loginUseCase: LoginUseCaseProtocol) {
         self.loginUseCase = loginUseCase
@@ -18,7 +16,11 @@ extension LoginViewModel {
 
     func loginUser(password: String, username: String) {
         Task(priority: .background) {
-            await loginUseCase.login(username, password: password)
+            do {
+                try await loginUseCase.login(username: username, password: password)
+            } catch {
+                handleError(error)
+            }
         }
     }
 
@@ -27,7 +29,7 @@ extension LoginViewModel {
 private extension LoginViewModel {
 
     func handleError(_ error: Error) {
-        errorLoggingIn = error.localizedDescription
+        errorMessage = error.localizedDescription
     }
 
 }

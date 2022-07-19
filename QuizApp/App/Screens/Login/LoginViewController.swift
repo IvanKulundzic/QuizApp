@@ -8,10 +8,9 @@ final class LoginViewController: UIViewController {
     private var emailInputField: InputField!
     private var passwordInputField: InputField!
     private var loginButton: UIButton!
+    private var errorLabel: UILabel!
     private var cancellables = Set<AnyCancellable>()
     private let loginViewModel: LoginViewModel
-
-    // MARK: - Init
 
     init(loginViewModel: LoginViewModel) {
         self.loginViewModel = loginViewModel
@@ -71,6 +70,10 @@ extension LoginViewController: ConstructViewsProtocol {
         loginButton = UIButton()
         view.addSubview(loginButton)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+
+        errorLabel = UILabel()
+        view.addSubview(errorLabel)
+        errorLabel.isHidden = true
     }
 
     func styleViews() {
@@ -91,6 +94,10 @@ extension LoginViewController: ConstructViewsProtocol {
                 NSAttributedString.Key.font: Fonts.sourceSansProBold16.font]
         )
         loginButton.setAttributedTitle(titleString, for: .normal)
+
+        errorLabel.textColor = .red
+        errorLabel.textAlignment = .left
+        errorLabel.font = Fonts.sourceSansProSemiBold16.font
     }
 
     func defineLayoutForViews() {
@@ -118,29 +125,40 @@ extension LoginViewController: ConstructViewsProtocol {
         }
 
         loginButton.snp.makeConstraints {
-            $0.top.equalTo(passwordInputField.snp.bottom).offset(18)
+            $0.top.equalTo(passwordInputField.snp.bottom).offset(30)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(32)
             $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(32)
             $0.height.equalTo(44)
         }
+
+        errorLabel.snp.makeConstraints {
+            $0.top.equalTo(passwordInputField.snp.bottom)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).offset(45)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(45)
+            $0.height.equalTo(25)
+        }
     }
 
     func bindViewModel() {
         loginViewModel
-            .$errorLoggingIn
-            .sink { error in
-                print("Error logging in: \(error)")
+            .$errorMessage
+            .sink { [weak self] error in
+                guard let self = self else { return }
+
+                DispatchQueue.main.async {
+                    self.errorLabel.isHidden = false
+                    self.errorLabel.text = error
+                }
+
             }
             .store(in: &cancellables)
     }
 
     @objc func loginButtonTapped() {
-        Task(priority: .background) {
-            let password = passwordInputField.text ?? ""
-            let username = emailInputField.text ?? ""
-            loginViewModel.loginUser(password: password, username: username)
-        }
+        let password = passwordInputField.text ?? ""
+        let username = emailInputField.text ?? ""
+        loginViewModel.loginUser(password: password, username: username)
     }
 
 }
