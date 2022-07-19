@@ -1,6 +1,5 @@
 import Foundation
 
-
 final class LoginValidator {
 
     var isValid: Bool = false

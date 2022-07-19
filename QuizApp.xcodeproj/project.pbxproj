@@ -39,6 +39,8 @@
 		EBCB41DD2886B2420008C827 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DC2886B2420008C827 /* ServiceFactory.swift */; };
 		EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DE2886B5A00008C827 /* LoginDataModel.swift */; };
 		EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E12886F79A0008C827 /* LoginValidator.swift */; };
+		EBCB41E42886FB210008C827 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E32886FB210008C827 /* TypeAliases.swift */; };
+		EBCB41E72886FBCB0008C827 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E62886FBCB0008C827 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		EBCB41DC2886B2420008C827 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		EBCB41DE2886B5A00008C827 /* LoginDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataModel.swift; sourceTree = "<group>"; };
 		EBCB41E12886F79A0008C827 /* LoginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
+		EBCB41E32886FB210008C827 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		EBCB41E62886FBCB0008C827 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				EB4E6197287DB1FB009A64E7 /* Login */,
+				EBCB41E52886FBBB0008C827 /* Home */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -269,9 +274,18 @@
 		EBCB41E02886F7890008C827 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				EBCB41E32886FB210008C827 /* TypeAliases.swift */,
 				EBCB41E12886F79A0008C827 /* LoginValidator.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		EBCB41E52886FBBB0008C827 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EBCB41E62886FBCB0008C827 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,8 +404,10 @@
 				EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */,
 				EBADB55928858C6100F7EF81 /* Endpoint.swift in Sources */,
 				EBADB5542885893300F7EF81 /* NetworkingConstants.swift in Sources */,
+				EBCB41E72886FBCB0008C827 /* HomeViewController.swift in Sources */,
 				EB917E19287EB54C00ECD5AD /* UIColor+Extensions.swift in Sources */,
 				EBCB41DD2886B2420008C827 /* ServiceFactory.swift in Sources */,
+				EBCB41E42886FB210008C827 /* TypeAliases.swift in Sources */,
 				EBADB54C2885603A00F7EF81 /* LoginViewModel.swift in Sources */,
 				EB059B5028858FF70075AB21 /* SecureStorage.swift in Sources */,
 				EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */,

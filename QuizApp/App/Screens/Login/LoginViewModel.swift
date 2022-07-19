@@ -3,6 +3,7 @@ import Combine
 
 final class LoginViewModel {
 
+    var onSuccessfulLogin: EmpytCallback?
     @Published var errorMessage = ""
     @Published var isLoginButtonEnabled = false
     private let loginUseCase: LoginUseCaseProtocol
@@ -19,6 +20,10 @@ extension LoginViewModel {
         Task(priority: .background) {
             do {
                 try await loginUseCase.login(username: username, password: password)
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.onSuccessfulLogin?()
+                }
             } catch {
                 handleError(error)
             }
