@@ -29,7 +29,7 @@ final class LoginViewController: UIViewController {
         createViews()
         styleViews()
         defineLayoutForViews()
-        addCallbacks()
+        bindViewModel()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -126,7 +126,7 @@ extension LoginViewController: ConstructViewsProtocol {
         }
     }
 
-    func addCallbacks() {
+    func bindViewModel() {
         loginViewModel
             .$errorLoggingIn
             .sink { error in
@@ -139,7 +139,7 @@ extension LoginViewController: ConstructViewsProtocol {
         Task(priority: .background) {
             let password = passwordInputField.text ?? ""
             let username = emailInputField.text ?? ""
-            await loginViewModel.loginUser(password: password, username: username)
+            loginViewModel.loginUser(password: password, username: username)
         }
     }
 

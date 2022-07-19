@@ -1,14 +1,12 @@
 import Foundation
 
-protocol NetworkClienProtocol {
+protocol NetworkClientProtocol {
 
     func executeUrlRequest<T: Codable>(_ request: URLRequest) async throws -> T
 
 }
 
-
-
-final class NetworkClient: NetworkClienProtocol {
+final class NetworkClient: NetworkClientProtocol {
 
     func executeUrlRequest<T: Codable>(_ request: URLRequest) async throws -> T {
         guard let (data, response) = try? await URLSession.shared.data(for: request) else {

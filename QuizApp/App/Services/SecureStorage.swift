@@ -1,16 +1,15 @@
 import Foundation
 import KeychainAccess
 
-protocol SecureStorageProtocol {
-    func save(_ token: String)
-}
+final class SecureStorage {
 
-final class SecureStorage: SecureStorageProtocol {
-
+    static let shared = SecureStorage()
     private let keychainService = Keychain(service: "com.ivankulundzic.QuizApp")
 
+    private init() { }
+
     func save(_ token: String) {
-        keychainService["ivan"] = token
+        keychainService["accessToken"] = token
     }
 
 }

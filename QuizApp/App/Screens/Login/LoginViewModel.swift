@@ -16,14 +16,9 @@ final class LoginViewModel {
 
 extension LoginViewModel {
 
-    func loginUser(password: String, username: String) async {
-        do {
-            let token = try await loginUseCase.loginUser(password, username: username).accessToken
-            /// Save the token to Keychain
-            let keychainService = SecureStorage()
-            keychainService.save(token)
-        } catch {
-            handleError(error)
+    func loginUser(password: String, username: String) {
+        Task(priority: .background) {
+            await loginUseCase.login(username, password: password)
         }
     }
 
