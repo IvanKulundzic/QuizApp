@@ -4,6 +4,7 @@ import Combine
 final class LoginViewModel {
 
     @Published var errorMessage = ""
+    @Published var isLoginButtonEnabled = false
     private let loginUseCase: LoginUseCaseProtocol
 
     init(loginUseCase: LoginUseCaseProtocol) {
@@ -22,6 +23,11 @@ extension LoginViewModel {
                 handleError(error)
             }
         }
+    }
+
+    func validate(username: String, password: String) {
+        let validator = LoginValidator(username: username, password: password)
+        isLoginButtonEnabled = validator.isValid
     }
 
 }

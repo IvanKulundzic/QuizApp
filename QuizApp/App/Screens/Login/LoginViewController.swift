@@ -50,6 +50,12 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
 
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        let username = emailInputField.text ?? ""
+        let password = passwordInputField.text ?? ""
+        loginViewModel.validate(username: username, password: password)
+    }
+
 }
 
 // MARK: - ConstructViewsProtocol methods
@@ -85,8 +91,7 @@ extension LoginViewController: ConstructViewsProtocol {
         titleLabel.font = Fonts.sourceSansProBold32.font
 
         loginButton.layer.cornerRadius = 20
-        loginButton.isEnabled = true
-        loginButton.backgroundColor = loginButton.isEnabled ? .white : .white.withAlphaComponent(0.6)
+        loginButton.isEnabled = false
         let titleString = NSAttributedString(
             string: "Login",
             attributes: [
@@ -150,6 +155,17 @@ extension LoginViewController: ConstructViewsProtocol {
                     self.errorLabel.text = error
                 }
 
+            }
+            .store(in: &cancellables)
+
+        loginViewModel
+            .$isLoginButtonEnabled
+            .sink { isEnabled in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.loginButton.isEnabled = isEnabled
+                    self.loginButton.backgroundColor = isEnabled ? .white : .white.withAlphaComponent(0.6)
+                }
             }
             .store(in: &cancellables)
     }

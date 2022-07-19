@@ -38,6 +38,7 @@
 		EBCB41DB2886A9D40008C827 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DA2886A9D40008C827 /* LoginDataSource.swift */; };
 		EBCB41DD2886B2420008C827 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DC2886B2420008C827 /* ServiceFactory.swift */; };
 		EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DE2886B5A00008C827 /* LoginDataModel.swift */; };
+		EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E12886F79A0008C827 /* LoginValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		EBCB41DA2886A9D40008C827 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
 		EBCB41DC2886B2420008C827 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		EBCB41DE2886B5A00008C827 /* LoginDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataModel.swift; sourceTree = "<group>"; };
+		EBCB41E12886F79A0008C827 /* LoginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,9 @@
 				EBCB41D72886A2BB0008C827 /* UseCase */,
 				EB4E6196287DB1F4009A64E7 /* Screens */,
 				EB4E61AD287DC546009A64E7 /* Protocols */,
+				EBCB41E02886F7890008C827 /* Utilities */,
+				EB917E17287EB53900ECD5AD /* Extensions */,
+				EB4E619A287DB4A2009A64E7 /* Resources */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -247,8 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				EB4E6195287DB1E2009A64E7 /* App */,
-				EB917E17287EB53900ECD5AD /* Extensions */,
-				EB4E619A287DB4A2009A64E7 /* Resources */,
 				EBC9BC12287D6A6600052DF9 /* LaunchScreen.storyboard */,
 				EBC9BC15287D6A6600052DF9 /* Info.plist */,
 			);
@@ -261,6 +264,14 @@
 				EBADB55028856E5E00F7EF81 /* LoginUseCase.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		EBCB41E02886F7890008C827 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EBCB41E12886F79A0008C827 /* LoginValidator.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,6 +398,7 @@
 				EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */,
 				EBCB41D62886A2890008C827 /* RequestError.swift in Sources */,
 				EB4E61AF287DC594009A64E7 /* ConstructViewsProtocol.swift in Sources */,
+				EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */,
 				EBADB54A28855B9D00F7EF81 /* NetworkClient.swift in Sources */,
 				EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */,
 			);
