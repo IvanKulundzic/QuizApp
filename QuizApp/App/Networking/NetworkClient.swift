@@ -1,28 +1,14 @@
 import Foundation
 
-protocol NetworkServiceProtocol {
+protocol NetworkClienProtocol {
 
     func executeUrlRequest<T: Codable>(_ request: URLRequest) async throws -> T
 
 }
 
-enum RequestError: Error {
 
-    case invalidUrl
-    case clientError
-    case responseError
-    case serverError
-    case noData
-    case dataDecodingError
-    case badRequest
-    case unauthorized
-    case forbidden
-    case notFound
-    case unknown
 
-}
-
-final class NetworkService: NetworkServiceProtocol {
+final class NetworkClient: NetworkClienProtocol {
 
     func executeUrlRequest<T: Codable>(_ request: URLRequest) async throws -> T {
         guard let (data, response) = try? await URLSession.shared.data(for: request) else {

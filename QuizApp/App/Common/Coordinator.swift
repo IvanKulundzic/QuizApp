@@ -2,12 +2,12 @@ import UIKit
 
 final class Coordinator: CoordinatorProtocol {
 
-    private let loginService: LoginServiceProtocol
+    private let loginUseCase: LoginUseCaseProtocol
     private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.loginService = LoginService(networkService: NetworkService())
+        self.loginUseCase = LoginUseCase(networkClient: NetworkClient())
     }
 
     func showLogin() {
@@ -20,7 +20,7 @@ final class Coordinator: CoordinatorProtocol {
 private extension Coordinator {
 
     func startLoginFlow() {
-        let loginViewModel = LoginViewModel(loginService: loginService)
+        let loginViewModel = LoginViewModel(loginUseCase: loginUseCase)
         let loginViewController = LoginViewController(loginViewModel: loginViewModel)
         navigationController.setViewControllers([loginViewController], animated: true)
     }

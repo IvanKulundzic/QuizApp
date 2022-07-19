@@ -1,17 +1,17 @@
 import Foundation
 
-protocol LoginServiceProtocol {
+protocol LoginUseCaseProtocol {
 
     func loginUser(_ password: String, username: String) async throws -> LoginResponseModel
 
 }
 
-final class LoginService: LoginServiceProtocol {
+final class LoginUseCase: LoginUseCaseProtocol {
 
-    private let networkService: NetworkServiceProtocol
+    private let networkClient: NetworkClienProtocol
 
-    init(networkService: NetworkServiceProtocol) {
-        self.networkService = networkService
+    init(networkClient: NetworkClienProtocol) {
+        self.networkClient = networkClient
     }
 
     func loginUser(_ password: String, username: String) async throws -> LoginResponseModel {
@@ -26,7 +26,7 @@ final class LoginService: LoginServiceProtocol {
         var value = LoginResponseModel(accessToken: "")
 
         do {
-            let response: LoginResponseModel = try await networkService.executeUrlRequest(request)
+            let response: LoginResponseModel = try await networkClient.executeUrlRequest(request)
             value = response
         } catch {
             throw RequestError.responseError
