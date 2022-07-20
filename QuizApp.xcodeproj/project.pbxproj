@@ -41,6 +41,7 @@
 		EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E12886F79A0008C827 /* LoginValidator.swift */; };
 		EBCB41E42886FB210008C827 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E32886FB210008C827 /* TypeAliases.swift */; };
 		EBCB41E72886FBCB0008C827 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E62886FBCB0008C827 /* HomeViewController.swift */; };
+		EBEC7501288831B800BD7220 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC7500288831B800BD7220 /* EmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		EBCB41E12886F79A0008C827 /* LoginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
 		EBCB41E32886FB210008C827 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		EBCB41E62886FBCB0008C827 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EBEC7500288831B800BD7220 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				EB917E22287EFDC200ECD5AD /* InputField.swift */,
+				EBEC7500288831B800BD7220 /* EmptyStateView.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */,
 				EB917E23287EFDC200ECD5AD /* InputField.swift in Sources */,
 				EB1BE4BF2881608C00E5865B /* CoordinatorProtocol.swift in Sources */,
+				EBEC7501288831B800BD7220 /* EmptyStateView.swift in Sources */,
 				EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */,
 				EBADB557288589B000F7EF81 /* LoginResponseModel.swift in Sources */,
 				EBADB54F2885630F00F7EF81 /* LoginRequestBody.swift in Sources */,

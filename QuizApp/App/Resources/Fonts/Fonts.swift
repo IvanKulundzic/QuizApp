@@ -5,6 +5,8 @@ enum Fonts {
     case sourceSansProRegular16
     case sourceSansProRegular32
     case sourceSansProBold16
+    case sourceSansProBold24
+    case sourceSansProBold28
     case sourceSansProBold32
     case sourceSansProSemiBold16
 
@@ -20,6 +22,10 @@ extension Fonts {
             return UIFont(name: "SourceSansPro-Regular", size: 32)!
         case .sourceSansProBold16:
             return UIFont(name: "SourceSansPro-Bold", size: 16)!
+        case .sourceSansProBold24:
+            return UIFont(name: "SourceSansPro-Bold", size: 24)!
+        case .sourceSansProBold28:
+            return UIFont(name: "SourceSansPro-Bold", size: 28)!
         case .sourceSansProBold32:
             return UIFont(name: "SourceSansPro-Bold", size: 32)!
         case .sourceSansProSemiBold16:
