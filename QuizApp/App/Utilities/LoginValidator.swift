@@ -2,15 +2,16 @@ import Foundation
 
 final class LoginValidator {
 
-    var isValid: Bool = false
+    var isValid: Bool {
+        validate(username: username, password: password)
+    }
+
     private let username: String
     private let password: String
 
     init(username: String, password: String) {
         self.username = username
         self.password = password
-
-        validate(username: username, password: password)
     }
 
 }
@@ -18,14 +19,14 @@ final class LoginValidator {
 // MARK: - Private methods
 private extension LoginValidator {
 
-    func validate(username: String, password: String) {
+    func validate(username: String, password: String) -> Bool {
         let isUsernameValid = validateUsername(username)
         let isPasswordValid = validatePassword(password)
 
         if isUsernameValid && isPasswordValid {
-            isValid = true
+            return true
         } else {
-            isValid = false
+            return false
         }
     }
 

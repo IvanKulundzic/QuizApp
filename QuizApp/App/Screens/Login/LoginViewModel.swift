@@ -3,13 +3,14 @@ import Combine
 
 final class LoginViewModel {
 
-    var onSuccessfulLogin: EmpytCallback?
     @Published var errorMessage = ""
     @Published var isLoginButtonEnabled = false
+    private let coordinator: CoordinatorProtocol
     private let loginUseCase: LoginUseCaseProtocol
 
-    init(loginUseCase: LoginUseCaseProtocol) {
+    init(loginUseCase: LoginUseCaseProtocol, coordinator: CoordinatorProtocol) {
         self.loginUseCase = loginUseCase
+        self.coordinator = coordinator
     }
 
 }
@@ -22,7 +23,7 @@ extension LoginViewModel {
                 try await loginUseCase.login(username: username, password: password)
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    self.onSuccessfulLogin?()
+                    self.coordinator.showHome()
                 }
             } catch {
                 handleError(error)
