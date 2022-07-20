@@ -11,18 +11,14 @@ final class Coordinator: CoordinatorProtocol {
     }
 
     func showLogin() {
-        startLoginFlow()
-    }
-
-}
-
-// MARK: - Private methods
-private extension Coordinator {
-
-    func startLoginFlow() {
-        let loginViewModel = LoginViewModel(loginUseCase: serviceFactory.loginUseCase)
+        let loginViewModel = LoginViewModel(loginUseCase: serviceFactory.loginUseCase, coordinator: self)
         let loginViewController = LoginViewController(loginViewModel: loginViewModel)
         navigationController.setViewControllers([loginViewController], animated: true)
+    }
+
+    func showHome() {
+        let homeViewController = HomeViewController()
+        navigationController.setViewControllers([homeViewController], animated: true)
     }
 
 }
