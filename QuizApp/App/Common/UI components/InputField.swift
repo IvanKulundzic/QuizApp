@@ -73,7 +73,7 @@ private extension InputField {
     func addShowPasswordButton() {
         showPasswordButton = UIButton()
         addSubview(showPasswordButton)
-        showPasswordButton.setImage(UIImage(named: "icnShowPassword"), for: .normal)
+        showPasswordButton.setImage(UIImage.showPassword, for: .normal)
         showPasswordButton.contentMode = .scaleToFill
 
         showPasswordButton.snp.makeConstraints {

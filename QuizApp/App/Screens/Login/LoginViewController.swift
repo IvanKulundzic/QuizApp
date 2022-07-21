@@ -21,8 +21,6 @@ final class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Lifecycle methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         createViews()
@@ -95,7 +93,7 @@ extension LoginViewController: ConstructViewsProtocol {
         let titleString = NSAttributedString(
             string: "Login",
             attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.loginButtonTitle,
+                NSAttributedString.Key.foregroundColor: UIColor.loginPurple,
                 NSAttributedString.Key.font: Fonts.sourceSansProBold16.font]
         )
         loginButton.setAttributedTitle(titleString, for: .normal)
