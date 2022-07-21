@@ -18,8 +18,8 @@ final class Coordinator: CoordinatorProtocol {
 
     func showHome() {
         let quizViewController = QuizViewController()
-        let searchViewController = SearchViewController()
-        let viewControllers = [quizViewController, searchViewController]
+        let userViewController = UserViewController()
+        let viewControllers = [quizViewController, userViewController]
         let tabBarController = TabBarController(viewControllers: viewControllers)
         navigationController.setViewControllers([tabBarController], animated: true)
     }

@@ -21,7 +21,7 @@
 		EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */; };
 		EB917E20287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */; };
 		EB917E23287EFDC200ECD5AD /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E22287EFDC200ECD5AD /* InputField.swift */; };
-		EB9476E528893C6700BC20C2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476E428893C6700BC20C2 /* SearchViewController.swift */; };
+		EB9476E528893C6700BC20C2 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476E428893C6700BC20C2 /* UserViewController.swift */; };
 		EBADB54A28855B9D00F7EF81 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB54928855B9D00F7EF81 /* NetworkClient.swift */; };
 		EBADB54C2885603A00F7EF81 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB54B2885603A00F7EF81 /* LoginViewModel.swift */; };
 		EBADB54F2885630F00F7EF81 /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB54E2885630F00F7EF81 /* LoginRequestBody.swift */; };
@@ -59,7 +59,7 @@
 		EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		EB917E22287EFDC200ECD5AD /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
-		EB9476E428893C6700BC20C2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		EB9476E428893C6700BC20C2 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		EBADB54928855B9D00F7EF81 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		EBADB54B2885603A00F7EF81 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EBADB54E2885630F00F7EF81 /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			children = (
 				EB4E6197287DB1FB009A64E7 /* Login */,
 				EBCB41E52886FBBB0008C827 /* Quiz */,
-				EB9476E228893C4400BC20C2 /* Search */,
+				EB9476E228893C4400BC20C2 /* User */,
 				EB9476E328893C4A00BC20C2 /* Settings */,
 			);
 			path = Screens;
@@ -203,12 +203,12 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		EB9476E228893C4400BC20C2 /* Search */ = {
+		EB9476E228893C4400BC20C2 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				EB9476E428893C6700BC20C2 /* SearchViewController.swift */,
+				EB9476E428893C6700BC20C2 /* UserViewController.swift */,
 			);
-			path = Search;
+			path = User;
 			sourceTree = "<group>";
 		};
 		EB9476E328893C4A00BC20C2 /* Settings */ = {
@@ -415,7 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB9476E528893C6700BC20C2 /* SearchViewController.swift in Sources */,
+				EB9476E528893C6700BC20C2 /* UserViewController.swift in Sources */,
 				EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */,
 				EBCB41D92886A3850008C827 /* LoginNetworkClient.swift in Sources */,
 				EBCB41DB2886A9D40008C827 /* LoginDataSource.swift in Sources */,

@@ -33,13 +33,10 @@ extension QuizViewController: ConstructViewsProtocol {
             .font: Fonts.sourceSansProBold24.font
         ]
 
-        let titleString = NSAttributedString(
-            string: "Get Quiz",
-            attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.loginButtonTitle,
-                NSAttributedString.Key.font: Fonts.sourceSansProBold16.font]
-        )
-        getQuizButton.setAttributedTitle(titleString, for: .normal)
+        getQuizButton.setTitle("Get Quiz", for: .normal)
+        getQuizButton.setTitleColor(.loginPurple, for: .normal)
+        getQuizButton.titleLabel?.tintColor = .loginPurple
+        getQuizButton.titleLabel?.font = Fonts.sourceSansProBold16.font
         getQuizButton.backgroundColor = .white
         getQuizButton.layer.cornerRadius = 20
 
@@ -70,7 +67,8 @@ extension QuizViewController: ConstructViewsProtocol {
         tabBarController?.navigationItem.titleView = titleLabel
 
         tabBarItem.title = "Quiz"
-        tabBarItem.image = UIImage.quizIcon?.withRenderingMode(.alwaysOriginal)
+        tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        tabBarItem.image = UIImage.quizIcon?.withRenderingMode(.alwaysTemplate)
     }
 
 }

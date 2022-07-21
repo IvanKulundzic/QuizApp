@@ -93,7 +93,7 @@ extension LoginViewController: ConstructViewsProtocol {
         let titleString = NSAttributedString(
             string: "Login",
             attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.loginButtonTitle,
+                NSAttributedString.Key.foregroundColor: UIColor.loginPurple,
                 NSAttributedString.Key.font: Fonts.sourceSansProBold16.font]
         )
         loginButton.setAttributedTitle(titleString, for: .normal)

@@ -23,7 +23,7 @@ private extension TabBarController {
 
     func setupTabBar() {
         tabBar.backgroundColor = .white
-        tabBar.tintColor = .black
+        tabBar.tintColor = .loginPurple
         selectedIndex = 0
     }
 

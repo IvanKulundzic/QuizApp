@@ -1,6 +1,6 @@
 import UIKit
 
-final class SearchViewController: UIViewController {
+final class UserViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -21,7 +21,7 @@ final class SearchViewController: UIViewController {
 }
 
 // MARK: - ConstructViewsProtocol methods
-extension SearchViewController: ConstructViewsProtocol {
+extension UserViewController: ConstructViewsProtocol {
 
     func createViews() {
 
@@ -36,8 +36,9 @@ extension SearchViewController: ConstructViewsProtocol {
     }
 
     func setupTabBar() {
-        tabBarItem.title = "Search"
-        tabBarItem.image = UIImage.searchIcon?.withRenderingMode(.alwaysOriginal)
+        tabBarItem.title = "User"
+        tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        tabBarItem.image = UIImage(systemName: "person")
     }
 
 }
