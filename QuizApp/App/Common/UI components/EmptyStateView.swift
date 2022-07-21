@@ -34,7 +34,7 @@ extension EmptyStateView: ConstructViewsProtocol {
     }
 
     func styleViews() {
-        imageView.image = UIImage(named: "test")
+        imageView.image = UIImage.errorIcon
 
         titleLabel.text = "Error"
         titleLabel.textAlignment = .center

@@ -15,6 +15,7 @@ final class QuizViewController: UIViewController {
 
 }
 
+// MARK: - ConstructViewsProtocol methods
 extension QuizViewController: ConstructViewsProtocol {
 
     func createViews() {
@@ -61,8 +62,15 @@ extension QuizViewController: ConstructViewsProtocol {
     }
 
     func setupTabBar() {
+        let titleLabel = UILabel()
+        titleLabel.text = "PopQuiz"
+        titleLabel.textColor = .white
+        titleLabel.font = Fonts.sourceSansProBold24.font
+
+        tabBarController?.navigationItem.titleView = titleLabel
+
         tabBarItem.title = "Quiz"
-        tabBarItem.image = UIImage(named: "icnQuiz")?.withRenderingMode(.alwaysOriginal)
+        tabBarItem.image = UIImage.quizIcon?.withRenderingMode(.alwaysOriginal)
     }
 
 }
