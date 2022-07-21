@@ -68,8 +68,6 @@ private extension InputField {
         addPadding(padding: .right(45))
 
         addShowPasswordButton()
-
-        text = type == .email ? "ivan.kulundzic@endava.com" : "navi55"
     }
 
     func addShowPasswordButton() {

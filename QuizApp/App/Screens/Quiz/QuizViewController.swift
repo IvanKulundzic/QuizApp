@@ -1,6 +1,6 @@
 import UIKit
 
-final class HomeViewController: UIViewController {
+final class QuizViewController: UIViewController {
 
     private var getQuizButton: UIButton!
     private var emptyStateView: UIView!
@@ -10,11 +10,12 @@ final class HomeViewController: UIViewController {
         createViews()
         styleViews()
         defineLayoutForViews()
+        setupTabBar()
     }
 
 }
 
-extension HomeViewController: ConstructViewsProtocol {
+extension QuizViewController: ConstructViewsProtocol {
 
     func createViews() {
         getQuizButton = UIButton()
@@ -26,7 +27,6 @@ extension HomeViewController: ConstructViewsProtocol {
 
     func styleViews() {
         view.applyGradientWith([UIColor.loginBackgroundTop.cgColor, UIColor.loginBackgroundBottom.cgColor])
-        title = "Pop Quiz"
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.white,
             .font: Fonts.sourceSansProBold24.font
@@ -54,9 +54,15 @@ extension HomeViewController: ConstructViewsProtocol {
         }
 
         emptyStateView.snp.makeConstraints {
-            $0.centerX.equalTo(view.snp.centerX)
-            $0.centerY.equalTo(view.snp.centerY)
+            $0.center.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(200)
+            $0.width.equalTo(250)
         }
+    }
+
+    func setupTabBar() {
+        tabBarItem.title = "Quiz"
+        tabBarItem.image = UIImage(named: "icnQuiz")?.withRenderingMode(.alwaysOriginal)
     }
 
 }

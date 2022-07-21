@@ -21,8 +21,6 @@ final class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Lifecycle methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         createViews()
