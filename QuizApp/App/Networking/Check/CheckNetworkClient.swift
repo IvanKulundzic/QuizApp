@@ -21,7 +21,7 @@ final class CheckNetworkClient: CheckNetworkClientProtocol {
             throw RequestError.invalidUrl
         }
         var request = URLRequest(url: url)
-        let token = try secureStorage.getToken()
+        let token = secureStorage.accessToken ?? ""
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPRequestMethods.get.rawValue
