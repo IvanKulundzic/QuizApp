@@ -3,6 +3,7 @@ import Foundation
 enum EndpointType {
 
     case login
+    case check
 
 }
 
@@ -18,6 +19,8 @@ struct Endpoint {
         switch type {
         case .login:
             return "\(NetworkingConstants.baseUrl)api/v1/login"
+        case .check:
+            return "\(NetworkingConstants.baseUrl)api/v1/check"
         }
     }
 
