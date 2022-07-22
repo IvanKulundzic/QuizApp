@@ -32,6 +32,7 @@
 		EBADB557288589B000F7EF81 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB556288589B000F7EF81 /* LoginResponseModel.swift */; };
 		EBADB55928858C6100F7EF81 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB55828858C6100F7EF81 /* Endpoint.swift */; };
 		EBB6F6F6288AC2ED00790DC0 /* UserReqeustBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */; };
+		EBB6F6F8288AE67A00790DC0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB6F6F7288AE67A00790DC0 /* UserModel.swift */; };
 		EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */; };
 		EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */; };
 		EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */; };
@@ -78,6 +79,7 @@
 		EBADB556288589B000F7EF81 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		EBADB55828858C6100F7EF81 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReqeustBody.swift; sourceTree = "<group>"; };
+		EBB6F6F7288AE67A00790DC0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EBC9BC04287D6A6500052DF9 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				EBCB41DE2886B5A00008C827 /* LoginDataModel.swift */,
 				EBD0F0FF288AA61C00D34EA8 /* UserResponseModel.swift */,
 				EBD0F101288AB72600D34EA8 /* UserDataModel.swift */,
+				EBB6F6F7288AE67A00790DC0 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */,
 				EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */,
 				EBEC75032888398800BD7220 /* TabBarController.swift in Sources */,
+				EBB6F6F8288AE67A00790DC0 /* UserModel.swift in Sources */,
 				EB9476EB2889974800BC20C2 /* CheckNetworkClient.swift in Sources */,
 				EBCB41D62886A2890008C827 /* RequestError.swift in Sources */,
 				EB4E61AF287DC594009A64E7 /* ConstructViewsProtocol.swift in Sources */,

@@ -20,7 +20,7 @@ final class UserNetworkClient: UserNetworkClientProtocol {
     var userInfo: UserResponseModel? {
         get async throws {
             guard let url = URL(string: Endpoint(type: .account).path) else {
-                return nil
+                throw RequestError.invalidUrl
             }
 
             var request = URLRequest(url: url)
