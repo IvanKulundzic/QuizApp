@@ -7,6 +7,9 @@ protocol ServiceFactoryProtocol {
     var loginDataSource: LoginDataSourceProtocol { get set }
     var loginUseCase: LoginUseCaseProtocol { get set }
     var secureStorage: SecureStorageProtocol { get set }
+    var checkNetworkClient: CheckNetworkClientProtocol { get set }
+    var userNetworkDataSource: UserNetworkDataSourceProtocol { get set }
+
 }
 
 final class ServiceFactory: ServiceFactoryProtocol {
@@ -29,6 +32,14 @@ final class ServiceFactory: ServiceFactoryProtocol {
 
     lazy var secureStorage: SecureStorageProtocol = {
         SecureStorage()
+    }()
+
+    lazy var checkNetworkClient: CheckNetworkClientProtocol = {
+        CheckNetworkClient(networkClient: networkClient, secureStorage: secureStorage)
+    }()
+
+    lazy var userNetworkDataSource: UserNetworkDataSourceProtocol = {
+        UserNetworkDataSource(checkNetworkClient: checkNetworkClient)
     }()
 
 }

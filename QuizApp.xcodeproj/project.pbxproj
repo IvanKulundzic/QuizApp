@@ -22,6 +22,8 @@
 		EB917E20287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */; };
 		EB917E23287EFDC200ECD5AD /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E22287EFDC200ECD5AD /* InputField.swift */; };
 		EB9476E528893C6700BC20C2 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476E428893C6700BC20C2 /* UserViewController.swift */; };
+		EB9476E8288990B100BC20C2 /* UserNetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */; };
+		EB9476EB2889974800BC20C2 /* CheckNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476EA2889974800BC20C2 /* CheckNetworkClient.swift */; };
 		EBADB54A28855B9D00F7EF81 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB54928855B9D00F7EF81 /* NetworkClient.swift */; };
 		EBADB54C2885603A00F7EF81 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB54B2885603A00F7EF81 /* LoginViewModel.swift */; };
 		EBADB54F2885630F00F7EF81 /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB54E2885630F00F7EF81 /* LoginRequestBody.swift */; };
@@ -60,6 +62,8 @@
 		EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		EB917E22287EFDC200ECD5AD /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		EB9476E428893C6700BC20C2 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkDataSource.swift; sourceTree = "<group>"; };
+		EB9476EA2889974800BC20C2 /* CheckNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNetworkClient.swift; sourceTree = "<group>"; };
 		EBADB54928855B9D00F7EF81 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		EBADB54B2885603A00F7EF81 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EBADB54E2885630F00F7EF81 /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				EB917E21287EFDB100ECD5AD /* Common */,
 				EBADB54828855B8A00F7EF81 /* Services */,
 				EBADB54D288562FF00F7EF81 /* Networking */,
+				EB9476E62889907600BC20C2 /* Datasource */,
 				EBCB41D72886A2BB0008C827 /* UseCase */,
 				EB4E6196287DB1F4009A64E7 /* Screens */,
 				EB4E61AD287DC546009A64E7 /* Protocols */,
@@ -218,6 +223,22 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		EB9476E62889907600BC20C2 /* Datasource */ = {
+			isa = PBXGroup;
+			children = (
+				EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */,
+			);
+			path = Datasource;
+			sourceTree = "<group>";
+		};
+		EB9476E92889971400BC20C2 /* Check */ = {
+			isa = PBXGroup;
+			children = (
+				EB9476EA2889974800BC20C2 /* CheckNetworkClient.swift */,
+			);
+			path = Check;
+			sourceTree = "<group>";
+		};
 		EBADB54828855B8A00F7EF81 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +257,7 @@
 				EBCB41D52886A2890008C827 /* RequestError.swift */,
 				EBADB5522885890100F7EF81 /* Models */,
 				EBADB5552885898C00F7EF81 /* Login */,
+				EB9476E92889971400BC20C2 /* Check */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -431,6 +453,7 @@
 				EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */,
 				EBADB55928858C6100F7EF81 /* Endpoint.swift in Sources */,
 				EBADB5542885893300F7EF81 /* NetworkingConstants.swift in Sources */,
+				EB9476E8288990B100BC20C2 /* UserNetworkDataSource.swift in Sources */,
 				EBCB41E72886FBCB0008C827 /* QuizViewController.swift in Sources */,
 				EB917E19287EB54C00ECD5AD /* UIColor+Extensions.swift in Sources */,
 				EBCB41DD2886B2420008C827 /* ServiceFactory.swift in Sources */,
@@ -440,6 +463,7 @@
 				EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */,
 				EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */,
 				EBEC75032888398800BD7220 /* TabBarController.swift in Sources */,
+				EB9476EB2889974800BC20C2 /* CheckNetworkClient.swift in Sources */,
 				EBCB41D62886A2890008C827 /* RequestError.swift in Sources */,
 				EB4E61AF287DC594009A64E7 /* ConstructViewsProtocol.swift in Sources */,
 				EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */,
