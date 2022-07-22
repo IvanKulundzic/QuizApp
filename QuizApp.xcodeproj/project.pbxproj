@@ -130,7 +130,6 @@
 				EB917E21287EFDB100ECD5AD /* Common */,
 				EBADB54828855B8A00F7EF81 /* Services */,
 				EBADB54D288562FF00F7EF81 /* Networking */,
-				EBCB41D72886A2BB0008C827 /* UseCase */,
 				EB4E6196287DB1F4009A64E7 /* Screens */,
 				EB4E61AD287DC546009A64E7 /* Protocols */,
 				EBCB41E02886F7890008C827 /* Utilities */,
@@ -284,6 +283,7 @@
 				EBADB54E2885630F00F7EF81 /* LoginRequestBody.swift */,
 				EBCB41D82886A3850008C827 /* LoginNetworkClient.swift */,
 				EBCB41DA2886A9D40008C827 /* LoginDataSource.swift */,
+				EBADB55028856E5E00F7EF81 /* LoginUseCase.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -317,15 +317,6 @@
 			path = QuizApp;
 			sourceTree = "<group>";
 		};
-		EBCB41D72886A2BB0008C827 /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				EBADB55028856E5E00F7EF81 /* LoginUseCase.swift */,
-				EBD0F0FA288AA42800D34EA8 /* UserUseCase.swift */,
-			);
-			path = UseCase;
-			sourceTree = "<group>";
-		};
 		EBCB41E02886F7890008C827 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +340,7 @@
 				EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */,
 				EBD0F0FD288AA48700D34EA8 /* UserNetworkClient.swift */,
 				EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */,
+				EBD0F0FA288AA42800D34EA8 /* UserUseCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";

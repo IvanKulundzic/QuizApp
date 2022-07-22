@@ -2,9 +2,9 @@ import Foundation
 
 protocol UserUseCaseProtocol {
 
-    func getUserInfo() async -> UserDataModel
+    var userInfo: UserDataModel { get async throws }
 
-    func update(_ name: String) async
+    func update(name: String) async
 
 }
 
@@ -16,12 +16,14 @@ final class UserUseCase: UserUseCaseProtocol {
         self.userNetworkDataSource = userNetworkDataSource
     }
 
-    func getUserInfo() async -> UserDataModel {
-        await userNetworkDataSource.getUserInfo()
+    var userInfo: UserDataModel {
+        get async throws {
+            try await userNetworkDataSource.userInfo
+        }
     }
 
-    func update(_ name: String) async {
-        await userNetworkDataSource.update(name)
+    func update(name: String) async {
+        await userNetworkDataSource.update(name: name)
     }
 
 }

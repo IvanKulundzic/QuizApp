@@ -2,11 +2,11 @@ import Foundation
 
 protocol UserNetworkDataSourceProtocol {
 
+    var userInfo: UserDataModel { get async throws }
+
     func checkUserAccessToken() async throws
 
-    func getUserInfo() async -> UserDataModel
-
-    func update(_ name: String) async
+    func update(name: String) async
 
 }
 
@@ -20,19 +20,21 @@ final class UserNetworkDataSource: UserNetworkDataSourceProtocol {
         self.userNetworkClient = userNetworkClient
     }
 
+    var userInfo: UserDataModel {
+        get async throws {
+            let responseModel = try await userNetworkClient.userInfo
+            let username = responseModel?.email ?? ""
+            let name = responseModel?.name ?? ""
+            return UserDataModel(username: username, name: name)
+        }
+    }
+
     func checkUserAccessToken() async throws {
         try await checkNetworkClient.checkAccessToken()
     }
 
-    func getUserInfo() async -> UserDataModel {
-        let responseModel = try? await userNetworkClient.getUserInfo()
-        let username = responseModel?.email ?? ""
-        let name = responseModel?.name ?? ""
-        return UserDataModel(username: username, name: name)
-    }
-
-    func update(_ name: String) async {
-        try? await userNetworkClient.update(name)
+    func update(name: String) async {
+        try? await userNetworkClient.update(name: name)
     }
 
 }

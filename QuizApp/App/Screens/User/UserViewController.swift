@@ -127,24 +127,27 @@ private extension UserViewController {
     }
 
     func bindViewModel() {
-
         userViewModel
             .$username
-            .sink { username in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.usernameTextLabel.text = username
-                }
+            .sink { [weak self] username in
+                guard let self = self else { return }
+                self.usernameTextLabel.text = username
             }
             .store(in: &cancellables)
 
         userViewModel
             .$name
-            .sink { name in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.nameTextField.text = name
-                }
+            .sink { [weak self] name in
+                guard let self = self else { return }
+                self.nameTextField.text = name
+            }
+            .store(in: &cancellables)
+
+        userViewModel
+            .errorMessage
+            .sink { [weak self] error in
+                guard let self = self else { return }
+                self.showAlert(with: error)
             }
             .store(in: &cancellables)
 
@@ -159,6 +162,18 @@ private extension UserViewController {
         guard let name = nameTextField.text else { return }
         userViewModel.update(name)
         nameTextField.resignFirstResponder()
+    }
+
+    func showAlert(with message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel) { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true)
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true)
+        }
     }
 
 }

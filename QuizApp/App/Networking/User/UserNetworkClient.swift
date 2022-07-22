@@ -2,9 +2,9 @@ import Foundation
 
 protocol UserNetworkClientProtocol {
 
-    func getUserInfo() async throws -> UserResponseModel
+    var userInfo: UserResponseModel? { get async throws }
 
-    func update(_ name: String) async throws
+    func update(name: String) async throws
 }
 
 final class UserNetworkClient: UserNetworkClientProtocol {
@@ -17,23 +17,27 @@ final class UserNetworkClient: UserNetworkClientProtocol {
         self.secureStorage = secureStorage
     }
 
-    func getUserInfo() async throws -> UserResponseModel {
-        guard let url = URL(string: Endpoint(type: .account).path) else {
-            throw RequestError.invalidUrl
-        }
-        var request = URLRequest(url: url)
-        let token = secureStorage.accessToken ?? ""
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = HTTPRequestMethods.get.rawValue
+    var userInfo: UserResponseModel? {
+        get async throws {
+            guard let url = URL(string: Endpoint(type: .account).path) else {
+                return nil
+            }
 
-        return try await networkClient.executeUrlRequest(request)
+            var request = URLRequest(url: url)
+            let token = secureStorage.accessToken ?? ""
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = HTTPRequestMethods.get.rawValue
+
+            return try await networkClient.executeUrlRequest(request)
+        }
     }
 
-    func update(_ name: String) async throws {
+    func update(name: String) async throws {
         guard let url = URL(string: Endpoint(type: .account).path) else {
             throw RequestError.invalidUrl
         }
+
         var request = URLRequest(url: url)
         let token = secureStorage.accessToken ?? ""
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
