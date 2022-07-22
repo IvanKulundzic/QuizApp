@@ -31,6 +31,7 @@
 		EBADB5542885893300F7EF81 /* NetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB5532885893300F7EF81 /* NetworkingConstants.swift */; };
 		EBADB557288589B000F7EF81 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB556288589B000F7EF81 /* LoginResponseModel.swift */; };
 		EBADB55928858C6100F7EF81 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB55828858C6100F7EF81 /* Endpoint.swift */; };
+		EBB6F6F6288AC2ED00790DC0 /* UserReqeustBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */; };
 		EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */; };
 		EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */; };
 		EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9BC0B287D6A6500052DF9 /* LoginViewController.swift */; };
@@ -76,6 +77,7 @@
 		EBADB5532885893300F7EF81 /* NetworkingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConstants.swift; sourceTree = "<group>"; };
 		EBADB556288589B000F7EF81 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		EBADB55828858C6100F7EF81 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReqeustBody.swift; sourceTree = "<group>"; };
 		EBC9BC04287D6A6500052DF9 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +130,6 @@
 				EB917E21287EFDB100ECD5AD /* Common */,
 				EBADB54828855B8A00F7EF81 /* Services */,
 				EBADB54D288562FF00F7EF81 /* Networking */,
-				EB9476E62889907600BC20C2 /* Datasource */,
 				EBCB41D72886A2BB0008C827 /* UseCase */,
 				EB4E6196287DB1F4009A64E7 /* Screens */,
 				EB4E61AD287DC546009A64E7 /* Protocols */,
@@ -232,14 +233,6 @@
 			children = (
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		EB9476E62889907600BC20C2 /* Datasource */ = {
-			isa = PBXGroup;
-			children = (
-				EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */,
-			);
-			path = Datasource;
 			sourceTree = "<group>";
 		};
 		EB9476E92889971400BC20C2 /* Check */ = {
@@ -353,7 +346,9 @@
 		EBD0F0FC288AA47000D34EA8 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */,
 				EBD0F0FD288AA48700D34EA8 /* UserNetworkClient.swift */,
+				EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -476,6 +471,7 @@
 				EB4E61AA287DBB20009A64E7 /* Fonts.swift in Sources */,
 				EBADB55128856E5E00F7EF81 /* LoginUseCase.swift in Sources */,
 				EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */,
+				EBB6F6F6288AC2ED00790DC0 /* UserReqeustBody.swift in Sources */,
 				EBADB55928858C6100F7EF81 /* Endpoint.swift in Sources */,
 				EBADB5542885893300F7EF81 /* NetworkingConstants.swift in Sources */,
 				EBD0F102288AB72600D34EA8 /* UserDataModel.swift in Sources */,

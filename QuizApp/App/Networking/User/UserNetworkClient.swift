@@ -1,7 +1,10 @@
 import Foundation
 
 protocol UserNetworkClientProtocol {
+
     func getUserInfo() async throws -> UserResponseModel
+
+    func update(_ name: String) async throws
 }
 
 final class UserNetworkClient: UserNetworkClientProtocol {
@@ -23,6 +26,20 @@ final class UserNetworkClient: UserNetworkClientProtocol {
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPRequestMethods.get.rawValue
+
+        return try await networkClient.executeUrlRequest(request)
+    }
+
+    func update(_ name: String) async throws {
+        guard let url = URL(string: Endpoint(type: .account).path) else {
+            throw RequestError.invalidUrl
+        }
+        var request = URLRequest(url: url)
+        let token = secureStorage.accessToken ?? ""
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONEncoder().encode(UserRequestBody(name: name))
+        request.httpMethod = HTTPRequestMethods.patch.rawValue
 
         return try await networkClient.executeUrlRequest(request)
     }

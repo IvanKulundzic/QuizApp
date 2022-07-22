@@ -6,6 +6,8 @@ protocol UserNetworkDataSourceProtocol {
 
     func getUserInfo() async -> UserDataModel
 
+    func update(_ name: String) async
+
 }
 
 final class UserNetworkDataSource: UserNetworkDataSourceProtocol {
@@ -27,6 +29,10 @@ final class UserNetworkDataSource: UserNetworkDataSourceProtocol {
         let username = responseModel?.email ?? ""
         let name = responseModel?.name ?? ""
         return UserDataModel(username: username, name: name)
+    }
+
+    func update(_ name: String) async {
+        try? await userNetworkClient.update(name)
     }
 
 }

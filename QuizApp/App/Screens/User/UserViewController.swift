@@ -5,6 +5,8 @@ final class UserViewController: UIViewController {
 
     private var usernameLabel: UILabel!
     private var usernameTextLabel: UILabel!
+    private var nameLabel: UILabel!
+    private var nameTextField: UITextField!
     private var logoutButton: UIButton!
     private var cancellables = Set<AnyCancellable>()
     private let userViewModel: UserViewModel
@@ -31,6 +33,7 @@ final class UserViewController: UIViewController {
         defineLayoutForViews()
         bindViewModel()
         userViewModel.getUserInfo()
+        addTapGesture()
     }
 
 }
@@ -45,6 +48,12 @@ extension UserViewController: ConstructViewsProtocol {
         usernameTextLabel = UILabel()
         view.addSubview(usernameTextLabel)
 
+        nameLabel = UILabel()
+        view.addSubview(nameLabel)
+
+        nameTextField = UITextField()
+        view.addSubview(nameTextField)
+
         logoutButton = UIButton()
         view.addSubview(logoutButton)
     }
@@ -57,10 +66,17 @@ extension UserViewController: ConstructViewsProtocol {
         usernameLabel.textAlignment = .left
         usernameLabel.font = Fonts.sourceSansProSemiBold12.font
 
-        usernameTextLabel.text = "SportJunkie1234"
         usernameTextLabel.textColor = .white
         usernameTextLabel.textAlignment = .left
         usernameTextLabel.font = Fonts.sourceSansProBold20.font
+
+        nameLabel.text = "NAME"
+        nameLabel.textColor = .white
+        nameLabel.textAlignment = .left
+        nameLabel.font = Fonts.sourceSansProSemiBold12.font
+
+        nameTextField.textColor = .white
+        nameTextField.font = Fonts.sourceSansProBold20.font
 
         logoutButton.setTitle("Log out", for: .normal)
         logoutButton.setTitleColor(.logoutOrange, for: .normal)
@@ -77,6 +93,16 @@ extension UserViewController: ConstructViewsProtocol {
 
         usernameTextLabel.snp.makeConstraints {
             $0.top.equalTo(usernameLabel.snp.bottom).offset(10)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+
+        nameLabel.snp.makeConstraints {
+            $0.top.equalTo(usernameTextLabel.snp.bottom).offset(25)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+
+        nameTextField.snp.makeConstraints {
+            $0.top.equalTo(nameLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
 
@@ -112,6 +138,27 @@ private extension UserViewController {
             }
             .store(in: &cancellables)
 
+        userViewModel
+            .$name
+            .sink { name in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.nameTextField.text = name
+                }
+            }
+            .store(in: &cancellables)
+
+    }
+
+    func addTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func handleTap() {
+        guard let name = nameTextField.text else { return }
+        userViewModel.update(name)
+        nameTextField.resignFirstResponder()
     }
 
 }

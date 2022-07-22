@@ -17,7 +17,12 @@ final class UserViewModel {
             username = userInfo.username
             name = userInfo.name
         }
+    }
 
+    func update(_ name: String) {
+        Task(priority: .background) {
+            await userUseCase.update(name)
+        }
     }
 
 }
