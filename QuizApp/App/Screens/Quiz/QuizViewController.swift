@@ -5,12 +5,16 @@ final class QuizViewController: UIViewController {
     private var getQuizButton: UIButton!
     private var emptyStateView: UIView!
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupTabBar()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         createViews()
         styleViews()
         defineLayoutForViews()
-        setupTabBar()
     }
 
 }
@@ -64,6 +68,7 @@ extension QuizViewController: ConstructViewsProtocol {
         titleLabel.textColor = .white
         titleLabel.font = Fonts.sourceSansProBold24.font
 
+        tabBarController?.navigationItem.titleView?.isHidden = false
         tabBarController?.navigationItem.titleView = titleLabel
 
         tabBarItem.title = "Quiz"
