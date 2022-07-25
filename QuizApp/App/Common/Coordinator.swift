@@ -18,7 +18,8 @@ final class Coordinator: CoordinatorProtocol {
 
     func showHome() {
         let quizViewController = QuizViewController()
-        let userViewController = UserViewController()
+        let userViewModel = UserViewModel(userUseCase: serviceFactory.userUseCase)
+        let userViewController = UserViewController(userViewModel: userViewModel)
         let viewControllers = [quizViewController, userViewController]
         let tabBarController = TabBarController(viewControllers: viewControllers)
         navigationController.setViewControllers([tabBarController], animated: true)

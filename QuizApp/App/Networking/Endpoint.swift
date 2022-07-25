@@ -4,6 +4,7 @@ enum EndpointType {
 
     case login
     case check
+    case account
 
 }
 
@@ -21,6 +22,8 @@ struct Endpoint {
             return "\(NetworkingConstants.baseUrl)api/v1/login"
         case .check:
             return "\(NetworkingConstants.baseUrl)api/v1/check"
+        case .account:
+            return "\(NetworkingConstants.baseUrl)api/v1/account"
         }
     }
 
