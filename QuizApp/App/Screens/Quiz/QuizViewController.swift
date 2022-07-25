@@ -47,19 +47,24 @@ extension QuizViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         if collectionView == categoryCollectionView {
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryCell.reuseIdentifier,
                 for: indexPath
-                // swiftlint:disable:next force_cast
-            ) as! CategoryCell
+            ) as? CategoryCell else { fatalError() }
+
             cell.data = Category(name: quizViewModel.quizCategories[indexPath.item].name)
+
+            if indexPath.item == 0 {
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+            }
+
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: QuizCell.reuseIdentifier,
                 for: indexPath
-                // swiftlint:disable:next force_cast
-            ) as! QuizCell
+            ) as? QuizCell else { fatalError() }
+
             cell.data = Category(name: quizViewModel.quizCategories[indexPath.item].name)
             return cell
         }
@@ -75,22 +80,16 @@ extension QuizViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         if collectionView == categoryCollectionView {
-            return calculateTextSize(indexPath: indexPath)
+            return calculateSize(indexPath: indexPath)
         } else {
             return CGSize(width: quizCollectionView.frame.width, height: 143)
         }
     }
 
-    func calculateTextSize(indexPath: IndexPath) -> CGSize {
-        let categories = quizViewModel.quizCategories
-        let text = categories[indexPath.row].name
-        let font = Fonts.sourceSansProBold20.font
-        let offset: CGFloat = 10
-        let textSize = text.size(withAttributes: [.font: font])
-        let width = CGFloat(textSize.width + offset)
-        let height = CGFloat(textSize.height)
-
-        return CGSize(width: width, height: height)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell {
+            cell.isSelected = true
+        }
     }
 
 }
@@ -171,6 +170,18 @@ private extension QuizViewController {
 
         quizCollectionView.delegate = self
         quizCollectionView.dataSource = self
+    }
+
+    func calculateSize(indexPath: IndexPath) -> CGSize {
+        let categories = quizViewModel.quizCategories
+        let text = categories[indexPath.row].name
+        let font = Fonts.sourceSansProBold20.font
+        let offset: CGFloat = 10
+        let textSize = text.size(withAttributes: [.font: font])
+        let width = CGFloat(textSize.width + offset)
+        let height = CGFloat(textSize.height)
+
+        return CGSize(width: width, height: height)
     }
 
 }

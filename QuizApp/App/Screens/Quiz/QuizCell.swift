@@ -12,6 +12,7 @@ final class QuizCell: UICollectionViewCell {
     private var imageView: UIImageView!
     private var titleLabel: UILabel!
     private var descriptionLabel: UILabel!
+    private var difficultyView: DifficultyView!
     static let reuseIdentifier = "QuizCell"
 
     override init(frame: CGRect) {
@@ -40,6 +41,9 @@ extension QuizCell: ConstructViewsProtocol {
 
         descriptionLabel = UILabel()
         contentView.addSubview(descriptionLabel)
+
+        difficultyView = DifficultyView()
+        contentView.addSubview(difficultyView)
     }
 
     func styleViews() {
@@ -80,6 +84,13 @@ extension QuizCell: ConstructViewsProtocol {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
             $0.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(20)
+        }
+
+        difficultyView.snp.makeConstraints {
+            $0.top.equalTo(contentView.safeAreaLayoutGuide).offset(15)
+            $0.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(20)
+            $0.height.equalTo(20)
+            $0.width.equalTo(70)
         }
     }
 

@@ -17,6 +17,7 @@
 		EB4E61AA287DBB20009A64E7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E61A9287DBB20009A64E7 /* Fonts.swift */; };
 		EB4E61AC287DBDD7009A64E7 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4E61AB287DBDD7009A64E7 /* SourceSansPro-Bold.ttf */; };
 		EB4E61AF287DC594009A64E7 /* ConstructViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E61AE287DC594009A64E7 /* ConstructViewsProtocol.swift */; };
+		EB6E283A288EB61E002D8198 /* DifficultyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2839288EB61E002D8198 /* DifficultyView.swift */; };
 		EB917E19287EB54C00ECD5AD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E18287EB54C00ECD5AD /* UIColor+Extensions.swift */; };
 		EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */; };
 		EB917E20287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */; };
@@ -69,6 +70,7 @@
 		EB4E61A9287DBB20009A64E7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EB4E61AB287DBDD7009A64E7 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		EB4E61AE287DC594009A64E7 /* ConstructViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructViewsProtocol.swift; sourceTree = "<group>"; };
+		EB6E2839288EB61E002D8198 /* DifficultyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyView.swift; sourceTree = "<group>"; };
 		EB917E18287EB54C00ECD5AD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				EB9BF84F288EA3D40031704D /* QuizCell.swift */,
 				EBCB41E62886FBCB0008C827 /* QuizViewController.swift */,
 				EB9BF84C288E9CD10031704D /* QuizViewModel.swift */,
+				EB6E2839288EB61E002D8198 /* DifficultyView.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6E283A288EB61E002D8198 /* DifficultyView.swift in Sources */,
 				EB9476E528893C6700BC20C2 /* UserViewController.swift in Sources */,
 				EBD0F0F9288AA34600D34EA8 /* UserViewModel.swift in Sources */,
 				EBC9BC0C287D6A6500052DF9 /* LoginViewController.swift in Sources */,

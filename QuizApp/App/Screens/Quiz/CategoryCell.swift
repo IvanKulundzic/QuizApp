@@ -9,6 +9,12 @@ final class CategoryCell: UICollectionViewCell {
         }
     }
 
+    override var isSelected: Bool {
+        didSet {
+            updateTextColor()
+        }
+    }
+
     private var titleLabel: UILabel!
     static let reuseIdentifier = "CategoryCell"
 
@@ -54,6 +60,10 @@ private extension CategoryCell {
 
     func update(data: Category) {
         titleLabel.text = data.name
+    }
+
+    func updateTextColor() {
+        titleLabel.textColor = isSelected ? .orange : .white
     }
 
 }
