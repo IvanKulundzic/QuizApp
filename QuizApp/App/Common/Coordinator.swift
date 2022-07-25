@@ -17,7 +17,8 @@ final class Coordinator: CoordinatorProtocol {
     }
 
     func showHome() {
-        let quizViewController = QuizViewController()
+        let quizViewModel = QuizViewModel()
+        let quizViewController = QuizViewController(quizViewModel: quizViewModel)
         let userViewModel = UserViewModel(userUseCase: serviceFactory.userUseCase)
         let userViewController = UserViewController(userViewModel: userViewModel)
         let viewControllers = [quizViewController, userViewController]
