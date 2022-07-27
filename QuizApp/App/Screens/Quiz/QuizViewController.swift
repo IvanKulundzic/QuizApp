@@ -102,7 +102,7 @@ extension QuizViewController: ConstructViewsProtocol {
         categoryCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
-            $0.height.equalTo(40)
+            $0.height.equalTo(25)
         }
 
         quizCollectionView.snp.makeConstraints {

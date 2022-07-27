@@ -2,7 +2,7 @@ import Foundation
 
 enum CategoryNetworkModel: String {
 
-    case geopgraphy = "GEOGRAPHY"
+    case geography = "GEOGRAPHY"
     case movies = "MOVIES"
     case music = "MUSIC"
     case sport = "SPORT"

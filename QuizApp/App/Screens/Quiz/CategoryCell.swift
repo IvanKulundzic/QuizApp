@@ -3,7 +3,7 @@ import UIKit
 final class CategoryCell: UICollectionViewCell {
 
     static let reuseIdentifier = String(describing: CategoryCell.self)
-    
+
     private var titleLabel: UILabel!
 
     override init(frame: CGRect) {
@@ -45,8 +45,7 @@ extension CategoryCell: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         titleLabel.snp.makeConstraints {
-            $0.center.equalTo(contentView.safeAreaLayoutGuide)
-            $0.leading.trailing.equalTo(contentView.safeAreaLayoutGuide)
+            $0.top.leading.trailing.equalTo(contentView)
         }
     }
 
