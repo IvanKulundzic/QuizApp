@@ -35,7 +35,7 @@ final class QuizViewController: UIViewController {
 extension QuizViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return quizViewModel.quizCategories.count
+        quizViewModel.quizCategories.count
     }
 
     func collectionView(
