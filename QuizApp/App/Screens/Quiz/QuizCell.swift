@@ -77,26 +77,26 @@ extension QuizCell: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         imageView.snp.makeConstraints {
-            $0.top.leading.bottom.equalTo(contentView).inset(Constants.imageViewInset)
+            $0.top.leading.bottom.equalToSuperview().inset(Constants.imageViewInset)
             $0.width.height.equalTo(103)
         }
 
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(contentView).offset(25)
+            $0.top.equalToSuperview().offset(25)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.equalTo(contentView).inset(20)
+            $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(Constants.titleLabelHeight)
         }
 
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.bottom.equalTo(contentView).inset(Constants.descriptionLabelInset)
+            $0.trailing.bottom.equalToSuperview().inset(Constants.descriptionLabelInset)
         }
 
         difficultyView.snp.makeConstraints {
-            $0.top.equalTo(contentView).offset(10)
-            $0.trailing.equalTo(contentView).inset(20)
+            $0.top.equalToSuperview().offset(10)
+            $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(20)
             $0.width.equalTo(50)
         }

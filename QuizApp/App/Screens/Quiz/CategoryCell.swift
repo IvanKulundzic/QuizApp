@@ -45,7 +45,7 @@ extension CategoryCell: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         titleLabel.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(contentView)
+            $0.top.leading.trailing.equalToSuperview()
         }
     }
 
