@@ -89,8 +89,7 @@ extension QuizCell: ConstructViewsProtocol {
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(Constants.descriptionLabelInset)
-            $0.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(Constants.descriptionLabelInset)
+            $0.trailing.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(Constants.descriptionLabelInset)
         }
 
         difficultyView.snp.makeConstraints {

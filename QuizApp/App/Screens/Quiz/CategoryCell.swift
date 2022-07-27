@@ -3,6 +3,7 @@ import UIKit
 final class CategoryCell: UICollectionViewCell {
 
     static let reuseIdentifier = String(describing: CategoryCell.self)
+    
     private var titleLabel: UILabel!
 
     override init(frame: CGRect) {

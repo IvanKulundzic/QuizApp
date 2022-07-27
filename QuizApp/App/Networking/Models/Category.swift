@@ -10,7 +10,7 @@ struct Category {
 
     var color: UIColor {
         switch type {
-        case .geohraphy:
+        case .geopgraphy:
             return .white
         case .movies:
             return .orange
