@@ -2,18 +2,19 @@ import UIKit
 
 final class QuizCell: UICollectionViewCell {
 
-    var data: Category? {
-        didSet {
-            guard let data = data else { return }
-            update(data: data)
-        }
+    struct Constants {
+
+        static let imageViewInset = 20
+        static let descriptionLabelInset = 20
+
     }
+
+    static let reuseIdentifier = String(describing: QuizCell.self)
 
     private var imageView: UIImageView!
     private var titleLabel: UILabel!
     private var descriptionLabel: UILabel!
     private var difficultyView: DifficultyView!
-    static let reuseIdentifier = "QuizCell"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +26,14 @@ final class QuizCell: UICollectionViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+}
+
+extension QuizCell {
+
+    func set(for category: Category) {
+        titleLabel.text = category.type.rawValue
     }
 
 }
@@ -67,11 +76,8 @@ extension QuizCell: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         imageView.snp.makeConstraints {
-            $0.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
-            $0.leading.equalTo(contentView.safeAreaLayoutGuide).offset(20)
-            $0.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(20)
-            $0.width.equalTo(103)
-            $0.height.equalTo(103)
+            $0.top.leading.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(Constants.imageViewInset)
+            $0.width.height.equalTo(103)
         }
 
         titleLabel.snp.makeConstraints {
@@ -83,24 +89,16 @@ extension QuizCell: ConstructViewsProtocol {
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(20)
+            $0.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(Constants.descriptionLabelInset)
+            $0.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(Constants.descriptionLabelInset)
         }
 
         difficultyView.snp.makeConstraints {
-            $0.top.equalTo(contentView.safeAreaLayoutGuide).offset(15)
+            $0.top.equalTo(contentView.safeAreaLayoutGuide).offset(10)
             $0.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(20)
-            $0.width.equalTo(70)
+            $0.width.equalTo(50)
         }
-    }
-
-}
-
-// MARK: - Private methods
-private extension QuizCell {
-
-    func update(data: Category) {
-        titleLabel.text = data.name
     }
 
 }

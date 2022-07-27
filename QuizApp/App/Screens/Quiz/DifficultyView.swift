@@ -11,6 +11,7 @@ final class DifficultyView: UIView {
     }
 
     var type: Difficulty = .easy
+
     private var stackView: UIStackView!
     private var rectangleOne: UIImageView!
     private var rectangleTwo: UIImageView!
@@ -60,9 +61,7 @@ extension DifficultyView: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         stackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.height.equalTo(25)
-            $0.width.equalTo(50)
+            $0.edges.equalToSuperview()
         }
     }
 

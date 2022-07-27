@@ -35,11 +35,7 @@ final class QuizViewController: UIViewController {
 extension QuizViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == categoryCollectionView {
-            return quizViewModel.quizCategories.count
-        } else {
-            return 4
-        }
+        return quizViewModel.quizCategories.count
     }
 
     func collectionView(
@@ -52,12 +48,8 @@ extension QuizViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? CategoryCell else { fatalError() }
 
-            cell.data = Category(name: quizViewModel.quizCategories[indexPath.item].name)
-
-            if indexPath.item == 0 {
-                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-            }
-
+            let category = quizViewModel.quizCategories[indexPath.item]
+            cell.set(for: category)
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(
@@ -65,7 +57,8 @@ extension QuizViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
-            cell.data = Category(name: quizViewModel.quizCategories[indexPath.item].name)
+            let category = quizViewModel.quizCategories[indexPath.item]
+            cell.set(for: category)
             return cell
         }
     }
@@ -73,26 +66,7 @@ extension QuizViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout methods
-extension QuizViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        if collectionView == categoryCollectionView {
-            return calculateSize(indexPath: indexPath)
-        } else {
-            return CGSize(width: quizCollectionView.frame.width, height: 143)
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell {
-            cell.isSelected = true
-        }
-    }
-
-}
+extension QuizViewController: UICollectionViewDelegateFlowLayout { }
 
 // MARK: - ConstructViewsProtocol methods
 extension QuizViewController: ConstructViewsProtocol {
@@ -101,7 +75,7 @@ extension QuizViewController: ConstructViewsProtocol {
         emptyStateView = EmptyStateView()
         view.addSubview(emptyStateView)
 
-        categoryCollectionView = UICollectionView.makeCollectionView(direction: .horizontal, spacing: 0)
+        categoryCollectionView = UICollectionView.makeCollectionView(direction: .horizontal, spacing: 10)
         view.addSubview(categoryCollectionView)
 
         quizCollectionView = UICollectionView.makeCollectionView(direction: .vertical, spacing: 15)
@@ -122,14 +96,13 @@ extension QuizViewController: ConstructViewsProtocol {
         quizCollectionView.backgroundColor = .clear
 
         emptyStateView.isHidden = true
-
     }
 
     func defineLayoutForViews() {
         categoryCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(50)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            $0.height.equalTo(30)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
+            $0.height.equalTo(40)
         }
 
         quizCollectionView.snp.makeConstraints {
@@ -170,18 +143,6 @@ private extension QuizViewController {
 
         quizCollectionView.delegate = self
         quizCollectionView.dataSource = self
-    }
-
-    func calculateSize(indexPath: IndexPath) -> CGSize {
-        let categories = quizViewModel.quizCategories
-        let text = categories[indexPath.row].name
-        let font = Fonts.sourceSansProBold20.font
-        let offset: CGFloat = 10
-        let textSize = text.size(withAttributes: [.font: font])
-        let width = CGFloat(textSize.width + offset)
-        let height = CGFloat(textSize.height)
-
-        return CGSize(width: width, height: height)
     }
 
 }

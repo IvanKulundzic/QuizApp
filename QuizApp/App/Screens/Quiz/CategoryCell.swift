@@ -2,21 +2,8 @@ import UIKit
 
 final class CategoryCell: UICollectionViewCell {
 
-    var data: Category? {
-        didSet {
-            guard let data = data else { return }
-            update(data: data)
-        }
-    }
-
-    override var isSelected: Bool {
-        didSet {
-            updateTextColor()
-        }
-    }
-
+    static let reuseIdentifier = String(describing: CategoryCell.self)
     private var titleLabel: UILabel!
-    static let reuseIdentifier = "CategoryCell"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,6 +19,15 @@ final class CategoryCell: UICollectionViewCell {
 
 }
 
+extension CategoryCell {
+
+    func set(for category: Category) {
+        titleLabel.text = category.type.rawValue
+        titleLabel.textColor = category.color
+    }
+
+}
+
 // MARK: - ConstructViewsProtocol methods
 extension CategoryCell: ConstructViewsProtocol {
 
@@ -43,27 +39,14 @@ extension CategoryCell: ConstructViewsProtocol {
     func styleViews() {
         contentView.backgroundColor = .clear
 
-        titleLabel.textColor = .white
         titleLabel.font = Fonts.sourceSansProBold16.font
     }
 
     func defineLayoutForViews() {
         titleLabel.snp.makeConstraints {
             $0.center.equalTo(contentView.safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(contentView.safeAreaLayoutGuide)
         }
-    }
-
-}
-
-// MARK: - Private methods
-private extension CategoryCell {
-
-    func update(data: Category) {
-        titleLabel.text = data.name
-    }
-
-    func updateTextColor() {
-        titleLabel.textColor = isSelected ? .orange : .white
     }
 
 }

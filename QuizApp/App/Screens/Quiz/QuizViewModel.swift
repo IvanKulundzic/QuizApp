@@ -4,10 +4,10 @@ final class QuizViewModel {
 
     var quizCategories: [Category] {
         let categories = [
-            Category(name: "Geography"),
-            Category(name: "Movies"),
-            Category(name: "Music"),
-            Category(name: "Sport")
+            Category(from: CategoryNetworkModel.geohraphy),
+            Category(from: CategoryNetworkModel.movies),
+            Category(from: CategoryNetworkModel.sport),
+            Category(from: CategoryNetworkModel.music)
         ]
         return categories
     }

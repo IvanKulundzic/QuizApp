@@ -8,6 +8,7 @@ extension UICollectionView {
         view.showsHorizontalScrollIndicator = false
         layout.scrollDirection = direction
         layout.minimumLineSpacing = spacing
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         return view
     }
 
