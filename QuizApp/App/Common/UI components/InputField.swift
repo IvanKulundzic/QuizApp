@@ -77,8 +77,8 @@ private extension InputField {
         showPasswordButton.contentMode = .scaleToFill
 
         showPasswordButton.snp.makeConstraints {
-            $0.trailing.equalTo(safeAreaLayoutGuide).inset(20)
-            $0.centerY.equalTo(safeAreaLayoutGuide)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalToSuperview()
             $0.width.height.equalTo(30)
         }
 

@@ -50,19 +50,19 @@ extension EmptyStateView: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         imageView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
-            $0.centerX.equalTo(safeAreaLayoutGuide)
+            $0.top.equalToSuperview()
+            $0.centerX.equalToSuperview()
             $0.width.height.equalTo(67)
         }
 
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(20)
-            $0.leading.trailing.equalTo(safeAreaLayoutGuide).inset(50)
+            $0.leading.trailing.equalToSuperview().inset(50)
         }
 
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(safeAreaLayoutGuide).inset(50)
+            $0.leading.trailing.equalToSuperview().inset(50)
         }
     }
 
