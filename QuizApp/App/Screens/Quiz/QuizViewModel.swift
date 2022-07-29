@@ -2,14 +2,24 @@ import Foundation
 
 final class QuizViewModel {
 
-    var quizCategories: [Category] {
-        let categories = [
-            Category(from: CategoryNetworkModel.geography),
-            Category(from: CategoryNetworkModel.movies),
-            Category(from: CategoryNetworkModel.sport),
-            Category(from: CategoryNetworkModel.music)
-        ]
-        return categories
+    @Published var quizes: [QuizModel] = []
+
+    private let quizUseCase: QuizUseCaseProtocol
+
+    init(quizUseCase: QuizUseCaseProtocol) {
+        self.quizUseCase = quizUseCase
+    }
+
+}
+
+extension QuizViewModel {
+
+    func fetchQuiz() {
+        Task(priority: .background) {
+            quizes = try await quizUseCase.fetchQuizes(for: .sport)
+            quizes = quizes
+        }
+
     }
 
 }
