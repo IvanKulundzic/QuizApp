@@ -1,6 +1,6 @@
 import Foundation
 
-enum CategoryNetworkModel: String {
+enum CategoryNetworkModel: String, Codable {
 
     case geography = "GEOGRAPHY"
     case movies = "MOVIES"

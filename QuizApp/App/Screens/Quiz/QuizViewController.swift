@@ -1,10 +1,12 @@
 import UIKit
+import Combine
 
 final class QuizViewController: UIViewController {
 
     private var categoryCollectionView: UICollectionView!
     private var quizCollectionView: UICollectionView!
     private var emptyStateView: UIView!
+    private var cancellables = Set<AnyCancellable>()
     private let quizViewModel: QuizViewModel
 
     init(quizViewModel: QuizViewModel) {
@@ -27,6 +29,8 @@ final class QuizViewController: UIViewController {
         styleViews()
         defineLayoutForViews()
         setupDelegateAndDataSource()
+        quizViewModel.fetchQuiz()
+        bindViewModel()
     }
 
 }
@@ -35,7 +39,7 @@ final class QuizViewController: UIViewController {
 extension QuizViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        quizViewModel.quizCategories.count
+        quizViewModel.quizes.count
     }
 
     func collectionView(
@@ -48,7 +52,7 @@ extension QuizViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? CategoryCell else { fatalError() }
 
-            let category = quizViewModel.quizCategories[indexPath.item]
+            let category = quizViewModel.quizes[indexPath.item]
             cell.set(for: category)
             return cell
         } else {
@@ -57,7 +61,7 @@ extension QuizViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
-            let category = quizViewModel.quizCategories[indexPath.item]
+            let category = quizViewModel.quizes[indexPath.item]
             cell.set(for: category)
             return cell
         }
@@ -143,6 +147,20 @@ private extension QuizViewController {
 
         quizCollectionView.delegate = self
         quizCollectionView.dataSource = self
+    }
+
+    func bindViewModel() {
+
+        quizViewModel
+            .$quizes
+            .sink { _ in
+                DispatchQueue.main.async {
+                    self.categoryCollectionView.reloadData()
+                    self.quizCollectionView.reloadData()
+                }
+
+            }
+            .store(in: &cancellables)
     }
 
 }

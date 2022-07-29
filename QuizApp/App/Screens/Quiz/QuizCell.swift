@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 final class QuizCell: UICollectionViewCell {
 
@@ -33,8 +34,11 @@ final class QuizCell: UICollectionViewCell {
 
 extension QuizCell {
 
-    func set(for category: Category) {
-        titleLabel.text = category.type.rawValue
+    func set(for quiz: QuizModel) {
+        titleLabel.text = quiz.category.rawValue
+        descriptionLabel.text = quiz.description
+        let imageUrl = URL(string: quiz.imageUrl)
+        imageView.kf.setImage(with: imageUrl)
     }
 
 }
@@ -69,7 +73,6 @@ extension QuizCell: ConstructViewsProtocol {
         titleLabel.textColor = .white
         titleLabel.font = Fonts.sourceSansProBold24.font
 
-        descriptionLabel.text = "Quiz description that can\nusually span over multiple \nlines"
         descriptionLabel.textColor = .white
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = Fonts.sourceSansProSemiBold14.font
@@ -91,7 +94,7 @@ extension QuizCell: ConstructViewsProtocol {
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.bottom.equalToSuperview().inset(Constants.descriptionLabelInset)
+            $0.trailing.bottom.equalToSuperview().inset(20)
         }
 
         difficultyView.snp.makeConstraints {
