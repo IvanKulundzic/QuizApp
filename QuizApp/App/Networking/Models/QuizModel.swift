@@ -1,5 +1,3 @@
-import Foundation
-
 struct QuizModel {
 
     let name: String

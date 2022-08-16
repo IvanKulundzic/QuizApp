@@ -2,7 +2,7 @@ import Foundation
 
 protocol QuizNetworkClientProtocol {
 
-    func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizNetworkModel]
+    func fetchQuizes() async throws -> [QuizNetworkModel]
 
 }
 
@@ -16,8 +16,8 @@ final class QuizNetworkClient: QuizNetworkClientProtocol {
         self.secureStorage = secureStorage
     }
 
-    func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizNetworkModel] {
-        guard let url = URL(string: "\(Endpoint(type: .quizList).path)?category:\(category.rawValue)") else {
+    func fetchQuizes() async throws -> [QuizNetworkModel] {
+        guard let url = URL(string: "\(Endpoint(type: .quizList).path)") else {
             throw RequestError.invalidUrl
         }
 

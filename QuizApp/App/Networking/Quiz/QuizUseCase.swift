@@ -2,7 +2,7 @@ import Foundation
 
 protocol QuizUseCaseProtocol {
 
-    func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizModel]
+    func fetchQuizes() async throws -> [QuizModel]
 
 }
 
@@ -14,19 +14,14 @@ final class QuizUseCase: QuizUseCaseProtocol {
         self.quizNetworkDataSource = quizNetworkDataSource
     }
 
-    func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizModel] {
-        var quizes: [QuizModel] = []
-        let dataModels = try await quizNetworkDataSource.fetchQuizes(for: category)
+    func fetchQuizes() async throws -> [QuizModel] {
+        let dataModels = try await quizNetworkDataSource.fetchQuizes()
 
-        dataModels
-            .forEach { model in
-                let quiz = QuizModel(from: model)
-                if quiz.category == category {
-                    quizes.append(quiz)
-                }
+        return dataModels
+            .map {
+                let quiz = QuizModel(from: $0)
+                return quiz
             }
-
-        return quizes
     }
 
 }

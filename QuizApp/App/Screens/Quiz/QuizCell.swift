@@ -34,7 +34,7 @@ final class QuizCell: UICollectionViewCell {
 
 extension QuizCell {
 
-    func set(for quiz: QuizModel) {
+    func set(for quiz: QuizViewModel) {
         titleLabel.text = quiz.category.rawValue
         descriptionLabel.text = quiz.description
         let imageUrl = URL(string: quiz.imageUrl)
@@ -94,7 +94,7 @@ extension QuizCell: ConstructViewsProtocol {
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.bottom.equalToSuperview().inset(20)
+            $0.trailing.bottom.equalToSuperview().inset(Constants.descriptionLabelInset)
         }
 
         difficultyView.snp.makeConstraints {

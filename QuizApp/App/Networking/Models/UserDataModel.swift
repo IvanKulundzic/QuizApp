@@ -1,5 +1,3 @@
-import Foundation
-
 struct UserDataModel {
 
     let username: String

@@ -1,5 +1,3 @@
-import Foundation
-
 struct QuizNetworkModel: Codable {
 
     let id: Int

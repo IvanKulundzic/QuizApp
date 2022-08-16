@@ -2,7 +2,7 @@ import Foundation
 
 protocol QuizNetworkDataSourceProtocol {
 
-    func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizDataModel]
+    func fetchQuizes() async throws -> [QuizDataModel]
 
 }
 
@@ -14,16 +14,15 @@ final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
         self.quizNetworkClient = quizNetworkClient
     }
 
-    func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizDataModel] {
-        let networkModels = try await quizNetworkClient.fetchQuizes(for: category)
+    func fetchQuizes() async throws -> [QuizDataModel] {
+        let networkModels = try await quizNetworkClient.fetchQuizes()
         var dataModels: [QuizDataModel] = []
 
-        for model in networkModels {
+        return networkModels.map { model in
             let dataModel = QuizDataModel(from: model)
             dataModels.append(dataModel)
+            return dataModel
         }
-
-        return dataModels
     }
 
 }

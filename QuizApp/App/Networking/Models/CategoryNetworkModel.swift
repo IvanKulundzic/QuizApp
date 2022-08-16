@@ -1,5 +1,3 @@
-import Foundation
-
 enum CategoryNetworkModel: String, Codable {
 
     case geography = "GEOGRAPHY"

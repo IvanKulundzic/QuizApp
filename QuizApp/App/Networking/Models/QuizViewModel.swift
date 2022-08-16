@@ -1,6 +1,5 @@
-struct QuizDataModel {
+struct QuizViewModel {
 
-    let id: Int
     let name: String
     let description: String
     let category: CategoryNetworkModel
@@ -8,8 +7,7 @@ struct QuizDataModel {
     let numberOfQuestions: Int
     let imageUrl: String
 
-    init(from model: QuizNetworkModel) {
-        self.id = model.id
+    init(from model: QuizModel) {
         self.name = model.name
         self.description = model.description
         self.category = model.category
@@ -17,4 +15,5 @@ struct QuizDataModel {
         self.numberOfQuestions = model.numberOfQuestions
         self.imageUrl = model.imageUrl
     }
+
 }
