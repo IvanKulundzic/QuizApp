@@ -15,13 +15,8 @@ final class QuizUseCase: QuizUseCaseProtocol {
     }
 
     func fetchQuizes() async throws -> [QuizModel] {
-        let dataModels = try await quizNetworkDataSource.fetchQuizes()
-
-        return dataModels
-            .map {
-                let quiz = QuizModel(from: $0)
-                return quiz
-            }
+        try await quizNetworkDataSource.fetchQuizes()
+            .map { QuizModel(from: $0) }
     }
 
 }

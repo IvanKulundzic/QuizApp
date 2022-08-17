@@ -4,8 +4,16 @@ struct QuizNetworkModel: Codable {
     let name: String
     let description: String
     let category: CategoryNetworkModel
-    let difficulty: String
+    let difficulty: QuizDifficulty
     let numberOfQuestions: Int
     let imageUrl: String
+
+}
+
+enum QuizDifficulty: String, Codable {
+
+    case easy = "EASY"
+    case normal = "NORMAL"
+    case hard = "HARD"
 
 }

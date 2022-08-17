@@ -20,10 +20,8 @@ extension QuizListViewModel {
 
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                _ = quizes.map { model in
-                    let viewModel = QuizViewModel(from: model)
-                    self.quizes.append(viewModel)
-                }
+                self.quizes = quizes
+                    .map { QuizViewModel(from: $0) }
             }
         }
     }

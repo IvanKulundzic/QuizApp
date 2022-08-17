@@ -15,14 +15,8 @@ final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
     }
 
     func fetchQuizes() async throws -> [QuizDataModel] {
-        let networkModels = try await quizNetworkClient.fetchQuizes()
-        var dataModels: [QuizDataModel] = []
-
-        return networkModels.map { model in
-            let dataModel = QuizDataModel(from: model)
-            dataModels.append(dataModel)
-            return dataModel
-        }
+        try await quizNetworkClient.fetchQuizes()
+            .map { QuizDataModel(from: $0) }
     }
 
 }

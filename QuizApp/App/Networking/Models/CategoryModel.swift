@@ -1,9 +1,21 @@
-struct CategoryModel {
+enum CategoryModel: String {
 
-    let title: String
+    case geography = "GEOGRAPHY"
+    case movies = "MOVIES"
+    case music = "MUSIC"
+    case sport = "SPORT"
 
-    init(from dataModel: CategoryDataModel) {
-        self.title = dataModel.title
+    init(from category: CategoryDataModel) {
+        switch category {
+        case .geography:
+            self = .geography
+        case .movies:
+            self = .movies
+        case .music:
+            self = .music
+        case .sport:
+            self = .sport
+        }
     }
 
 }

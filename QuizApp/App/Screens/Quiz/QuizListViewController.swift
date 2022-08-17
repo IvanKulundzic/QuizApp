@@ -154,6 +154,7 @@ private extension QuizListViewController {
             .$quizes
             .sink { [weak self] _ in
                 guard let self = self else { return }
+
                 self.categoryCollectionView.reloadData()
                 self.quizCollectionView.reloadData()
             }
