@@ -4,7 +4,7 @@ struct QuizDataModel {
     let name: String
     let description: String
     let category: CategoryDataModel
-    let difficulty: QuizDifficulty
+    let difficulty: QuizDifficultyDataModel
     let numberOfQuestions: Int
     let imageUrl: String
 
@@ -13,7 +13,7 @@ struct QuizDataModel {
         self.name = model.name
         self.description = model.description
         self.category = CategoryDataModel(from: model.category)
-        self.difficulty = model.difficulty
+        self.difficulty = QuizDifficultyDataModel(from: model.difficulty)
         self.numberOfQuestions = model.numberOfQuestions
         self.imageUrl = model.imageUrl
     }

@@ -12,6 +12,7 @@
 		EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */; };
 		EB1BE4BF2881608C00E5865B /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */; };
 		EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4C42881805200E5865B /* Coordinator.swift */; };
+		EB2D166228AD00EB0023C71D /* QuizDifficultyNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */; };
 		EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB4E61A4287DB92D009A64E7 /* SnapKit */; };
 		EB4E61A8287DBA84009A64E7 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */; };
 		EB4E61AA287DBB20009A64E7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E61A9287DBB20009A64E7 /* Fonts.swift */; };
@@ -78,6 +79,7 @@
 		EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		EB1BE4C42881805200E5865B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyNetworkModel.swift; sourceTree = "<group>"; };
 		EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		EB4E61A9287DBB20009A64E7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		EB4E61AB287DBDD7009A64E7 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				EB8E1190289168FE000605B4 /* QuizDataModel.swift */,
 				EB87B0522892794000BE1A39 /* QuizModel.swift */,
 				EBA79D8628AB96CC00124183 /* QuizViewModel.swift */,
+				EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				EBCB41D92886A3850008C827 /* LoginNetworkClient.swift in Sources */,
 				EBCB41DB2886A9D40008C827 /* LoginDataSource.swift in Sources */,
 				EB9BF84D288E9CD10031704D /* QuizListViewModel.swift in Sources */,
+				EB2D166228AD00EB0023C71D /* QuizDifficultyNetworkModel.swift in Sources */,
 				EB8E118D28916838000605B4 /* QuizRequestBody.swift in Sources */,
 				EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */,
 				EB917E23287EFDC200ECD5AD /* InputField.swift in Sources */,
