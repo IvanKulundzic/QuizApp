@@ -1,14 +1,16 @@
 import UIKit
+import Combine
 
-final class QuizViewController: UIViewController {
+final class QuizListViewController: UIViewController {
 
     private var categoryCollectionView: UICollectionView!
     private var quizCollectionView: UICollectionView!
     private var emptyStateView: UIView!
-    private let quizViewModel: QuizViewModel
+    private var cancellables = Set<AnyCancellable>()
+    private let quizListViewModel: QuizListViewModel
 
-    init(quizViewModel: QuizViewModel) {
-        self.quizViewModel = quizViewModel
+    init(quizViewModel: QuizListViewModel) {
+        self.quizListViewModel = quizViewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -27,15 +29,17 @@ final class QuizViewController: UIViewController {
         styleViews()
         defineLayoutForViews()
         setupDelegateAndDataSource()
+        quizListViewModel.fetchQuiz()
+        bindViewModel()
     }
 
 }
 
 // MARK: - UICollectionViewDataSource methods
-extension QuizViewController: UICollectionViewDataSource {
+extension QuizListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        quizViewModel.quizCategories.count
+        quizListViewModel.quizes.count
     }
 
     func collectionView(
@@ -48,7 +52,7 @@ extension QuizViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? CategoryCell else { fatalError() }
 
-            let category = quizViewModel.quizCategories[indexPath.item]
+            let category = quizListViewModel.quizes[indexPath.item]
             cell.set(for: category)
             return cell
         } else {
@@ -57,7 +61,7 @@ extension QuizViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
-            let category = quizViewModel.quizCategories[indexPath.item]
+            let category = quizListViewModel.quizes[indexPath.item]
             cell.set(for: category)
             return cell
         }
@@ -66,10 +70,10 @@ extension QuizViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout methods
-extension QuizViewController: UICollectionViewDelegateFlowLayout { }
+extension QuizListViewController: UICollectionViewDelegateFlowLayout { }
 
 // MARK: - ConstructViewsProtocol methods
-extension QuizViewController: ConstructViewsProtocol {
+extension QuizListViewController: ConstructViewsProtocol {
 
     func createViews() {
         emptyStateView = EmptyStateView()
@@ -121,7 +125,7 @@ extension QuizViewController: ConstructViewsProtocol {
 }
 
 // MARK: - Private methods
-private extension QuizViewController {
+private extension QuizListViewController {
 
     func setupTabBar() {
         let titleLabel = UILabel()
@@ -143,6 +147,18 @@ private extension QuizViewController {
 
         quizCollectionView.delegate = self
         quizCollectionView.dataSource = self
+    }
+
+    func bindViewModel() {
+        quizListViewModel
+            .$quizes
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                self.categoryCollectionView.reloadData()
+                self.quizCollectionView.reloadData()
+            }
+            .store(in: &cancellables)
     }
 
 }

@@ -11,6 +11,9 @@ protocol ServiceFactoryProtocol {
     var userNetworkClient: UserNetworkClientProtocol { get set }
     var userNetworkDataSource: UserNetworkDataSourceProtocol { get set }
     var userUseCase: UserUseCaseProtocol { get set }
+    var quizNetworkClient: QuizNetworkClientProtocol { get set }
+    var quizNetworkDataSource: QuizNetworkDataSourceProtocol { get set }
+    var quizUseCase: QuizUseCaseProtocol { get set }
 
 }
 
@@ -50,6 +53,18 @@ final class ServiceFactory: ServiceFactoryProtocol {
 
     lazy var userUseCase: UserUseCaseProtocol = {
         UserUseCase(userNetworkDataSource: userNetworkDataSource)
+    }()
+
+    lazy var quizNetworkClient: QuizNetworkClientProtocol = {
+        QuizNetworkClient(networkClient: networkClient, secureStorage: secureStorage)
+    }()
+
+    lazy var quizNetworkDataSource: QuizNetworkDataSourceProtocol = {
+        QuizNetworkDataSource(quizNetworkClient: quizNetworkClient)
+    }()
+
+    lazy var quizUseCase: QuizUseCaseProtocol = {
+        QuizUseCase(quizNetworkDataSource: quizNetworkDataSource)
     }()
 
 }

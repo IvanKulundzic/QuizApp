@@ -1,6 +1,4 @@
-import Foundation
-
-struct UserDataModel {
+struct UserModel {
 
     let username: String
     let name: String

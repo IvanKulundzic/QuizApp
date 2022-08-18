@@ -22,9 +22,8 @@ final class CategoryCell: UICollectionViewCell {
 
 extension CategoryCell {
 
-    func set(for category: Category) {
-        titleLabel.text = category.type.rawValue
-        titleLabel.textColor = category.color
+    func set(for quiz: QuizViewModel) {
+        titleLabel.text = quiz.category.rawValue
     }
 
 }
@@ -45,7 +44,7 @@ extension CategoryCell: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         titleLabel.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
 
