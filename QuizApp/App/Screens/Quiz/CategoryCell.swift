@@ -22,8 +22,8 @@ final class CategoryCell: UICollectionViewCell {
 
 extension CategoryCell {
 
-    func set(for quiz: QuizViewModel) {
-        titleLabel.text = quiz.category.rawValue
+    func set(for category: CategoryViewModel) {
+        titleLabel.text = category.rawValue
     }
 
 }

@@ -8,6 +8,7 @@ final class QuizCell: UICollectionViewCell {
         static let imageViewInset = 20
         static let titleLabelHeight = 25
         static let descriptionLabelInset = 20
+        static let descriptionLabelWidth = 200
 
     }
 
@@ -87,14 +88,16 @@ extension QuizCell: ConstructViewsProtocol {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(25)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(10)
             $0.height.equalTo(Constants.titleLabelHeight)
         }
 
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
-            $0.trailing.bottom.equalToSuperview().inset(Constants.descriptionLabelInset)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.width.equalTo(Constants.descriptionLabelWidth)
+            $0.bottom.equalToSuperview()
         }
 
         difficultyView.snp.makeConstraints {
