@@ -14,7 +14,7 @@ final class UserViewModel {
     }
 
     func getUserInfo() {
-        Task(priority: .background) {
+        Task {
             do {
                 let userInfo = try await userUseCase.userInfo
                 DispatchQueue.main.async { [weak self] in
@@ -29,7 +29,7 @@ final class UserViewModel {
     }
 
     func update(_ name: String) {
-        Task(priority: .background) {
+        Task {
             await userUseCase.update(name: name)
         }
     }

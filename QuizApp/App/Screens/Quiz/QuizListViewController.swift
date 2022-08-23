@@ -30,7 +30,6 @@ final class QuizListViewController: UIViewController {
         defineLayoutForViews()
         setupDelegateAndDataSource()
         bindViewModel()
-        quizListViewModel.fetchAllQuizes()
         quizListViewModel.fetchCategories()
     }
 
@@ -56,9 +55,10 @@ extension QuizListViewController: UICollectionViewDataSource {
                 withReuseIdentifier: CategoryCell.reuseIdentifier,
                 for: indexPath
             ) as? CategoryCell else { fatalError() }
+
             let category = quizListViewModel.categories[indexPath.item]
-            let firstCategory = quizListViewModel.categories.first
-            quizListViewModel.fetchQuiz(for: firstCategory?.rawValue ?? "")
+            let firstCategory = quizListViewModel.categories.first?.rawValue ?? ""
+            quizListViewModel.fetchQuiz(for: firstCategory)
             cell.set(for: category)
             return cell
         } else {
@@ -66,6 +66,7 @@ extension QuizListViewController: UICollectionViewDataSource {
                 withReuseIdentifier: QuizCell.reuseIdentifier,
                 for: indexPath
             ) as? QuizCell else { fatalError() }
+
             let quiz = quizListViewModel.quizes[indexPath.item]
             cell.set(for: quiz)
             return cell
@@ -78,10 +79,10 @@ extension QuizListViewController: UICollectionViewDataSource {
 extension QuizListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == categoryCollectionView {
-            let category = quizListViewModel.categories[indexPath.item].rawValue
-            quizListViewModel.fetchQuiz(for: category)
-        }
+        guard collectionView == categoryCollectionView else { return }
+
+        let category = quizListViewModel.categories[indexPath.item].rawValue
+        quizListViewModel.fetchQuiz(for: category)
     }
 
 }
@@ -175,12 +176,10 @@ private extension QuizListViewController {
 
         quizListViewModel
             .$categories
-            .removeDuplicates()
             .sink { [weak self] _ in
                 guard let self = self else { return }
 
                 self.categoryCollectionView.reloadData()
-
             }
             .store(in: &cancellables)
     }
