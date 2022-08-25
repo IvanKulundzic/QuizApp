@@ -47,7 +47,7 @@ private extension SceneDelegate {
     func checkUserToken() {
         let datasource = serviceFactory.userNetworkDataSource
         let secureStorage = serviceFactory.secureStorage
-        Task(priority: .background) {
+        Task {
             do {
                 try await datasource.checkUserAccessToken()
                 DispatchQueue.main.async { [weak self] in

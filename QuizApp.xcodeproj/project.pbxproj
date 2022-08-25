@@ -73,6 +73,7 @@
 		EBDA9DD228AE1A8A00F6C230 /* QuizDifficultyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9DD128AE1A8A00F6C230 /* QuizDifficultyModel.swift */; };
 		EBDA9DD428AE1AAA00F6C230 /* QuizDifficultyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9DD328AE1AAA00F6C230 /* QuizDifficultyViewModel.swift */; };
 		EBE0E9302893F7E200B7BC4A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EBE0E92F2893F7E200B7BC4A /* Kingfisher */; };
+		EBE6AB1728B371D400551CDB /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */; };
 		EBEC7501288831B800BD7220 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC7500288831B800BD7220 /* EmptyStateView.swift */; };
 		EBEC75032888398800BD7220 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC75022888398800BD7220 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -143,6 +144,7 @@
 		EBDA9DCF28AE19F300F6C230 /* QuizDifficultyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyDataModel.swift; sourceTree = "<group>"; };
 		EBDA9DD128AE1A8A00F6C230 /* QuizDifficultyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyModel.swift; sourceTree = "<group>"; };
 		EBDA9DD328AE1AAA00F6C230 /* QuizDifficultyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyViewModel.swift; sourceTree = "<group>"; };
+		EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		EBEC7500288831B800BD7220 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		EBEC75022888398800BD7220 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,6 +250,7 @@
 		EB917E17287EB53900ECD5AD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EBE6AB1528B371C300551CDB /* Foundation */,
 				EB917E1A287ED42500ECD5AD /* UIKit */,
 			);
 			path = Extensions;
@@ -461,6 +464,14 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		EBE6AB1528B371C300551CDB /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -611,6 +622,7 @@
 				EB8E1191289168FE000605B4 /* QuizDataModel.swift in Sources */,
 				EBEC75032888398800BD7220 /* TabBarController.swift in Sources */,
 				EBB6F6F8288AE67A00790DC0 /* UserModel.swift in Sources */,
+				EBE6AB1728B371D400551CDB /* Sequence+Extensions.swift in Sources */,
 				EBA79D8328AB968600124183 /* CategoryModel.swift in Sources */,
 				EB87B0512892789B00BE1A39 /* QuizUseCase.swift in Sources */,
 				EB9476EB2889974800BC20C2 /* CheckNetworkClient.swift in Sources */,

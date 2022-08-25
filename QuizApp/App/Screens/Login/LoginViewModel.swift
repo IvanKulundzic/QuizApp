@@ -18,7 +18,7 @@ final class LoginViewModel {
 extension LoginViewModel {
 
     func loginUser(password: String, username: String) {
-        Task(priority: .background) {
+        Task {
             do {
                 try await loginUseCase.login(username: username, password: password)
                 DispatchQueue.main.async { [weak self] in

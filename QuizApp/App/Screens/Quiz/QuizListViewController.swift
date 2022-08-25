@@ -29,8 +29,8 @@ final class QuizListViewController: UIViewController {
         styleViews()
         defineLayoutForViews()
         setupDelegateAndDataSource()
-        quizListViewModel.fetchQuiz()
         bindViewModel()
+        quizListViewModel.fetchInitialQuiz()
     }
 
 }
@@ -39,7 +39,11 @@ final class QuizListViewController: UIViewController {
 extension QuizListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        quizListViewModel.quizes.count
+        if collectionView == categoryCollectionView {
+            return quizListViewModel.categories.count
+        } else {
+            return quizListViewModel.quizes.count
+        }
     }
 
     func collectionView(
@@ -52,7 +56,7 @@ extension QuizListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? CategoryCell else { fatalError() }
 
-            let category = quizListViewModel.quizes[indexPath.item]
+            let category = quizListViewModel.categories[indexPath.item]
             cell.set(for: category)
             return cell
         } else {
@@ -61,8 +65,8 @@ extension QuizListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
-            let category = quizListViewModel.quizes[indexPath.item]
-            cell.set(for: category)
+            let quiz = quizListViewModel.quizes[indexPath.item]
+            cell.set(for: quiz)
             return cell
         }
     }
@@ -70,7 +74,17 @@ extension QuizListViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout methods
-extension QuizListViewController: UICollectionViewDelegateFlowLayout { }
+extension QuizListViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard collectionView == categoryCollectionView else { return }
+
+        let categoryViewModel = quizListViewModel.categories[indexPath.item]
+        let category = CategoryModel(from: categoryViewModel)
+        quizListViewModel.fetchQuiz(for: category)
+    }
+
+}
 
 // MARK: - ConstructViewsProtocol methods
 extension QuizListViewController: ConstructViewsProtocol {
@@ -155,7 +169,6 @@ private extension QuizListViewController {
             .sink { [weak self] _ in
                 guard let self = self else { return }
 
-                self.categoryCollectionView.reloadData()
                 self.quizCollectionView.reloadData()
             }
             .store(in: &cancellables)
