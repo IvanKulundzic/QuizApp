@@ -1,11 +1,24 @@
 enum CategoryModel: String {
 
-    case geography = "GEOGRAPHY"
-    case movies = "MOVIES"
-    case music = "MUSIC"
-    case sport = "SPORT"
+    case geography
+    case movies
+    case music
+    case sport
 
     init(from category: CategoryDataModel) {
+        switch category {
+        case .geography:
+            self = .geography
+        case .movies:
+            self = .movies
+        case .music:
+            self = .music
+        case .sport:
+            self = .sport
+        }
+    }
+
+    init(from category: CategoryViewModel) {
         switch category {
         case .geography:
             self = .geography

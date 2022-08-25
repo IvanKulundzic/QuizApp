@@ -2,7 +2,7 @@ import Foundation
 
 final class QuizListViewModel {
 
-    @Published var categories: [CategoryViewModel] = []
+    var categories: [CategoryViewModel] = [.sport, .movies, .music, .geography]
     @Published var quizes: [QuizViewModel] = []
 
     private let quizUseCase: QuizUseCaseProtocol
@@ -15,7 +15,7 @@ final class QuizListViewModel {
 
 extension QuizListViewModel {
 
-    func fetchQuiz(for category: String) {
+    func fetchQuiz(for category: CategoryModel) {
         Task {
             let quizes = try await quizUseCase.fetchQuizes(for: category)
 
@@ -28,18 +28,22 @@ extension QuizListViewModel {
         }
     }
 
-    func fetchCategories() {
+    func fetchAllQuizes() {
         Task {
             let quizes = try await quizUseCase.fetchQuizes()
 
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
 
-                self.categories = quizes
-                    .map { CategoryViewModel(from: $0.category) }
-                    .unique()
+                self.quizes = quizes
+                    .map { QuizViewModel(from: $0) }
             }
         }
+    }
+
+    func fetchInitialQuiz() {
+        let firstCategory = CategoryModel(from: categories.first ?? .sport)
+        fetchQuiz(for: firstCategory)
     }
 
 }

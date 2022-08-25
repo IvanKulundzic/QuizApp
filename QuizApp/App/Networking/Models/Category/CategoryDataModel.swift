@@ -18,4 +18,17 @@ enum CategoryDataModel: String {
         }
     }
 
+    init(from category: CategoryModel) {
+        switch category {
+        case .geography:
+            self = .geography
+        case .movies:
+            self = .movies
+        case .music:
+            self = .music
+        case .sport:
+            self = .sport
+        }
+    }
+
 }

@@ -12,7 +12,7 @@ struct QuizDataModel {
         self.id = model.id
         self.name = model.name
         self.description = model.description
-        self.category = CategoryDataModel(from: model.category)
+        self.category = CategoryDataModel(from: model.category) // CategoryDataModel(from: model.category)
         self.difficulty = QuizDifficultyDataModel(from: model.difficulty)
         self.numberOfQuestions = model.numberOfQuestions
         self.imageUrl = model.imageUrl

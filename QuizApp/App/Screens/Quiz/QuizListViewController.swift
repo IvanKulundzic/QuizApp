@@ -30,7 +30,7 @@ final class QuizListViewController: UIViewController {
         defineLayoutForViews()
         setupDelegateAndDataSource()
         bindViewModel()
-        quizListViewModel.fetchCategories()
+        quizListViewModel.fetchInitialQuiz()
     }
 
 }
@@ -57,8 +57,6 @@ extension QuizListViewController: UICollectionViewDataSource {
             ) as? CategoryCell else { fatalError() }
 
             let category = quizListViewModel.categories[indexPath.item]
-            let firstCategory = quizListViewModel.categories.first?.rawValue ?? ""
-            quizListViewModel.fetchQuiz(for: firstCategory)
             cell.set(for: category)
             return cell
         } else {
@@ -81,7 +79,8 @@ extension QuizListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard collectionView == categoryCollectionView else { return }
 
-        let category = quizListViewModel.categories[indexPath.item].rawValue
+        let categoryViewModel = quizListViewModel.categories[indexPath.item]
+        let category = CategoryModel(from: categoryViewModel)
         quizListViewModel.fetchQuiz(for: category)
     }
 
@@ -171,15 +170,6 @@ private extension QuizListViewController {
                 guard let self = self else { return }
 
                 self.quizCollectionView.reloadData()
-            }
-            .store(in: &cancellables)
-
-        quizListViewModel
-            .$categories
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-
-                self.categoryCollectionView.reloadData()
             }
             .store(in: &cancellables)
     }

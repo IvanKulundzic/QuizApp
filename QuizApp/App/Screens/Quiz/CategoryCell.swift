@@ -1,5 +1,15 @@
 import UIKit
 
+enum Category: String {
+
+    case all = "ALL"
+    case sport = "SPORT"
+    case movies = "MOVIES"
+    case music = "MUSIC"
+    case geography = "GEOGRAPHY"
+
+}
+
 final class CategoryCell: UICollectionViewCell {
 
     static let reuseIdentifier = String(describing: CategoryCell.self)
