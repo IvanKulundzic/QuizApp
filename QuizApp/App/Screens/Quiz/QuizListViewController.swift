@@ -93,10 +93,10 @@ extension QuizListViewController: ConstructViewsProtocol {
         emptyStateView = EmptyStateView()
         view.addSubview(emptyStateView)
 
-        categoryCollectionView = UICollectionView.makeCollectionView(direction: .horizontal, spacing: 10)
+        categoryCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateCategoryLayout())
         view.addSubview(categoryCollectionView)
 
-        quizCollectionView = UICollectionView.makeCollectionView(direction: .vertical, spacing: 15)
+        quizCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateQuizLayout())
         view.addSubview(quizCollectionView)
     }
 
@@ -111,6 +111,8 @@ extension QuizListViewController: ConstructViewsProtocol {
         quizCollectionView.register(QuizCell.self, forCellWithReuseIdentifier: QuizCell.reuseIdentifier)
 
         categoryCollectionView.backgroundColor = .clear
+        categoryCollectionView.isScrollEnabled = false
+
         quizCollectionView.backgroundColor = .clear
 
         emptyStateView.isHidden = true
@@ -119,13 +121,13 @@ extension QuizListViewController: ConstructViewsProtocol {
     func defineLayoutForViews() {
         categoryCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(50)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(25)
         }
 
         quizCollectionView.snp.makeConstraints {
             $0.top.equalTo(categoryCollectionView.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
 
@@ -172,6 +174,46 @@ private extension QuizListViewController {
                 self.quizCollectionView.reloadData()
             }
             .store(in: &cancellables)
+    }
+
+    func generateQuizLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(0.25))
+        let quizItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        quizItem.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 5,
+            bottom: 5,
+            trailing: 5)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [quizItem])
+
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+
+    func generateCategoryLayout() -> UICollectionViewLayout {
+        let numberOfCategories = CGFloat(quizListViewModel.categories.count)
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1 / numberOfCategories),
+            heightDimension: .fractionalHeight(1.0))
+        let categoryItem = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0))
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [categoryItem])
+
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 
 }
