@@ -67,7 +67,6 @@ extension QuizCell: ConstructViewsProtocol {
 
         imageView.image = UIImage(named: "imgSport")
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .yellow
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
 

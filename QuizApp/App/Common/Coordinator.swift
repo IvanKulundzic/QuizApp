@@ -17,13 +17,20 @@ final class Coordinator: CoordinatorProtocol {
     }
 
     func showHome() {
-        let quizViewModel = QuizListViewModel(quizUseCase: serviceFactory.quizUseCase)
+        let quizViewModel = QuizListViewModel(quizUseCase: serviceFactory.quizUseCase, coordinator: self)
         let quizViewController = QuizListViewController(quizViewModel: quizViewModel)
         let userViewModel = UserViewModel(userUseCase: serviceFactory.userUseCase)
         let userViewController = UserViewController(userViewModel: userViewModel)
         let viewControllers = [quizViewController, userViewController]
         let tabBarController = TabBarController(viewControllers: viewControllers)
         navigationController.setViewControllers([tabBarController], animated: true)
+    }
+
+    func showQuizDetails(quiz: QuizViewModel) {
+        let viewModel = QuizDetailsViewModel(quiz: quiz)
+        let viewController = QuizDetailsViewController(viewModel: viewModel)
+        viewController.hidesBottomBarWhenPushed = false
+        navigationController.pushViewController(viewController, animated: true)
     }
 
 }
