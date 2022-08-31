@@ -191,7 +191,6 @@
 				EB4E6197287DB1FB009A64E7 /* Login */,
 				EBCB41E52886FBBB0008C827 /* Quiz */,
 				EB9476E228893C4400BC20C2 /* User */,
-				EB9476E328893C4A00BC20C2 /* Settings */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -283,13 +282,6 @@
 				EBD0F0F8288AA34600D34EA8 /* UserViewModel.swift */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		EB9476E328893C4A00BC20C2 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		EB9476E92889971400BC20C2 /* Check */ = {

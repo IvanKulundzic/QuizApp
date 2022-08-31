@@ -111,7 +111,6 @@ extension QuizListViewController: ConstructViewsProtocol {
         quizCollectionView.register(QuizCell.self, forCellWithReuseIdentifier: QuizCell.reuseIdentifier)
 
         categoryCollectionView.backgroundColor = .clear
-        categoryCollectionView.isScrollEnabled = false
 
         quizCollectionView.backgroundColor = .clear
 
@@ -179,18 +178,18 @@ private extension QuizListViewController {
     func generateQuizLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(0.25))
+            heightDimension: .fractionalHeight(1.0))
         let quizItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        quizItem.contentInsets = NSDirectionalEdgeInsets(
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(143))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [quizItem])
+        group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
             leading: 5,
             bottom: 5,
             trailing: 5)
-
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [quizItem])
 
         let section = NSCollectionLayoutSection(group: group)
         let layout = UICollectionViewCompositionalLayout(section: section)
@@ -198,20 +197,25 @@ private extension QuizListViewController {
     }
 
     func generateCategoryLayout() -> UICollectionViewLayout {
-        let numberOfCategories = CGFloat(quizListViewModel.categories.count)
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1 / numberOfCategories),
+            widthDimension: .estimated(150),
             heightDimension: .fractionalHeight(1.0))
         let categoryItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        categoryItem.edgeSpacing = NSCollectionLayoutEdgeSpacing(
+            leading: .some(.fixed(10)),
+            top: nil,
+            trailing: .some(.fixed(10)),
+            bottom: nil)
 
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
+            widthDimension: .estimated(150),
             heightDimension: .fractionalHeight(1.0))
-        let group = NSCollectionLayoutGroup.horizontal(
+        let group = NSCollectionLayoutGroup.vertical(
             layoutSize: groupSize,
             subitems: [categoryItem])
 
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
