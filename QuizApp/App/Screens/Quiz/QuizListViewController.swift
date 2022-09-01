@@ -125,8 +125,8 @@ extension QuizListViewController: ConstructViewsProtocol {
         }
 
         quizCollectionView.snp.makeConstraints {
-            $0.top.equalTo(categoryCollectionView.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            $0.top.equalTo(categoryCollectionView.snp.bottom)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
 
@@ -192,6 +192,11 @@ private extension QuizListViewController {
             trailing: 5)
 
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 10,
+            bottom: 5,
+            trailing: 10)
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }

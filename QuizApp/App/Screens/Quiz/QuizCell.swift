@@ -8,7 +8,6 @@ final class QuizCell: UICollectionViewCell {
         static let imageViewInset = 20
         static let titleLabelHeight = 25
         static let descriptionLabelInset = 20
-        static let descriptionLabelWidth = 200
 
     }
 
