@@ -27,6 +27,7 @@ final class QuizDetailsViewController: UIViewController {
         createViews()
         styleViews()
         defineLayoutForViews()
+        setupNavigationBar()
         bindViewModel()
     }
 
@@ -56,11 +57,6 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
 
     func styleViews() {
         view.applyGradientWith([UIColor.loginBackgroundTop.cgColor, UIColor.loginBackgroundBottom.cgColor])
-
-        title = "PopQuiz"
-        let barItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationController?.navigationBar.tintColor = .white
-        navigationItem.backBarButtonItem = barItem
 
         let titleString = NSAttributedString(
             string: "Leaderboard",
@@ -104,13 +100,11 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
         }
 
         titleLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
 
         descriptionLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
@@ -133,6 +127,15 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
 }
 
 private extension QuizDetailsViewController {
+
+    func setupNavigationBar() {
+        title = "PopQuiz"
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: Fonts.sourceSansProBold24.font]
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.topItem?.title = ""
+    }
 
     func bindViewModel() {
         viewModel

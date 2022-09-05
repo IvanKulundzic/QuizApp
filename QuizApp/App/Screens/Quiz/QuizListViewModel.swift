@@ -49,7 +49,6 @@ extension QuizListViewModel {
     }
 
     func goToQuizDetails(quiz: QuizViewModel) {
-        print("Quiz: \(quiz)")
         coordinator.showQuizDetails(quiz: quiz)
     }
 
