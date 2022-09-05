@@ -192,10 +192,7 @@
 			children = (
 				EB4E6197287DB1FB009A64E7 /* Login */,
 				EB9476E228893C4400BC20C2 /* User */,
-<<<<<<< HEAD
-=======
 				EBCB41E52886FBBB0008C827 /* Quiz */,
->>>>>>> develop
 			);
 			path = Screens;
 			sourceTree = "<group>";
