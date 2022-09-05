@@ -5,6 +5,7 @@ final class QuizDetailsViewController: UIViewController {
 
     private struct Constants {
 
+        static let topMargin = 20
         static let horizontalMargin = 20
 
     }
@@ -78,12 +79,12 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
         quizContainterView.backgroundColor = .white.withAlphaComponent(0.3)
         quizContainterView.layer.cornerRadius = 10
 
-        titleLabel.style(with: nil, color: .white, alignment: .center, font: Fonts.sourceSansProBold32.font)
+        titleLabel.style(color: .white, alignment: .center, font: Fonts.sourceSansProBold32.font)
 
-        descriptionLabel.style(with: nil, color: .white, alignment: .center, font: Fonts.sourceSansProSemiBold18.font)
+        descriptionLabel.style(color: .white, alignment: .center, font: Fonts.sourceSansProSemiBold18.font)
         descriptionLabel.numberOfLines = 0
 
-        imageView.style(with: nil, contentMode: .scaleAspectFit, radius: 10)
+        imageView.style(contentMode: .scaleAspectFit, radius: 10)
 
         startButton.setTitle("Start Quiz", for: .normal)
         startButton.setTitleColor(.loginPurple, for: .normal)
@@ -95,36 +96,36 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         leaderboardButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Constants.horizontalMargin)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Constants.topMargin)
             $0.trailing.equalTo(view.snp.trailing).inset(Constants.horizontalMargin)
             $0.width.height.equalTo(150)
         }
 
         quizContainterView.snp.makeConstraints {
             $0.centerX.centerY.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.horizontalMargin)
             $0.height.equalTo(400)
-            $0.width.equalTo(view.snp.width).inset(20)
         }
 
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(Constants.horizontalMargin)
         }
 
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Constants.topMargin)
+            $0.leading.trailing.equalToSuperview().inset(Constants.horizontalMargin)
         }
 
         imageView.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(Constants.topMargin)
+            $0.leading.trailing.equalToSuperview().inset(Constants.horizontalMargin)
             $0.height.equalTo(150)
         }
 
         startButton.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(imageView.snp.bottom).offset(Constants.topMargin)
+            $0.leading.trailing.equalToSuperview().inset(Constants.horizontalMargin)
             $0.height.equalTo(44)
         }
     }
