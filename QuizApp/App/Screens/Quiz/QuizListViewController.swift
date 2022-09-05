@@ -77,11 +77,14 @@ extension QuizListViewController: UICollectionViewDataSource {
 extension QuizListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard collectionView == categoryCollectionView else { return }
-
-        let categoryViewModel = quizListViewModel.categories[indexPath.item]
-        let category = CategoryModel(from: categoryViewModel)
-        quizListViewModel.fetchQuiz(for: category)
+        if collectionView == categoryCollectionView {
+            let categoryViewModel = quizListViewModel.categories[indexPath.item]
+            let category = CategoryModel(from: categoryViewModel)
+            quizListViewModel.fetchQuiz(for: category)
+        } else {
+            let quiz = quizListViewModel.quizes[indexPath.item]
+            quizListViewModel.goToQuizDetails(quiz: quiz)
+        }
     }
 
 }

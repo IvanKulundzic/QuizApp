@@ -6,9 +6,11 @@ final class QuizListViewModel {
     @Published var quizes: [QuizViewModel] = []
 
     private let quizUseCase: QuizUseCaseProtocol
+    private let coordinator: CoordinatorProtocol
 
-    init(quizUseCase: QuizUseCaseProtocol) {
+    init(quizUseCase: QuizUseCaseProtocol, coordinator: CoordinatorProtocol) {
         self.quizUseCase = quizUseCase
+        self.coordinator = coordinator
     }
 
 }
@@ -44,6 +46,10 @@ extension QuizListViewModel {
     func fetchInitialQuiz() {
         let firstCategory = CategoryModel(from: categories.first ?? .sport)
         fetchQuiz(for: firstCategory)
+    }
+
+    func goToQuizDetails(quiz: QuizViewModel) {
+        coordinator.showQuizDetails(quiz: quiz)
     }
 
 }

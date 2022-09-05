@@ -30,6 +30,9 @@
 		EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */; };
 		EB917E20287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */; };
 		EB917E23287EFDC200ECD5AD /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB917E22287EFDC200ECD5AD /* InputField.swift */; };
+		EB93D9FE28BF594D00413031 /* QuizDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93D9FD28BF594D00413031 /* QuizDetailsViewModel.swift */; };
+		EB93DA0028BF77AE00413031 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93D9FF28BF77AE00413031 /* UIImageView+Extensions.swift */; };
+		EB93DA0228BF78FB00413031 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93DA0128BF78FB00413031 /* UILabel+Extensions.swift */; };
 		EB9476E528893C6700BC20C2 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476E428893C6700BC20C2 /* UserViewController.swift */; };
 		EB9476E8288990B100BC20C2 /* UserNetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */; };
 		EB9476EB2889974800BC20C2 /* CheckNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9476EA2889974800BC20C2 /* CheckNetworkClient.swift */; };
@@ -71,6 +74,7 @@
 		EBDA9DD028AE19F300F6C230 /* QuizDifficultyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9DCF28AE19F300F6C230 /* QuizDifficultyDataModel.swift */; };
 		EBDA9DD228AE1A8A00F6C230 /* QuizDifficultyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9DD128AE1A8A00F6C230 /* QuizDifficultyModel.swift */; };
 		EBDA9DD428AE1AAA00F6C230 /* QuizDifficultyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA9DD328AE1AAA00F6C230 /* QuizDifficultyViewModel.swift */; };
+		EBE06E6528BE01A9004F3F3F /* QuizDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE06E6428BE01A9004F3F3F /* QuizDetailsViewController.swift */; };
 		EBE0E9302893F7E200B7BC4A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EBE0E92F2893F7E200B7BC4A /* Kingfisher */; };
 		EBE6AB1728B371D400551CDB /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */; };
 		EBEC7501288831B800BD7220 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC7500288831B800BD7220 /* EmptyStateView.swift */; };
@@ -99,6 +103,9 @@
 		EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		EB917E1F287EF0E700ECD5AD /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		EB917E22287EFDC200ECD5AD /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
+		EB93D9FD28BF594D00413031 /* QuizDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModel.swift; sourceTree = "<group>"; };
+		EB93D9FF28BF77AE00413031 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		EB93DA0128BF78FB00413031 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		EB9476E428893C6700BC20C2 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		EB9476E7288990B100BC20C2 /* UserNetworkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkDataSource.swift; sourceTree = "<group>"; };
 		EB9476EA2889974800BC20C2 /* CheckNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckNetworkClient.swift; sourceTree = "<group>"; };
@@ -142,6 +149,7 @@
 		EBDA9DCF28AE19F300F6C230 /* QuizDifficultyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyDataModel.swift; sourceTree = "<group>"; };
 		EBDA9DD128AE1A8A00F6C230 /* QuizDifficultyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyModel.swift; sourceTree = "<group>"; };
 		EBDA9DD328AE1AAA00F6C230 /* QuizDifficultyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyViewModel.swift; sourceTree = "<group>"; };
+		EBE06E6428BE01A9004F3F3F /* QuizDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewController.swift; sourceTree = "<group>"; };
 		EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		EBEC7500288831B800BD7220 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		EBEC75022888398800BD7220 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -193,6 +201,7 @@
 				EB4E6197287DB1FB009A64E7 /* Login */,
 				EB9476E228893C4400BC20C2 /* User */,
 				EBCB41E52886FBBB0008C827 /* Quiz */,
+				EBE06E6328BE0194004F3F3F /* Quiz details */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -352,6 +361,8 @@
 				EB917E18287EB54C00ECD5AD /* UIColor+Extensions.swift */,
 				EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */,
 				EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */,
+				EB93D9FF28BF77AE00413031 /* UIImageView+Extensions.swift */,
+				EB93DA0128BF78FB00413031 /* UILabel+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -493,6 +504,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		EBE06E6328BE0194004F3F3F /* Quiz details */ = {
+			isa = PBXGroup;
+			children = (
+				EBE06E6428BE01A9004F3F3F /* QuizDetailsViewController.swift */,
+				EB93D9FD28BF594D00413031 /* QuizDetailsViewModel.swift */,
+			);
+			path = "Quiz details";
+			sourceTree = "<group>";
+		};
 		EBE6AB1528B371C300551CDB /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE06E6528BE01A9004F3F3F /* QuizDetailsViewController.swift in Sources */,
 				EB6E283A288EB61E002D8198 /* DifficultyView.swift in Sources */,
 				EB9476E528893C6700BC20C2 /* UserViewController.swift in Sources */,
 				EBD0F0F9288AA34600D34EA8 /* UserViewModel.swift in Sources */,
@@ -620,6 +641,7 @@
 				EBEC7501288831B800BD7220 /* EmptyStateView.swift in Sources */,
 				EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */,
 				EBADB557288589B000F7EF81 /* LoginResponseModel.swift in Sources */,
+				EB93DA0228BF78FB00413031 /* UILabel+Extensions.swift in Sources */,
 				EBADB54F2885630F00F7EF81 /* LoginRequestBody.swift in Sources */,
 				EB8E119328916ADE000605B4 /* QuizNetworkModel.swift in Sources */,
 				EBD0F0FB288AA42800D34EA8 /* UserUseCase.swift in Sources */,
@@ -649,6 +671,8 @@
 				EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */,
 				EB8E1191289168FE000605B4 /* QuizDataModel.swift in Sources */,
 				EBEC75032888398800BD7220 /* TabBarController.swift in Sources */,
+				EB93DA0028BF77AE00413031 /* UIImageView+Extensions.swift in Sources */,
+				EB93D9FE28BF594D00413031 /* QuizDetailsViewModel.swift in Sources */,
 				EBB6F6F8288AE67A00790DC0 /* UserModel.swift in Sources */,
 				EBE6AB1728B371D400551CDB /* Sequence+Extensions.swift in Sources */,
 				EBA79D8328AB968600124183 /* CategoryModel.swift in Sources */,
