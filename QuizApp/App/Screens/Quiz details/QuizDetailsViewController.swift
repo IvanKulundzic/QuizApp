@@ -3,15 +3,22 @@ import Combine
 
 final class QuizDetailsViewController: UIViewController {
 
+    private struct Constants {
+
+        static let horizontalMargin = 20
+
+    }
+
+    private let viewModel: QuizDetailsViewModel
+
+    private var cancellables = Set<AnyCancellable>()
+
     private var leaderboardButton: UIButton!
     private var quizContainterView: UIView!
     private var titleLabel: UILabel!
     private var descriptionLabel: UILabel!
     private var imageView: UIImageView!
     private var startButton: UIButton!
-    private var cancellables = Set<AnyCancellable>()
-
-    private let viewModel: QuizDetailsViewModel
 
     init(viewModel: QuizDetailsViewModel) {
         self.viewModel = viewModel
@@ -58,14 +65,14 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
     func styleViews() {
         view.applyGradientWith([UIColor.loginBackgroundTop.cgColor, UIColor.loginBackgroundBottom.cgColor])
 
-        let titleString = NSAttributedString(
+        let leaderboardTitle = NSAttributedString(
             string: "Leaderboard",
             attributes: [
                 NSAttributedString.Key.foregroundColor: UIColor.white,
                 NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
                 NSAttributedString.Key.font: Fonts.sourceSansProBold18.font]
         )
-        leaderboardButton.setAttributedTitle(titleString, for: .normal)
+        leaderboardButton.setAttributedTitle(leaderboardTitle, for: .normal)
         leaderboardButton.addTarget(self, action: #selector(leaderboardButtonTapped), for: .touchUpInside)
 
         quizContainterView.backgroundColor = .white.withAlphaComponent(0.3)
@@ -88,8 +95,8 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
 
     func defineLayoutForViews() {
         leaderboardButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            $0.trailing.equalTo(view.snp.trailing).inset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Constants.horizontalMargin)
+            $0.trailing.equalTo(view.snp.trailing).inset(Constants.horizontalMargin)
             $0.width.height.equalTo(150)
         }
 
@@ -110,14 +117,12 @@ extension QuizDetailsViewController: ConstructViewsProtocol {
         }
 
         imageView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(150)
         }
 
         startButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
             $0.top.equalTo(imageView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(44)
