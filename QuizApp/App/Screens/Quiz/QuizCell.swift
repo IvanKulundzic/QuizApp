@@ -8,7 +8,6 @@ final class QuizCell: UICollectionViewCell {
         static let imageViewInset = 20
         static let titleLabelHeight = 25
         static let descriptionLabelInset = 20
-        static let descriptionLabelWidth = 200
 
     }
 
@@ -65,9 +64,7 @@ extension QuizCell: ConstructViewsProtocol {
         contentView.backgroundColor = .white.withAlphaComponent(0.3)
         contentView.layer.cornerRadius = 20
 
-        imageView.image = UIImage(named: "imgSport")
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .yellow
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
 
@@ -82,7 +79,7 @@ extension QuizCell: ConstructViewsProtocol {
     func defineLayoutForViews() {
         imageView.snp.makeConstraints {
             $0.top.leading.bottom.equalToSuperview().inset(Constants.imageViewInset)
-            $0.width.height.equalTo(103)
+            $0.width.equalTo(103)
         }
 
         titleLabel.snp.makeConstraints {
@@ -96,7 +93,6 @@ extension QuizCell: ConstructViewsProtocol {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(imageView.snp.trailing).offset(15)
             $0.trailing.equalToSuperview().inset(10)
-            $0.width.equalTo(Constants.descriptionLabelWidth)
             $0.bottom.equalToSuperview()
         }
 
