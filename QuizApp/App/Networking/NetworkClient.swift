@@ -15,14 +15,11 @@ final class NetworkClient: NetworkClientProtocol {
             throw RequestError.serverError
         }
 
-        guard let response = response as? HTTPURLResponse else {
-            throw RequestError.responseError
-        }
-
-        guard (200...299).contains(response.statusCode) else {
-            switch response.statusCode {
-            case 400:
-                throw RequestError.badRequest
+        if
+            let httpResponse = response as? HTTPURLResponse,
+            (300...503).contains(httpResponse.statusCode)
+        {
+            switch httpResponse.statusCode {
             case 401:
                 throw RequestError.unauthorized
             case 403:
@@ -30,7 +27,7 @@ final class NetworkClient: NetworkClientProtocol {
             case 404:
                 throw RequestError.notFound
             default:
-                throw RequestError.unknown
+                throw RequestError.serverError
             }
         }
 
@@ -46,14 +43,11 @@ final class NetworkClient: NetworkClientProtocol {
             throw RequestError.serverError
         }
 
-        guard let response = response as? HTTPURLResponse else {
-            throw RequestError.responseError
-        }
-
-        guard (200...299).contains(response.statusCode) else {
-            switch response.statusCode {
-            case 400:
-                throw RequestError.badRequest
+        if
+            let httpResponse = response as? HTTPURLResponse,
+            (300...503).contains(httpResponse.statusCode)
+        {
+            switch httpResponse.statusCode {
             case 401:
                 throw RequestError.unauthorized
             case 403:
@@ -61,7 +55,7 @@ final class NetworkClient: NetworkClientProtocol {
             case 404:
                 throw RequestError.notFound
             default:
-                throw RequestError.unknown
+                throw RequestError.serverError
             }
         }
     }

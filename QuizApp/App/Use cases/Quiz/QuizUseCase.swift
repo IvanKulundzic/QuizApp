@@ -17,14 +17,30 @@ final class QuizUseCase: QuizUseCaseProtocol {
     }
 
     func fetchQuizes() async throws -> [QuizModel] {
-        try await quizNetworkDataSource.fetchQuizes()
-            .map { QuizModel(from: $0) }
+        var models: [QuizModel] = []
+        
+        do {
+            models = try await quizNetworkDataSource.fetchQuizes()
+                .map { QuizModel(from: $0) }
+        } catch {
+            throw error.self
+        }
+
+        return models
     }
 
     func fetchQuizes(for category: CategoryModel) async throws -> [QuizModel] {
         let categoryDataModel = CategoryDataModel(from: category)
-        return try await quizNetworkDataSource.fetchQuizes(for: categoryDataModel)
-            .map { QuizModel(from: $0) }
+        var models: [QuizModel] = []
+
+        do {
+            models = try await quizNetworkDataSource.fetchQuizes(for: categoryDataModel)
+                .map { QuizModel(from: $0) }
+        } catch {
+            throw error.self
+        }
+
+        return models
     }
 
 }

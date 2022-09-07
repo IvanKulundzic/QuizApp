@@ -29,7 +29,14 @@ final class QuizNetworkClient: QuizNetworkClientProtocol {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPRequestMethods.get.rawValue
 
-        return try await networkClient.executeUrlRequest(request)
+        var models: [QuizNetworkModel] = []
+
+        do {
+           models = try await networkClient.executeUrlRequest(request)
+        } catch {
+            throw RequestError.serverError
+        }
+        return models
     }
 
     func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizNetworkModel] {
@@ -43,7 +50,15 @@ final class QuizNetworkClient: QuizNetworkClientProtocol {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPRequestMethods.get.rawValue
 
-        return try await networkClient.executeUrlRequest(request)
+        var models: [QuizNetworkModel] = []
+
+        do {
+           models = try await networkClient.executeUrlRequest(request)
+        } catch {
+            throw error.self
+        }
+        
+        return models
     }
 
 }
