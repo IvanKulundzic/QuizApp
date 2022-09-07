@@ -8,6 +8,21 @@ enum Category: String {
     case music = "MUSIC"
     case geography = "GEOGRAPHY"
 
+    init(from category: CategoryViewModel) {
+        switch category {
+        case .all:
+            self = .all
+        case .geography:
+            self = .geography
+        case .movies:
+            self = .movies
+        case .music:
+            self = .music
+        case .sport:
+            self = .sport
+        }
+    }
+
 }
 
 final class CategoryCell: UICollectionViewCell {
@@ -32,7 +47,7 @@ final class CategoryCell: UICollectionViewCell {
 
 extension CategoryCell {
 
-    func set(for category: CategoryViewModel) {
+    func set(for category: Category) {
         titleLabel.text = category.rawValue
     }
 

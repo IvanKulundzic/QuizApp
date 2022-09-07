@@ -1,5 +1,6 @@
 enum CategoryViewModel: String {
 
+    case all
     case geography = "GEOGRAPHY"
     case movies = "MOVIES"
     case music = "MUSIC"
@@ -7,6 +8,8 @@ enum CategoryViewModel: String {
 
     init(from category: CategoryModel) {
         switch category {
+        case .all:
+            self = .all
         case .geography:
             self = .geography
         case .movies:

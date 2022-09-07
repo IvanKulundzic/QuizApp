@@ -1,5 +1,6 @@
 enum CategoryDataModel: String {
 
+    case all = "ALL"
     case geography = "GEOGRAPHY"
     case movies = "MOVIES"
     case music = "MUSIC"
@@ -7,6 +8,8 @@ enum CategoryDataModel: String {
 
     init(from category: CategoryNetworkModel) {
         switch category {
+        case .all:
+            self = .all
         case .geography:
             self = .geography
         case .movies:
@@ -20,6 +23,8 @@ enum CategoryDataModel: String {
 
     init(from category: CategoryModel) {
         switch category {
+        case .all:
+            self = .all
         case .geography:
             self = .geography
         case .movies:

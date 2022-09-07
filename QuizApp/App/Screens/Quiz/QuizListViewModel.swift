@@ -2,7 +2,7 @@ import Foundation
 
 final class QuizListViewModel {
 
-    var categories: [CategoryViewModel] = [.sport, .movies, .music, .geography]
+    var categories: [Category] = [.all, .sport, .movies, .music, .geography]
     @Published var quizes: [QuizViewModel] = []
 
     private let quizUseCase: QuizUseCaseProtocol
@@ -30,7 +30,7 @@ extension QuizListViewModel {
         }
     }
 
-    func fetchAllQuizes() {
+    func fetchAllQuizes(completion: @escaping () -> Void) {
         Task {
             let quizes = try await quizUseCase.fetchQuizes()
 
@@ -39,13 +39,9 @@ extension QuizListViewModel {
 
                 self.quizes = quizes
                     .map { QuizViewModel(from: $0) }
+                completion()
             }
         }
-    }
-
-    func fetchInitialQuiz() {
-        let firstCategory = CategoryModel(from: categories.first ?? .sport)
-        fetchQuiz(for: firstCategory)
     }
 
     func goToQuizDetails(quiz: QuizViewModel) {
