@@ -1,4 +1,5 @@
 import Foundation
+import Resolver
 
 protocol LoginNetworkClientProtocol {
 
@@ -8,11 +9,7 @@ protocol LoginNetworkClientProtocol {
 
 final class LoginNetworkClient: LoginNetworkClientProtocol {
 
-    private let networkClient: NetworkClientProtocol
-
-    init(networkClient: NetworkClientProtocol) {
-        self.networkClient = networkClient
-    }
+    @Injected private var networkClient: NetworkClientProtocol
 
     func login(_ username: String, password: String) async throws -> LoginResponseModel {
         guard let url = URL(string: Endpoint(type: .login).path) else {

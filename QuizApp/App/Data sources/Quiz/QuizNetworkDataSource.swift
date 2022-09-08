@@ -1,4 +1,5 @@
 import Foundation
+import Resolver
 
 protocol QuizNetworkDataSourceProtocol {
 
@@ -10,11 +11,7 @@ protocol QuizNetworkDataSourceProtocol {
 
 final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
 
-    private let quizNetworkClient: QuizNetworkClientProtocol
-
-    init(quizNetworkClient: QuizNetworkClientProtocol) {
-        self.quizNetworkClient = quizNetworkClient
-    }
+    @Injected private var quizNetworkClient: QuizNetworkClientProtocol
 
     func fetchQuizes() async throws -> [QuizDataModel] {
         try await quizNetworkClient.fetchQuizes()

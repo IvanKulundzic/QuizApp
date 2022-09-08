@@ -1,25 +1,20 @@
 import UIKit
+import Resolver
 
 final class Coordinator: CoordinatorProtocol {
 
-    private let navigationController: UINavigationController
-    private let serviceFactory: ServiceFactoryProtocol
-
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-        self.serviceFactory = ServiceFactory()
-    }
+    @Injected private var navigationController: UINavigationController
 
     func showLogin() {
-        let loginViewModel = LoginViewModel(loginUseCase: serviceFactory.loginUseCase, coordinator: self)
+        let loginViewModel = LoginViewModel()
         let loginViewController = LoginViewController(loginViewModel: loginViewModel)
         navigationController.setViewControllers([loginViewController], animated: true)
     }
 
     func showHome() {
-        let quizViewModel = QuizListViewModel(quizUseCase: serviceFactory.quizUseCase, coordinator: self)
+        let quizViewModel = QuizListViewModel()
         let quizViewController = QuizListViewController(quizViewModel: quizViewModel)
-        let userViewModel = UserViewModel(userUseCase: serviceFactory.userUseCase)
+        let userViewModel = UserViewModel()
         let userViewController = UserViewController(userViewModel: userViewModel)
         let viewControllers = [quizViewController, userViewController]
         let tabBarController = TabBarController(viewControllers: viewControllers)

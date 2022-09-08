@@ -1,4 +1,5 @@
 import Foundation
+import Resolver
 
 protocol UserNetworkDataSourceProtocol {
 
@@ -12,13 +13,8 @@ protocol UserNetworkDataSourceProtocol {
 
 final class UserNetworkDataSource: UserNetworkDataSourceProtocol {
 
-    private let checkNetworkClient: CheckNetworkClientProtocol
-    private let userNetworkClient: UserNetworkClientProtocol
-
-    init(checkNetworkClient: CheckNetworkClientProtocol, userNetworkClient: UserNetworkClientProtocol) {
-        self.checkNetworkClient = checkNetworkClient
-        self.userNetworkClient = userNetworkClient
-    }
+    @Injected private var checkNetworkClient: CheckNetworkClientProtocol
+    @Injected private var userNetworkClient: UserNetworkClientProtocol
 
     var userInfo: UserDataModel {
         get async throws {

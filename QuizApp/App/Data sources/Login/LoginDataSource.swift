@@ -1,4 +1,5 @@
 import Foundation
+import Resolver
 
 protocol LoginDataSourceProtocol {
 
@@ -8,11 +9,7 @@ protocol LoginDataSourceProtocol {
 
 final class LoginDataSource: LoginDataSourceProtocol {
 
-    private let loginNetworkClient: LoginNetworkClientProtocol
-
-    init(loginNetworkClient: LoginNetworkClientProtocol) {
-        self.loginNetworkClient = loginNetworkClient
-    }
+    @Injected private var loginNetworkClient: LoginNetworkClientProtocol
 
     func login(username: String, password: String) async throws -> LoginDataModel {
         let response = try await loginNetworkClient.login(username, password: password)

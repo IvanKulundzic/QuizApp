@@ -1,12 +1,13 @@
 import UIKit
+import Resolver
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    /// It is safe to force unwrap a coordinator here, as we want the app to crash
-    /// if something is not setup correctly.
-    private var coordinator: CoordinatorProtocol!
-    private var serviceFactory: ServiceFactory!
+    @Injected private var navigationController: UINavigationController
+    @Injected private var coordinator: CoordinatorProtocol
+    @Injected private var secureStorage: SecureStorageProtocol
+    @Injected private var datasource: UserNetworkDataSourceProtocol
 
     func scene(
         _ scene: UIScene,
@@ -35,18 +36,12 @@ private extension SceneDelegate {
     func setupInitialScene(with scene: UIWindowScene) {
         let window = UIWindow(windowScene: scene)
         self.window = window
-        let navigationController = UINavigationController()
-        coordinator = Coordinator(navigationController: navigationController)
-        serviceFactory = ServiceFactory()
         checkUserToken()
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-
     }
 
     func checkUserToken() {
-        let datasource = serviceFactory.userNetworkDataSource
-        let secureStorage = serviceFactory.secureStorage
         Task {
             do {
                 try await datasource.checkUserAccessToken()

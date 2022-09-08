@@ -1,17 +1,13 @@
 import Foundation
 import Combine
+import Resolver
 
 final class UserViewModel {
 
+    var errorMessage = PassthroughSubject<String, Never>()
     @Published var username = ""
     @Published var name = ""
-    var errorMessage = PassthroughSubject<String, Never>()
-
-    private let userUseCase: UserUseCaseProtocol
-
-    init(userUseCase: UserUseCaseProtocol) {
-        self.userUseCase = userUseCase
-    }
+    @Injected private var userUseCase: UserUseCaseProtocol
 
     func getUserInfo() {
         Task {
