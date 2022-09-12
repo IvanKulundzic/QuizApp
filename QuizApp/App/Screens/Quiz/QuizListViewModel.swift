@@ -24,6 +24,20 @@ extension QuizListViewModel {
             do {
                 let quizes = try await quizUseCase.fetchQuizes(for: category)
 
+                self.quizes = quizes
+                    .map { QuizViewModel(from: $0) }
+
+            } catch {
+                hideEmptyStateView = false
+            }
+        }
+    }
+
+    func fetchAllQuizes() throws {
+        Task {
+            do {
+                let quizes = try await quizUseCase.fetchQuizes()
+
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
 
@@ -33,25 +47,8 @@ extension QuizListViewModel {
             } catch {
                 hideEmptyStateView = false
             }
+
         }
-    }
-
-    func fetchAllQuizes() throws {
-            Task {
-                do {
-                    let quizes = try await quizUseCase.fetchQuizes()
-
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-
-                        self.quizes = quizes
-                            .map { QuizViewModel(from: $0) }
-                    }
-                } catch {
-                    hideEmptyStateView = false
-                }
-
-            }
     }
 
     @MainActor

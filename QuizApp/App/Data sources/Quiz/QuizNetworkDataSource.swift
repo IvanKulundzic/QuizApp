@@ -18,12 +18,10 @@ final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
 
     func fetchQuizes() async throws -> [QuizDataModel] {
         var models: [QuizDataModel] = []
-        do {
-            models = try await quizNetworkClient.fetchQuizes()
-                .map { QuizDataModel(from: $0) }
-        } catch {
-            throw RequestError.serverError
-        }
+
+        models = try await quizNetworkClient.fetchQuizes()
+            .map { QuizDataModel(from: $0) }
+
         return models
     }
 
@@ -31,13 +29,9 @@ final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
         var models: [QuizDataModel] = []
         let categoryNetworkModel = CategoryNetworkModel(from: category)
 
-        do {
-            models = try await quizNetworkClient.fetchQuizes(for: categoryNetworkModel)
-                .map { QuizDataModel(from: $0) }
-        } catch {
-            throw error.self
-        }
-        
+        models = try await quizNetworkClient.fetchQuizes(for: categoryNetworkModel)
+            .map { QuizDataModel(from: $0) }
+
         return models
     }
 

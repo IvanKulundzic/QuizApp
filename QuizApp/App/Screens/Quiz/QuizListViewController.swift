@@ -48,9 +48,6 @@ extension QuizListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == categoryCollectionView {
-//            let numberOfCategories = quizListViewModel.categories.count
-//            let count = quizListViewModel.quizes.isEmpty ? 0 : numberOfCategories
-//            return count
             return quizListViewModel.categories.count
         } else {
             return quizListViewModel.quizes.count

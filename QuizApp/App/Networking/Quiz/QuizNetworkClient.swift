@@ -31,11 +31,8 @@ final class QuizNetworkClient: QuizNetworkClientProtocol {
 
         var models: [QuizNetworkModel] = []
 
-        do {
-           models = try await networkClient.executeUrlRequest(request)
-        } catch {
-            throw RequestError.serverError
-        }
+        models = try await networkClient.executeUrlRequest(request)
+
         return models
     }
 
@@ -52,12 +49,8 @@ final class QuizNetworkClient: QuizNetworkClientProtocol {
 
         var models: [QuizNetworkModel] = []
 
-        do {
-           models = try await networkClient.executeUrlRequest(request)
-        } catch {
-            throw error.self
-        }
-        
+        models = try await networkClient.executeUrlRequest(request)
+
         return models
     }
 
