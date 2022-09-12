@@ -1,9 +1,11 @@
 import Foundation
+import Combine
 
 final class QuizListViewModel {
 
-    var categories: [Category] = [.all, .sport, .movies, .music, .geography]
-    @Published var quizes: [QuizViewModel] = []
+    var categories: [CategoryViewModel] = [.all, .sport, .movies, .music, .geography]
+    @Published var sections: [CategoryViewModel: [QuizViewModel]] = [:]
+    @Published var quizzes: [QuizViewModel] = []
 
     private let quizUseCase: QuizUseCaseProtocol
     private let coordinator: CoordinatorProtocol
@@ -24,28 +26,32 @@ extension QuizListViewModel {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
 
-                self.quizes = quizes
+                self.quizzes = quizes
                     .map { QuizViewModel(from: $0) }
             }
         }
     }
 
-    func fetchAllQuizes(completion: @escaping () -> Void) {
+    func fetchAllQuizes() async {
         Task {
             let quizes = try await quizUseCase.fetchQuizes()
 
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
 
-                self.quizes = quizes
+                self.quizzes = quizes
                     .map { QuizViewModel(from: $0) }
-                completion()
+                self.setupSections()
             }
         }
     }
 
     func goToQuizDetails(quiz: QuizViewModel) {
         coordinator.showQuizDetails(quiz: quiz)
+    }
+
+    func setupSections() {
+        sections = Dictionary(grouping: quizzes) { $0.category }
     }
 
 }

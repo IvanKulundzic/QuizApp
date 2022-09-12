@@ -1,6 +1,6 @@
 enum CategoryViewModel: String {
 
-    case all
+    case all = "ALL"
     case geography = "GEOGRAPHY"
     case movies = "MOVIES"
     case music = "MUSIC"

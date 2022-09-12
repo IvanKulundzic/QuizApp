@@ -3,7 +3,6 @@ import Combine
 
 final class QuizListViewController: UIViewController {
 
-    private var sections: [QuizSection] = []
     private var cancellables = Set<AnyCancellable>()
 
     private var categoryCollectionView: UICollectionView!
@@ -32,26 +31,19 @@ final class QuizListViewController: UIViewController {
         defineLayoutForViews()
         setupDelegateAndDataSource()
         bindViewModel()
-        quizListViewModel.fetchAllQuizes {
-            self.quizCollectionView.reloadData()
-            self.categoryCollectionView.reloadData()
-            self.setupSections()
-        }
+        fetchQuizzes()
     }
 
-    func setupSections() {
-        let categories = quizListViewModel.categories
-        let quizzes = quizListViewModel.quizes
+    func fetchQuizzes() {
+        Task {
+            await quizListViewModel.fetchAllQuizes()
 
-        for category in categories {
-            let filteredQuizzes = quizzes.filter { $0.category.rawValue == category.rawValue }
-            if filteredQuizzes.isEmpty { continue }
+            DispatchQueue.main.async {
+                self.quizCollectionView.reloadData()
+            }
 
-            sections.append(QuizSection(category: category, quizzes: filteredQuizzes))
-
-            quizCollectionView.reloadData()
-            categoryCollectionView.reloadData()
         }
+
     }
 
 }
@@ -63,7 +55,7 @@ extension QuizListViewController: UICollectionViewDataSource {
         if collectionView == categoryCollectionView {
             return 1
         } else {
-            return sections.count
+            return quizListViewModel.sections.keys.count
         }
     }
 
@@ -71,7 +63,9 @@ extension QuizListViewController: UICollectionViewDataSource {
         if collectionView == categoryCollectionView {
             return quizListViewModel.categories.count
         } else {
-            return sections[section].quizzes.count
+            let category = quizListViewModel.categories[section]
+            let quizzesCount = quizListViewModel.sections[category]?.count ?? 0
+            return quizzesCount
         }
     }
 
@@ -94,7 +88,13 @@ extension QuizListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
-            let quiz = sections[indexPath.section].quizzes[indexPath.item]
+            let category = quizListViewModel.categories[indexPath.section]
+
+//            guard category != .all else { return cell }
+
+            let section = quizListViewModel.sections[category]
+            guard let quiz = section?[indexPath.item] else { return cell }
+
             cell.set(for: quiz)
             return cell
         }
@@ -112,7 +112,9 @@ extension QuizListViewController: UICollectionViewDataSource {
                                                   withReuseIdentifier: QuizSectionHeaderView.reuseIdentifier,
                                                   for: indexPath) as? QuizSectionHeaderView else { fatalError() }
 
-            headerView.set(for: sections[indexPath.section].category)
+            let category = quizListViewModel.categories[indexPath.section]
+
+            headerView.set(for: category)
             return headerView
         default:
             fatalError("Unexpected element kind")
@@ -130,7 +132,7 @@ extension QuizListViewController: UICollectionViewDelegateFlowLayout {
             let categoryModel = CategoryModel(from: category)
             quizListViewModel.fetchQuiz(for: categoryModel)
         } else {
-            let quiz = quizListViewModel.quizes[indexPath.item]
+            let quiz = quizListViewModel.quizzes[indexPath.item]
             quizListViewModel.goToQuizDetails(quiz: quiz)
         }
     }
@@ -221,13 +223,25 @@ private extension QuizListViewController {
 
     func bindViewModel() {
         quizListViewModel
-            .$quizes
+            .$quizzes
             .sink { [weak self] _ in
                 guard let self = self else { return }
 
                 self.quizCollectionView.reloadData()
+                self.categoryCollectionView.reloadData()
             }
             .store(in: &cancellables)
+
+        quizListViewModel
+            .$sections
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                self.quizCollectionView.reloadData()
+                self.categoryCollectionView.reloadData()
+            }
+            .store(in: &cancellables)
+
     }
 
     func generateQuizLayout() -> UICollectionViewLayout {
@@ -255,7 +269,7 @@ private extension QuizListViewController {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top)
         header.contentInsets = NSDirectionalEdgeInsets(
-            top: 5,
+            top: 0,
             leading: 20,
             bottom: 0,
             trailing: 0)

@@ -17,11 +17,7 @@ final class QuizSectionHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 
-}
-
-extension QuizSectionHeaderView {
-
-    func set(for category: Category) {
+    func set(for category: CategoryViewModel) {
         titleLabel.text = category.rawValue
     }
 

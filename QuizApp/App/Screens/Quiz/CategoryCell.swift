@@ -1,30 +1,5 @@
 import UIKit
 
-enum Category: String {
-
-    case all = "ALL"
-    case sport = "SPORT"
-    case movies = "MOVIES"
-    case music = "MUSIC"
-    case geography = "GEOGRAPHY"
-
-    init(from category: CategoryViewModel) {
-        switch category {
-        case .all:
-            self = .all
-        case .geography:
-            self = .geography
-        case .movies:
-            self = .movies
-        case .music:
-            self = .music
-        case .sport:
-            self = .sport
-        }
-    }
-
-}
-
 final class CategoryCell: UICollectionViewCell {
 
     static let reuseIdentifier = String(describing: CategoryCell.self)
@@ -43,11 +18,7 @@ final class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-}
-
-extension CategoryCell {
-
-    func set(for category: Category) {
+    func set(for category: CategoryViewModel) {
         titleLabel.text = category.rawValue
     }
 
