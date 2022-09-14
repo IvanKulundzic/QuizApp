@@ -35,15 +35,11 @@ final class QuizListViewController: UIViewController {
     }
 
     func fetchQuizzes() {
-        Task {
-            await quizListViewModel.fetchAllQuizes()
-
+        quizListViewModel.fetchAllQuizes {
             DispatchQueue.main.async {
                 self.quizCollectionView.reloadData()
             }
-
         }
-
     }
 
 }
@@ -63,7 +59,7 @@ extension QuizListViewController: UICollectionViewDataSource {
         if collectionView == categoryCollectionView {
             return quizListViewModel.categories.count
         } else {
-            let category = quizListViewModel.categories[section]
+            let category = quizListViewModel.categories[section + 1]
             let quizzesCount = quizListViewModel.sections[category]?.count ?? 0
             return quizzesCount
         }
@@ -88,11 +84,9 @@ extension QuizListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
-            let category = quizListViewModel.categories[indexPath.section]
-
-//            guard category != .all else { return cell }
-
+            let category = quizListViewModel.categories[indexPath.section + 1]
             let section = quizListViewModel.sections[category]
+
             guard let quiz = section?[indexPath.item] else { return cell }
 
             cell.set(for: quiz)
@@ -112,7 +106,7 @@ extension QuizListViewController: UICollectionViewDataSource {
                                                   withReuseIdentifier: QuizSectionHeaderView.reuseIdentifier,
                                                   for: indexPath) as? QuizSectionHeaderView else { fatalError() }
 
-            let category = quizListViewModel.categories[indexPath.section]
+            let category = quizListViewModel.categories[indexPath.section + 1]
 
             headerView.set(for: category)
             return headerView
@@ -130,7 +124,9 @@ extension QuizListViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == categoryCollectionView {
             let category = quizListViewModel.categories[indexPath.item]
             let categoryModel = CategoryModel(from: category)
-            quizListViewModel.fetchQuiz(for: categoryModel)
+            quizListViewModel.fetchQuiz(for: categoryModel) {
+                self.quizCollectionView.reloadData()
+            }
         } else {
             let quiz = quizListViewModel.quizzes[indexPath.item]
             quizListViewModel.goToQuizDetails(quiz: quiz)
@@ -220,6 +216,8 @@ private extension QuizListViewController {
         quizCollectionView.delegate = self
         quizCollectionView.dataSource = self
     }
+
+    func setupSections() {}
 
     func bindViewModel() {
         quizListViewModel

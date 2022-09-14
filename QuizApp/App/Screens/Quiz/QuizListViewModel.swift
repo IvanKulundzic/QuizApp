@@ -19,7 +19,7 @@ final class QuizListViewModel {
 
 extension QuizListViewModel {
 
-    func fetchQuiz(for category: CategoryModel) {
+    func fetchQuiz(for category: CategoryModel, completion: @escaping () -> Void) {
         Task {
             let quizes = try await quizUseCase.fetchQuizes(for: category)
 
@@ -28,11 +28,12 @@ extension QuizListViewModel {
 
                 self.quizzes = quizes
                     .map { QuizViewModel(from: $0) }
+                completion()
             }
         }
     }
 
-    func fetchAllQuizes() async {
+    func fetchAllQuizes(completion: @escaping () -> Void) {
         Task {
             let quizes = try await quizUseCase.fetchQuizes()
 
@@ -42,6 +43,7 @@ extension QuizListViewModel {
                 self.quizzes = quizes
                     .map { QuizViewModel(from: $0) }
                 self.setupSections()
+                completion()
             }
         }
     }
