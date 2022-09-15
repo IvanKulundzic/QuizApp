@@ -4,7 +4,6 @@ import Combine
 final class QuizListViewModel {
 
     var categories: [CategoryViewModel] = [.all, .sport, .movies, .music, .geography]
-    @Published var sections: [CategoryViewModel: [QuizViewModel]] = [:]
     @Published var quizzes: [QuizViewModel] = []
 
     private let quizUseCase: QuizUseCaseProtocol
@@ -42,7 +41,6 @@ extension QuizListViewModel {
 
                 self.quizzes = quizes
                     .map { QuizViewModel(from: $0) }
-                self.setupSections()
                 completion()
             }
         }
@@ -50,10 +48,6 @@ extension QuizListViewModel {
 
     func goToQuizDetails(quiz: QuizViewModel) {
         coordinator.showQuizDetails(quiz: quiz)
-    }
-
-    func setupSections() {
-        sections = Dictionary(grouping: quizzes) { $0.category }
     }
 
 }

@@ -51,7 +51,9 @@ extension QuizListViewController: UICollectionViewDataSource {
         if collectionView == categoryCollectionView {
             return 1
         } else {
-            return quizListViewModel.sections.keys.count
+            let sections = Dictionary(grouping: quizListViewModel.quizzes) { $0.category }
+
+            return sections.keys.count
         }
     }
 
@@ -60,7 +62,8 @@ extension QuizListViewController: UICollectionViewDataSource {
             return quizListViewModel.categories.count
         } else {
             let category = quizListViewModel.categories[section + 1]
-            let quizzesCount = quizListViewModel.sections[category]?.count ?? 0
+            let sections = Dictionary(grouping: quizListViewModel.quizzes) { $0.category }
+            let quizzesCount = sections[category]?.count ?? 0
             return quizzesCount
         }
     }
@@ -84,8 +87,9 @@ extension QuizListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
+            let sections = Dictionary(grouping: quizListViewModel.quizzes) { $0.category }
             let category = quizListViewModel.categories[indexPath.section + 1]
-            let section = quizListViewModel.sections[category]
+            let section = sections[category]
 
             guard let quiz = section?[indexPath.item] else { return cell }
 
@@ -229,17 +233,6 @@ private extension QuizListViewController {
                 self.categoryCollectionView.reloadData()
             }
             .store(in: &cancellables)
-
-        quizListViewModel
-            .$sections
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-
-                self.quizCollectionView.reloadData()
-                self.categoryCollectionView.reloadData()
-            }
-            .store(in: &cancellables)
-
     }
 
     func generateQuizLayout() -> UICollectionViewLayout {
