@@ -3,7 +3,7 @@ import Combine
 
 final class QuizListViewModel {
 
-    var categories: [CategoryViewModel] = [.sport, .movies, .music, .geography]
+    var categories: [CategoryViewModel] = [.all, .sport, .movies, .music, .geography]
     @Published var quizzes: [QuizViewModel] = []
     @Published var hideEmptyStateView: Bool = true
     private let quizUseCase: QuizUseCaseProtocol

@@ -12,6 +12,8 @@
 		EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */; };
 		EB1BE4BF2881608C00E5865B /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */; };
 		EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4C42881805200E5865B /* Coordinator.swift */; };
+		EB1C050B28D879C500F1F95A /* QuizSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C050A28D879C500F1F95A /* QuizSessionViewController.swift */; };
+		EB1C050D28D88B2E00F1F95A /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C050C28D88B2E00F1F95A /* ProgressView.swift */; };
 		EB2D166228AD00EB0023C71D /* QuizDifficultyNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */; };
 		EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB4E61A4287DB92D009A64E7 /* SnapKit */; };
 		EB4E61A8287DBA84009A64E7 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */; };
@@ -87,6 +89,8 @@
 		EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		EB1BE4C42881805200E5865B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EB1C050A28D879C500F1F95A /* QuizSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewController.swift; sourceTree = "<group>"; };
+		EB1C050C28D88B2E00F1F95A /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyNetworkModel.swift; sourceTree = "<group>"; };
 		EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		EB4E61A9287DBB20009A64E7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -180,6 +184,15 @@
 			path = "UI components";
 			sourceTree = "<group>";
 		};
+		EB1C050928D879B300F1F95A /* Quiz session */ = {
+			isa = PBXGroup;
+			children = (
+				EB1C050C28D88B2E00F1F95A /* ProgressView.swift */,
+				EB1C050A28D879C500F1F95A /* QuizSessionViewController.swift */,
+			);
+			path = "Quiz session";
+			sourceTree = "<group>";
+		};
 		EB4E6195287DB1E2009A64E7 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +217,7 @@
 				EB9476E228893C4400BC20C2 /* User */,
 				EBCB41E52886FBBB0008C827 /* Quiz */,
 				EBE06E6328BE0194004F3F3F /* Quiz details */,
+				EB1C050928D879B300F1F95A /* Quiz session */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -654,6 +668,7 @@
 				EB917E1C287ED42F00ECD5AD /* UIView+Extensions.swift in Sources */,
 				EB8E118F2891685C000605B4 /* QuizNetworkClient.swift in Sources */,
 				EBDA9DD228AE1A8A00F6C230 /* QuizDifficultyModel.swift in Sources */,
+				EB1C050B28D879C500F1F95A /* QuizSessionViewController.swift in Sources */,
 				EB9BF849288E84E50031704D /* CategoryCell.swift in Sources */,
 				EBB6F6F6288AC2ED00790DC0 /* UserReqeustBody.swift in Sources */,
 				EBADB55928858C6100F7EF81 /* Endpoint.swift in Sources */,
@@ -661,6 +676,7 @@
 				EBADB5542885893300F7EF81 /* NetworkingConstants.swift in Sources */,
 				EB9BF850288EA3D40031704D /* QuizCell.swift in Sources */,
 				EBD0F102288AB72600D34EA8 /* UserDataModel.swift in Sources */,
+				EB1C050D28D88B2E00F1F95A /* ProgressView.swift in Sources */,
 				EB9476E8288990B100BC20C2 /* UserNetworkDataSource.swift in Sources */,
 				EB8E119528916B6D000605B4 /* QuizNetworkDataSource.swift in Sources */,
 				EBCB41E72886FBCB0008C827 /* QuizListViewController.swift in Sources */,
