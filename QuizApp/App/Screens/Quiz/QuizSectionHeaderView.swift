@@ -1,10 +1,10 @@
 import UIKit
 
-final class CategoryCell: UICollectionViewCell {
+final class QuizSectionHeaderView: UICollectionReusableView {
 
-    static let reuseIdentifier = String(describing: CategoryCell.self)
+    static let reuseIdentifier = String(describing: QuizSectionHeaderView.self)
 
-    private var titleLabel: UILabel!
+    var titleLabel: UILabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -13,7 +13,6 @@ final class CategoryCell: UICollectionViewCell {
         defineLayoutForViews()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -24,18 +23,15 @@ final class CategoryCell: UICollectionViewCell {
 
 }
 
-// MARK: - ConstructViewsProtocol methods
-extension CategoryCell: ConstructViewsProtocol {
+extension QuizSectionHeaderView: ConstructViewsProtocol {
 
     func createViews() {
         titleLabel = UILabel()
-        contentView.addSubview(titleLabel)
+        addSubview(titleLabel)
     }
 
     func styleViews() {
-        contentView.backgroundColor = .clear
-
-        titleLabel.font = Fonts.sourceSansProBold16.font
+        titleLabel.style(color: .white, alignment: .left, font: Fonts.sourceSansProBold20.font)
     }
 
     func defineLayoutForViews() {

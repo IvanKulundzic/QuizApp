@@ -3,10 +3,11 @@ import Combine
 
 final class QuizListViewController: UIViewController {
 
+    private var cancellables = Set<AnyCancellable>()
+
     private var categoryCollectionView: UICollectionView!
     private var quizCollectionView: UICollectionView!
     private var emptyStateView: UIView!
-    private var cancellables = Set<AnyCancellable>()
     private let quizListViewModel: QuizListViewModel
 
     init(quizViewModel: QuizListViewModel) {
@@ -30,7 +31,15 @@ final class QuizListViewController: UIViewController {
         defineLayoutForViews()
         setupDelegateAndDataSource()
         bindViewModel()
-        quizListViewModel.fetchInitialQuiz()
+        fetchQuizzes()
+    }
+
+    func fetchQuizzes() {
+        quizListViewModel.fetchAllQuizes {
+            DispatchQueue.main.async {
+                self.quizCollectionView.reloadData()
+            }
+        }
     }
 
 }
@@ -38,11 +47,24 @@ final class QuizListViewController: UIViewController {
 // MARK: - UICollectionViewDataSource methods
 extension QuizListViewController: UICollectionViewDataSource {
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if collectionView == categoryCollectionView {
+            return 1
+        } else {
+            let sections = Dictionary(grouping: quizListViewModel.quizzes) { $0.category }
+
+            return sections.keys.count
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == categoryCollectionView {
             return quizListViewModel.categories.count
         } else {
-            return quizListViewModel.quizes.count
+            let category = quizListViewModel.categories[section + 1]
+            let sections = Dictionary(grouping: quizListViewModel.quizzes) { $0.category }
+            let quizzesCount = sections[category]?.count ?? 0
+            return quizzesCount
         }
     }
 
@@ -65,9 +87,35 @@ extension QuizListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? QuizCell else { fatalError() }
 
-            let quiz = quizListViewModel.quizes[indexPath.item]
+            let sections = Dictionary(grouping: quizListViewModel.quizzes) { $0.category }
+            let category = quizListViewModel.categories[indexPath.section + 1]
+            let section = sections[category]
+
+            guard let quiz = section?[indexPath.item] else { return cell }
+
             cell.set(for: quiz)
             return cell
+        }
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath)
+    -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerView = collectionView
+                .dequeueReusableSupplementaryView(ofKind: kind,
+                                                  withReuseIdentifier: QuizSectionHeaderView.reuseIdentifier,
+                                                  for: indexPath) as? QuizSectionHeaderView else { fatalError() }
+
+            let category = quizListViewModel.categories[indexPath.section + 1]
+
+            headerView.set(for: category)
+            return headerView
+        default:
+            fatalError("Unexpected element kind")
         }
     }
 
@@ -78,11 +126,13 @@ extension QuizListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView {
-            let categoryViewModel = quizListViewModel.categories[indexPath.item]
-            let category = CategoryModel(from: categoryViewModel)
-            quizListViewModel.fetchQuiz(for: category)
+            let category = quizListViewModel.categories[indexPath.item]
+            let categoryModel = CategoryModel(from: category)
+            quizListViewModel.fetchQuiz(for: categoryModel) {
+                self.quizCollectionView.reloadData()
+            }
         } else {
-            let quiz = quizListViewModel.quizes[indexPath.item]
+            let quiz = quizListViewModel.quizzes[indexPath.item]
             quizListViewModel.goToQuizDetails(quiz: quiz)
         }
     }
@@ -112,6 +162,10 @@ extension QuizListViewController: ConstructViewsProtocol {
 
         categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
         quizCollectionView.register(QuizCell.self, forCellWithReuseIdentifier: QuizCell.reuseIdentifier)
+        quizCollectionView.register(
+            QuizSectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: QuizSectionHeaderView.reuseIdentifier)
 
         categoryCollectionView.backgroundColor = .clear
 
@@ -167,13 +221,16 @@ private extension QuizListViewController {
         quizCollectionView.dataSource = self
     }
 
+    func setupSections() {}
+
     func bindViewModel() {
         quizListViewModel
-            .$quizes
+            .$quizzes
             .sink { [weak self] _ in
                 guard let self = self else { return }
 
                 self.quizCollectionView.reloadData()
+                self.categoryCollectionView.reloadData()
             }
             .store(in: &cancellables)
     }
@@ -194,12 +251,27 @@ private extension QuizListViewController {
             bottom: 5,
             trailing: 5)
 
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        header.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: 20,
+            bottom: 0,
+            trailing: 0)
+
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
             leading: 10,
             bottom: 5,
             trailing: 10)
+        section.boundarySupplementaryItems = [header]
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
