@@ -3,7 +3,6 @@ import Combine
 
 final class QuizListViewController: UIViewController {
 
-
     private struct Constants {
 
         static let topMargin = 20
@@ -337,7 +336,11 @@ private extension QuizListViewController {
     }
 
     @objc func getQuizButtonTapped() {
-        quizListViewModel.fetchInitialQuiz()
+        quizListViewModel.fetchAllQuizes {
+            DispatchQueue.main.async {
+                self.quizCollectionView.reloadData()
+            }
+        }
     }
 
 }

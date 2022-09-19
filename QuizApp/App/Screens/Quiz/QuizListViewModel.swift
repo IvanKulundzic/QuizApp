@@ -3,9 +3,8 @@ import Combine
 
 final class QuizListViewModel {
 
-
     var categories: [CategoryViewModel] = [.sport, .movies, .music, .geography]
-    @Published var quizes: [QuizViewModel] = []
+    @Published var quizzes: [QuizViewModel] = []
     @Published var hideEmptyStateView: Bool = true
     private let quizUseCase: QuizUseCaseProtocol
     private let coordinator: CoordinatorProtocol
@@ -19,7 +18,6 @@ final class QuizListViewModel {
 
 extension QuizListViewModel {
 
-
     @MainActor
     func fetchQuiz(for category: CategoryModel, completion: @escaping () -> Void) {
         Task {
@@ -29,9 +27,9 @@ extension QuizListViewModel {
                 self.quizzes = quizes
                     .map { QuizViewModel(from: $0) }
                 hideEmptyStateView = true
+                completion()
             } catch {
                 hideEmptyStateView = false
-                completion()
             }
         }
     }
@@ -44,27 +42,16 @@ extension QuizListViewModel {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
 
-                    self.quizes = quizes
+                    self.quizzes = quizes
                         .map { QuizViewModel(from: $0) }
                     self.hideEmptyStateView = true
                 }
             } catch {
                 hideEmptyStateView = false
-
-                self.quizzes = quizes
-                    .map { QuizViewModel(from: $0) }
-                completion()
             }
-
         }
     }
 
-    @MainActor
-    func fetchInitialQuiz() {
-        let firstCategory = CategoryModel(from: categories.first ?? .sport)
-        fetchQuiz(for: firstCategory)
-    }
-    
     func goToQuizDetails(quiz: QuizViewModel) {
         coordinator.showQuizDetails(quiz: quiz)
     }
