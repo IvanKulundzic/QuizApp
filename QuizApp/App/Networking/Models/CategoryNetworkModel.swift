@@ -1,5 +1,6 @@
 enum CategoryNetworkModel: String, Codable {
 
+    case all
     case geography = "GEOGRAPHY"
     case movies = "MOVIES"
     case music = "MUSIC"
@@ -7,6 +8,8 @@ enum CategoryNetworkModel: String, Codable {
 
     init(from category: CategoryDataModel) {
         switch category {
+        case .all:
+            self = .all
         case .geography:
             self = .geography
         case .movies:
