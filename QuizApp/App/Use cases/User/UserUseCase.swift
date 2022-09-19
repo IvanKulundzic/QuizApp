@@ -1,4 +1,5 @@
 import Foundation
+import Factory
 
 protocol UserUseCaseProtocol {
 
@@ -10,11 +11,7 @@ protocol UserUseCaseProtocol {
 
 final class UserUseCase: UserUseCaseProtocol {
 
-    private let userNetworkDataSource: UserNetworkDataSourceProtocol
-
-    init(userNetworkDataSource: UserNetworkDataSourceProtocol) {
-        self.userNetworkDataSource = userNetworkDataSource
-    }
+    @Injected(Container.userNetworkDataSource) private var userNetworkDataSource
 
     var userInfo: UserModel {
         get async throws {

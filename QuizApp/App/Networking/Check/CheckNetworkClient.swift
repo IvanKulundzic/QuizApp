@@ -1,4 +1,5 @@
 import Foundation
+import Factory
 
 protocol CheckNetworkClientProtocol {
 
@@ -8,13 +9,8 @@ protocol CheckNetworkClientProtocol {
 
 final class CheckNetworkClient: CheckNetworkClientProtocol {
 
-    private let networkClient: NetworkClientProtocol
-    private let secureStorage: SecureStorageProtocol
-
-    init(networkClient: NetworkClientProtocol, secureStorage: SecureStorageProtocol) {
-        self.networkClient = networkClient
-        self.secureStorage = secureStorage
-    }
+    @Injected(Container.networkClient) private var networkClient
+    @Injected(Container.secureStorage) private var secureStorage
 
     func checkAccessToken() async throws {
         guard let url = URL(string: Endpoint(type: .check).path) else {

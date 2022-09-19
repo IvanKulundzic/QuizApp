@@ -1,17 +1,13 @@
 import Foundation
 import Combine
+import Factory
 
 final class UserViewModel {
 
+    @Injected(Container.userUseCase) private var userUseCase
     @Published var username = ""
     @Published var name = ""
     var errorMessage = PassthroughSubject<String, Never>()
-
-    private let userUseCase: UserUseCaseProtocol
-
-    init(userUseCase: UserUseCaseProtocol) {
-        self.userUseCase = userUseCase
-    }
 
     func getUserInfo() {
         Task {

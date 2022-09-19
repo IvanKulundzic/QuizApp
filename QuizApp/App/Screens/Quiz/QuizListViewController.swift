@@ -1,23 +1,16 @@
 import UIKit
 import Combine
+import Factory
 
 final class QuizListViewController: UIViewController {
+
+    @Injected(Container.quizListViewModel) private var quizListViewModel
 
     private var cancellables = Set<AnyCancellable>()
 
     private var categoryCollectionView: UICollectionView!
     private var quizCollectionView: UICollectionView!
     private var emptyStateView: UIView!
-    private let quizListViewModel: QuizListViewModel
-
-    init(quizViewModel: QuizListViewModel) {
-        self.quizListViewModel = quizViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

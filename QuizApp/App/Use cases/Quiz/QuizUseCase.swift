@@ -1,4 +1,5 @@
 import Foundation
+import Factory
 
 protocol QuizUseCaseProtocol {
 
@@ -10,11 +11,7 @@ protocol QuizUseCaseProtocol {
 
 final class QuizUseCase: QuizUseCaseProtocol {
 
-    private let quizNetworkDataSource: QuizNetworkDataSourceProtocol
-
-    init(quizNetworkDataSource: QuizNetworkDataSourceProtocol) {
-        self.quizNetworkDataSource = quizNetworkDataSource
-    }
+    @Injected(Container.quizNetworkDataSource) private var quizNetworkDataSource
 
     func fetchQuizes() async throws -> [QuizModel] {
         try await quizNetworkDataSource.fetchQuizes()
