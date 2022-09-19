@@ -26,6 +26,7 @@ extension QuizListViewModel {
 
                 self.quizes = quizes
                     .map { QuizViewModel(from: $0) }
+                hideEmptyStateView = true
 
             } catch {
                 hideEmptyStateView = false
@@ -33,7 +34,7 @@ extension QuizListViewModel {
         }
     }
 
-    func fetchAllQuizes() throws {
+    func fetchAllQuizes() {
         Task {
             do {
                 let quizes = try await quizUseCase.fetchQuizes()
@@ -43,6 +44,7 @@ extension QuizListViewModel {
 
                     self.quizes = quizes
                         .map { QuizViewModel(from: $0) }
+                    self.hideEmptyStateView = true
                 }
             } catch {
                 hideEmptyStateView = false

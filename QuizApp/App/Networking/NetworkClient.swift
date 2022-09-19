@@ -15,11 +15,12 @@ final class NetworkClient: NetworkClientProtocol {
             throw RequestError.serverError
         }
 
-        if
-            let httpResponse = response as? HTTPURLResponse,
-            (300...503).contains(httpResponse.statusCode)
-        {
-            switch httpResponse.statusCode {
+        guard let response = response as? HTTPURLResponse else {
+            throw RequestError.responseError
+        }
+
+        guard (200...299).contains(response.statusCode) else {
+            switch response.statusCode {
             case 401:
                 throw RequestError.unauthorized
             case 403:
