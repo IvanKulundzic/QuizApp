@@ -11,7 +11,7 @@ protocol QuizUseCaseProtocol {
 
 final class QuizUseCase: QuizUseCaseProtocol {
 
-    @Injected(Container.quizNetworkDataSource) private var quizNetworkDataSource
+    @Injected(QuizContainer.quizNetworkDataSource) private var quizNetworkDataSource
 
     func fetchQuizes() async throws -> [QuizModel] {
         try await quizNetworkDataSource.fetchQuizes()

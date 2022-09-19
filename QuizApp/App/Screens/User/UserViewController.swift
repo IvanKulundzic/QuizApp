@@ -4,7 +4,7 @@ import Factory
 
 final class UserViewController: UIViewController {
 
-    @Injected(Container.userViewModel) private var userViewModel
+    @Injected(UserContainer.userViewModel) private var userViewModel
 
     private var usernameLabel: UILabel!
     private var usernameTextLabel: UILabel!

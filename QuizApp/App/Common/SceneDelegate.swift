@@ -5,9 +5,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     @Injected(Container.coordinator) private var coordinator
-    @Injected(Container.userNetworkDataSource) private var userNetworkDataSource
     @Injected(Container.secureStorage) private var secureStorage
     @Injected(Container.navigationController) private var navigationController
+    @Injected(UserContainer.userNetworkDataSource) private var userNetworkDataSource
 
     func scene(
         _ scene: UIScene,

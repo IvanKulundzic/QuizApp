@@ -5,7 +5,7 @@ import Factory
 
 final class LoginViewController: UIViewController {
 
-    @Injected(Container.loginViewModel) private var loginViewModel
+    @Injected(LoginContainer.loginViewModel) private var loginViewModel
 
     private var titleLabel: UILabel!
     private var emailInputField: InputField!

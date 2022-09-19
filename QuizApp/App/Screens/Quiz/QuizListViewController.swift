@@ -4,7 +4,7 @@ import Factory
 
 final class QuizListViewController: UIViewController {
 
-    @Injected(Container.quizListViewModel) private var quizListViewModel
+    @Injected(QuizContainer.quizListViewModel) private var quizListViewModel
 
     private var cancellables = Set<AnyCancellable>()
 

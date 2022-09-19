@@ -4,7 +4,7 @@ import Factory
 
 final class UserViewModel {
 
-    @Injected(Container.userUseCase) private var userUseCase
+    @Injected(UserContainer.userUseCase) private var userUseCase
     @Published var username = ""
     @Published var name = ""
     var errorMessage = PassthroughSubject<String, Never>()

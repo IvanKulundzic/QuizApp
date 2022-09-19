@@ -4,7 +4,7 @@ import Factory
 
 final class QuizListViewModel {
 
-    @Injected(Container.quizUseCase) private var quizUseCase
+    @Injected(QuizContainer.quizUseCase) private var quizUseCase
     @Injected(Container.coordinator) private var coordinator
 
     @Published var quizzes: [QuizViewModel] = []

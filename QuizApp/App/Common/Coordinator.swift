@@ -4,8 +4,8 @@ import Factory
 final class Coordinator: CoordinatorProtocol {
 
     @Injected(Container.navigationController) private var navigationController
-    @Injected(Container.quizUseCase) private var quizUseCase
-    @Injected(Container.userUseCase) private var userUseCase
+    @Injected(QuizContainer.quizUseCase) private var quizUseCase
+    @Injected(UserContainer.userUseCase) private var userUseCase
 
     func showLogin() {
         let loginViewController = LoginViewController()

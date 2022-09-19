@@ -14,7 +14,7 @@ protocol UserNetworkDataSourceProtocol {
 final class UserNetworkDataSource: UserNetworkDataSourceProtocol {
 
     @Injected(Container.checkNetworkClient) private var checkNetworkClient
-    @Injected(Container.userNetworkClient) private var userNetworkClient
+    @Injected(UserContainer.userNetworkClient) private var userNetworkClient
 
     var userInfo: UserDataModel {
         get async throws {

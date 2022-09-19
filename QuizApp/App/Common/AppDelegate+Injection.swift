@@ -13,28 +13,31 @@ extension Container {
     static let secureStorage = Factory { SecureStorage() as SecureStorageProtocol }
     static let checkNetworkClient = Factory { CheckNetworkClient() as CheckNetworkClientProtocol }
 
-    // MARK: - Login
+}
+
+final class LoginContainer: SharedContainer {
 
     static let loginNetworkClient = Factory { LoginNetworkClient() as LoginNetworkClientProtocol }
     static let loginDataSource = Factory { LoginDataSource() as LoginDataSourceProtocol }
     static let loginUseCase = Factory { LoginUseCase() as LoginUseCaseProtocol }
+    static let loginViewModel = Factory { LoginViewModel() }
 
-    // MARK: - User
+}
+
+final class UserContainer: SharedContainer {
 
     static let userNetworkClient = Factory { UserNetworkClient() as UserNetworkClientProtocol }
     static let userNetworkDataSource = Factory { UserNetworkDataSource() as UserNetworkDataSourceProtocol }
     static let userUseCase = Factory { UserUseCase() as UserUseCaseProtocol }
+    static let userViewModel = Factory { UserViewModel() }
 
-    // MARK: - Quiz
+}
+
+final class QuizContainer: SharedContainer {
 
     static let quizNetworkClient = Factory { QuizNetworkClient() as QuizNetworkClientProtocol }
     static let quizNetworkDataSource = Factory { QuizNetworkDataSource() as QuizNetworkDataSourceProtocol }
     static let quizUseCase = Factory { QuizUseCase() as QuizUseCaseProtocol }
-
-    // MARK: - ViewModels
-
-    static let loginViewModel = Factory { LoginViewModel() }
-    static let userViewModel = Factory { UserViewModel() }
     static let quizListViewModel = Factory { QuizListViewModel() }
 
 }

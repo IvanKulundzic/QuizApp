@@ -9,7 +9,7 @@ protocol LoginUseCaseProtocol {
 
 final class LoginUseCase: LoginUseCaseProtocol {
 
-    @Injected(Container.loginDataSource) private var loginDataSource
+    @Injected(LoginContainer.loginDataSource) private var loginDataSource
     @Injected(Container.secureStorage) private var secureStorage
 
     func login(username: String, password: String) async throws {

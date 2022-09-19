@@ -4,7 +4,7 @@ import Factory
 
 final class LoginViewModel {
 
-    @Injected(Container.loginUseCase) private var loginUseCase
+    @Injected(LoginContainer.loginUseCase) private var loginUseCase
     @Injected(Container.coordinator) private var coordinator
     @Published var errorMessage = ""
     @Published var isLoginButtonEnabled = false

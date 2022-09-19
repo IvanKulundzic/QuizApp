@@ -11,7 +11,7 @@ protocol QuizNetworkDataSourceProtocol {
 
 final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
 
-    @Injected(Container.quizNetworkClient) private var quizNetworkClient
+    @Injected(QuizContainer.quizNetworkClient) private var quizNetworkClient
 
     func fetchQuizes() async throws -> [QuizDataModel] {
         try await quizNetworkClient.fetchQuizes()

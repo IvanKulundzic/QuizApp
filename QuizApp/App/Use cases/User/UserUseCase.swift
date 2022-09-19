@@ -11,7 +11,7 @@ protocol UserUseCaseProtocol {
 
 final class UserUseCase: UserUseCaseProtocol {
 
-    @Injected(Container.userNetworkDataSource) private var userNetworkDataSource
+    @Injected(UserContainer.userNetworkDataSource) private var userNetworkDataSource
 
     var userInfo: UserModel {
         get async throws {
