@@ -9,35 +9,39 @@ extension Container {
     static let navigationController = Factory(scope: .shared) { UINavigationController() }
 
     // MARK: - Services
-    static let networkClient = Factory { NetworkClient() as NetworkClientProtocol }
-    static let secureStorage = Factory { SecureStorage() as SecureStorageProtocol }
-    static let checkNetworkClient = Factory { CheckNetworkClient() as CheckNetworkClientProtocol }
+    static let networkClient = Factory(scope: .singleton) { NetworkClient() as NetworkClientProtocol }
+    static let secureStorage = Factory(scope: .singleton) { SecureStorage() as SecureStorageProtocol }
+    static let checkNetworkClient = Factory(scope: .singleton) { CheckNetworkClient() as CheckNetworkClientProtocol }
 
 }
 
 final class LoginContainer: SharedContainer {
 
-    static let loginNetworkClient = Factory { LoginNetworkClient() as LoginNetworkClientProtocol }
-    static let loginDataSource = Factory { LoginDataSource() as LoginDataSourceProtocol }
-    static let loginUseCase = Factory { LoginUseCase() as LoginUseCaseProtocol }
+    static let loginNetworkClient = Factory(scope: .singleton) { LoginNetworkClient() as LoginNetworkClientProtocol }
+    static let loginDataSource = Factory(scope: .singleton) { LoginDataSource() as LoginDataSourceProtocol }
+    static let loginUseCase = Factory(scope: .singleton) { LoginUseCase() as LoginUseCaseProtocol }
     static let loginViewModel = Factory { LoginViewModel() }
 
 }
 
 final class UserContainer: SharedContainer {
 
-    static let userNetworkClient = Factory { UserNetworkClient() as UserNetworkClientProtocol }
-    static let userNetworkDataSource = Factory { UserNetworkDataSource() as UserNetworkDataSourceProtocol }
-    static let userUseCase = Factory { UserUseCase() as UserUseCaseProtocol }
+    static let userNetworkClient = Factory(scope: .singleton) { UserNetworkClient() as UserNetworkClientProtocol }
+    static let userNetworkDataSource = Factory(scope: .singleton) {
+        UserNetworkDataSource() as UserNetworkDataSourceProtocol
+    }
+    static let userUseCase = Factory(scope: .singleton) { UserUseCase() as UserUseCaseProtocol }
     static let userViewModel = Factory { UserViewModel() }
 
 }
 
 final class QuizContainer: SharedContainer {
 
-    static let quizNetworkClient = Factory { QuizNetworkClient() as QuizNetworkClientProtocol }
-    static let quizNetworkDataSource = Factory { QuizNetworkDataSource() as QuizNetworkDataSourceProtocol }
-    static let quizUseCase = Factory { QuizUseCase() as QuizUseCaseProtocol }
+    static let quizNetworkClient = Factory(scope: .singleton) { QuizNetworkClient() as QuizNetworkClientProtocol }
+    static let quizNetworkDataSource = Factory(scope: .singleton) {
+        QuizNetworkDataSource() as QuizNetworkDataSourceProtocol
+    }
+    static let quizUseCase = Factory(scope: .singleton) { QuizUseCase() as QuizUseCaseProtocol }
     static let quizListViewModel = Factory { QuizListViewModel() }
 
 }
