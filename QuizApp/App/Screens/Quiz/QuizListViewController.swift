@@ -4,14 +4,20 @@ import Factory
 
 final class QuizListViewController: UIViewController {
 
+  private struct Constants {
+
+        static let topMargin = 20
+        static let horizontalMargin = 32
+
+    }
+    
     @Injected(QuizContainer.quizListViewModel) private var quizListViewModel
-
     private var cancellables = Set<AnyCancellable>()
-
     private var categoryCollectionView: UICollectionView!
     private var quizCollectionView: UICollectionView!
     private var emptyStateView: UIView!
-
+    private var getQuizButton: UIButton!
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTabBar()
@@ -144,6 +150,9 @@ extension QuizListViewController: ConstructViewsProtocol {
 
         quizCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateQuizLayout())
         view.addSubview(quizCollectionView)
+
+        getQuizButton = UIButton()
+        view.addSubview(getQuizButton)
     }
 
     func styleViews() {
@@ -165,6 +174,14 @@ extension QuizListViewController: ConstructViewsProtocol {
         quizCollectionView.backgroundColor = .clear
 
         emptyStateView.isHidden = true
+
+        getQuizButton.setTitle("Get Quiz", for: .normal)
+        getQuizButton.setTitleColor(.loginPurple, for: .normal)
+        getQuizButton.titleLabel?.font = Fonts.sourceSansProBold16.font
+        getQuizButton.backgroundColor = .white
+        getQuizButton.layer.cornerRadius = 22
+        getQuizButton.isHidden = true
+        getQuizButton.addTarget(self, action: #selector(getQuizButtonTapped), for: .touchUpInside)
     }
 
     func defineLayoutForViews() {
@@ -184,6 +201,12 @@ extension QuizListViewController: ConstructViewsProtocol {
             $0.center.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(200)
             $0.width.equalTo(250)
+        }
+
+        getQuizButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Constants.topMargin)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.horizontalMargin)
+            $0.height.equalTo(44)
         }
     }
 
@@ -224,6 +247,17 @@ private extension QuizListViewController {
 
                 self.quizCollectionView.reloadData()
                 self.categoryCollectionView.reloadData()
+            }
+            .store(in: &cancellables)
+
+        quizListViewModel
+            .$hideEmptyStateView
+            .sink { [weak self] isHidden in
+                guard let self = self else { return }
+
+                self.emptyStateView.isHidden = isHidden
+                self.getQuizButton.isHidden = isHidden
+                self.categoryCollectionView.isHidden = !isHidden
             }
             .store(in: &cancellables)
     }
@@ -291,6 +325,14 @@ private extension QuizListViewController {
         section.orthogonalScrollingBehavior = .continuous
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
+    }
+
+    @objc func getQuizButtonTapped() {
+        quizListViewModel.fetchAllQuizes {
+            DispatchQueue.main.async {
+                self.quizCollectionView.reloadData()
+            }
+        }
     }
 
 }
