@@ -5,6 +5,7 @@ final class ProgressView: UIView {
 
     private var progressViews: [UIView]!
     private var stackView: UIStackView!
+    private var numberOfQuestions: Int
 
     var questionNumber: Int = 1 {
         didSet {
@@ -12,8 +13,9 @@ final class ProgressView: UIView {
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    required init(numberOfQuestions: Int) {
+        self.numberOfQuestions = numberOfQuestions
+        super.init(frame: .zero)
         createViews()
         styleViews()
         defineLayoutForViews()
@@ -67,7 +69,7 @@ private extension ProgressView {
     }
 
     func addViews() -> [UIView] {
-        let neededViews = 8
+        let neededViews = numberOfQuestions
         var viewCount = 0
         var views: [UIView] = []
 

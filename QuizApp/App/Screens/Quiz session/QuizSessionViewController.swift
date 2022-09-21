@@ -14,11 +14,21 @@ final class QuizSessionViewController: UIViewController {
     private var questionTextLabel: UILabel!
     private var buttonsStackView: UIStackView!
     private var buttons: [UIButton]!
+    private var viewModel: QuizSessionViewModel!
 
     var questionNumber = 1 {
         didSet {
             update()
         }
+    }
+
+    init(viewModel: QuizSessionViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -38,7 +48,7 @@ extension QuizSessionViewController: ConstructViewsProtocol {
         questionNumberLabel = UILabel()
         view.addSubview(questionNumberLabel)
 
-        progressView = ProgressView()
+        progressView = ProgressView(numberOfQuestions: viewModel.quiz.numberOfQuestions)
         view.addSubview(progressView)
 
         questionTextLabel = UILabel()
@@ -58,30 +68,12 @@ extension QuizSessionViewController: ConstructViewsProtocol {
     func styleViews() {
         view.applyGradientWith([UIColor.loginBackgroundTop.cgColor, UIColor.loginBackgroundBottom.cgColor])
 
-        questionNumberLabel.style(with: "\(questionNumber)/8",
-                                  color: .white,
-                                  alignment: .left,
-                                  font: Fonts.sourceSansProBold18.font)
+        questionNumberLabel.style(color: .white, alignment: .left, font: Fonts.sourceSansProBold18.font)
 
         questionTextLabel.style(color: .white, alignment: .left, font: Fonts.sourceSansProBold24.font)
-        questionTextLabel.text = "Who was the most famous\nCroatian basketball player in\nthe NBA?"
         questionTextLabel.numberOfLines = 0
 
-        var tag = 0
-        buttons.forEach {
-
-            buttonsStackView.addArrangedSubview($0)
-            $0.backgroundColor = .white.withAlphaComponent(0.3)
-            $0.setTitle("Test answer", for: .normal)
-            $0.setTitleColor(.white, for: .normal)
-            $0.titleLabel?.font = Fonts.sourceSansProBold20.font
-            $0.contentHorizontalAlignment = .left
-            $0.titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
-            $0.layer.cornerRadius = 24
-            $0.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-            $0.tag = tag
-            tag += 1
-        }
+        setupButtons()
 
         buttonsStackView.alignment = .fill
         buttonsStackView.distribution = .fillEqually
@@ -91,7 +83,6 @@ extension QuizSessionViewController: ConstructViewsProtocol {
 
     @objc func buttonTapped(sender: UIButton) {
         let number = sender.tag
-        print(number)
     }
 
     func defineLayoutForViews() {
@@ -133,8 +124,27 @@ private extension QuizSessionViewController {
     }
 
     func update() {
-        questionNumberLabel.text = "\(questionNumber)/8"
+        let quiz = viewModel.quiz
+        questionNumberLabel.text = "\(questionNumber)/\(quiz.numberOfQuestions)"
+        questionTextLabel.text = "\(quiz.description)"
         progressView.questionNumber = questionNumber
+    }
+
+    func setupButtons() {
+        var tag = 0
+        buttons.forEach {
+            buttonsStackView.addArrangedSubview($0)
+            $0.backgroundColor = .white.withAlphaComponent(0.3)
+            $0.setTitle("Test answer", for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = Fonts.sourceSansProBold20.font
+            $0.contentHorizontalAlignment = .left
+            $0.titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
+            $0.layer.cornerRadius = 24
+            $0.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+            $0.tag = tag
+            tag += 1
+        }
     }
 
 }

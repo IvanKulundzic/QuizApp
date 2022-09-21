@@ -53,6 +53,7 @@
 		EBADB5542885893300F7EF81 /* NetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB5532885893300F7EF81 /* NetworkingConstants.swift */; };
 		EBADB557288589B000F7EF81 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB556288589B000F7EF81 /* LoginResponseModel.swift */; };
 		EBADB55928858C6100F7EF81 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADB55828858C6100F7EF81 /* Endpoint.swift */; };
+		EBB59F5F28DB040A006CC36F /* QuizSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB59F5E28DB040A006CC36F /* QuizSessionViewModel.swift */; };
 		EBB6F6F6288AC2ED00790DC0 /* UserReqeustBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */; };
 		EBB6F6F8288AE67A00790DC0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB6F6F7288AE67A00790DC0 /* UserModel.swift */; };
 		EBC3A84E28C6159F00805649 /* QuizSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC3A84D28C6159F00805649 /* QuizSectionHeaderView.swift */; };
@@ -129,6 +130,7 @@
 		EBADB5532885893300F7EF81 /* NetworkingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConstants.swift; sourceTree = "<group>"; };
 		EBADB556288589B000F7EF81 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		EBADB55828858C6100F7EF81 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		EBB59F5E28DB040A006CC36F /* QuizSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModel.swift; sourceTree = "<group>"; };
 		EBB6F6F5288AC2ED00790DC0 /* UserReqeustBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReqeustBody.swift; sourceTree = "<group>"; };
 		EBB6F6F7288AE67A00790DC0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EBC3A84D28C6159F00805649 /* QuizSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				EB1C050C28D88B2E00F1F95A /* ProgressView.swift */,
 				EB1C050A28D879C500F1F95A /* QuizSessionViewController.swift */,
+				EBB59F5E28DB040A006CC36F /* QuizSessionViewModel.swift */,
 			);
 			path = "Quiz session";
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				EB917E23287EFDC200ECD5AD /* InputField.swift in Sources */,
 				EB1BE4BF2881608C00E5865B /* CoordinatorProtocol.swift in Sources */,
 				EBEC7501288831B800BD7220 /* EmptyStateView.swift in Sources */,
+				EBB59F5F28DB040A006CC36F /* QuizSessionViewModel.swift in Sources */,
 				EBC9BC08287D6A6500052DF9 /* AppDelegate.swift in Sources */,
 				EBADB557288589B000F7EF81 /* LoginResponseModel.swift in Sources */,
 				EB93DA0228BF78FB00413031 /* UILabel+Extensions.swift in Sources */,

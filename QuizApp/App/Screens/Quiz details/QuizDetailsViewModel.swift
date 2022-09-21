@@ -10,8 +10,8 @@ final class QuizDetailsViewModel {
         self.coordinator = coordinator
     }
 
-    func startQuiz() {
-        coordinator.showQuizSession()
+    func startQuiz(quiz: QuizViewModel) {
+        coordinator.showQuizSession(quiz: quiz)
     }
 
 }

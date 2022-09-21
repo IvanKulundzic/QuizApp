@@ -8,5 +8,5 @@ protocol CoordinatorProtocol {
 
     func showQuizDetails(quiz: QuizViewModel)
 
-    func showQuizSession()
+    func showQuizSession(quiz: QuizViewModel)
 }

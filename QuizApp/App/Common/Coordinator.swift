@@ -33,8 +33,9 @@ final class Coordinator: CoordinatorProtocol {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    func showQuizSession() {
-        let viewController = QuizSessionViewController()
+    func showQuizSession(quiz: QuizViewModel) {
+        let viewModel = QuizSessionViewModel(quiz: quiz)
+        let viewController = QuizSessionViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 
