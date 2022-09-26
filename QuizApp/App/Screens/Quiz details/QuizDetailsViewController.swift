@@ -164,8 +164,7 @@ private extension QuizDetailsViewController {
     @objc func leaderboardButtonTapped() { }
 
     @objc func startButtonTapped() {
-        let quiz = viewModel.quiz
-        viewModel.startQuiz(quiz: quiz)
+        viewModel.startQuiz(quiz: viewModel.quiz)
     }
 
 }

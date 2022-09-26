@@ -33,6 +33,7 @@ final class QuizSessionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         createViews()
         styleViews()
         defineLayoutForViews()

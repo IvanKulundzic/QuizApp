@@ -9,13 +9,14 @@ final class ProgressView: UIView {
 
     var questionNumber: Int = 1 {
         didSet {
-            updateQuestion(for: questionNumber)
+            setColor(for: questionNumber)
         }
     }
 
     required init(numberOfQuestions: Int) {
         self.numberOfQuestions = numberOfQuestions
         super.init(frame: .zero)
+
         createViews()
         styleViews()
         defineLayoutForViews()
@@ -34,11 +35,14 @@ extension ProgressView: ConstructViewsProtocol {
 
         stackView = UIStackView()
         addSubview(stackView)
+
+        progressViews.forEach {
+            stackView.addArrangedSubview($0)
+        }
     }
 
     func styleViews() {
         progressViews.forEach {
-            stackView.addArrangedSubview($0)
             $0.backgroundColor = .white.withAlphaComponent(0.3)
             $0.layer.cornerRadius = 3
         }
@@ -59,24 +63,16 @@ extension ProgressView: ConstructViewsProtocol {
 
 private extension ProgressView {
 
-    func updateQuestion(for number: Int) {
-        var current = 0
-
-        while current < number {
-            progressViews[current].backgroundColor = .white
-            current += 1
-        }
+    func setColor(for index: Int) {
+        progressViews[index - 1].backgroundColor = .white
     }
 
     func addViews() -> [UIView] {
-        let neededViews = numberOfQuestions
-        var viewCount = 0
         var views: [UIView] = []
 
-        while viewCount < neededViews {
+        for _ in 1...numberOfQuestions {
             let view = UIView()
             views.append(view)
-            viewCount += 1
         }
 
         return views
