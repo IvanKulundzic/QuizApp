@@ -9,7 +9,7 @@ final class QuizListViewModel {
     @Published var quizzes: [QuizViewModel] = []
     @Published var hideEmptyStateView: Bool = true
     var categories: [CategoryViewModel] = [.all, .sport, .movies, .music, .geography]
-    
+
 }
 
 extension QuizListViewModel {

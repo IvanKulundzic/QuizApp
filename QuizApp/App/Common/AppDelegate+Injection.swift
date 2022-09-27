@@ -21,6 +21,7 @@ final class LoginContainer: SharedContainer {
     static let loginDataSource = Factory(scope: .singleton) { LoginDataSource() as LoginDataSourceProtocol }
     static let loginUseCase = Factory(scope: .singleton) { LoginUseCase() as LoginUseCaseProtocol }
     static let loginViewModel = Factory { LoginViewModel() }
+    static let loginViewController = Factory { LoginViewController() }
 
 }
 
@@ -32,6 +33,7 @@ final class UserContainer: SharedContainer {
     }
     static let userUseCase = Factory(scope: .singleton) { UserUseCase() as UserUseCaseProtocol }
     static let userViewModel = Factory { UserViewModel() }
+    static let userViewController = Factory { UserViewController() }
 
 }
 
@@ -43,5 +45,17 @@ final class QuizContainer: SharedContainer {
     }
     static let quizUseCase = Factory(scope: .singleton) { QuizUseCase() as QuizUseCaseProtocol }
     static let quizListViewModel = Factory { QuizListViewModel() }
+    static let quizListViewController = Factory { QuizListViewController() }
+
+}
+
+final class QuizDetailsContainer: SharedContainer {
+
+    static let quizDetailsViewModel = ParameterFactory<QuizViewModel, QuizDetailsViewModel> { quiz in
+        QuizDetailsViewModel(quiz: quiz)
+    }
+    static let quizDetailsViewController = ParameterFactory<QuizDetailsViewModel, QuizDetailsViewController> { model in
+        QuizDetailsViewController(viewModel: model)
+    }
 
 }

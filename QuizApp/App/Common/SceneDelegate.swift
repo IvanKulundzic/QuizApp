@@ -4,7 +4,6 @@ import Factory
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    @Injected(Container.navigationController) private var navigationController
     private var coordinator: CoordinatorProtocol!
 
     func scene(
@@ -36,21 +35,21 @@ private extension SceneDelegate {
         self.window = window
         coordinator = Coordinator()
         checkUserToken()
-        window.rootViewController = navigationController
+        window.rootViewController = Container.navigationController()
         window.makeKeyAndVisible()
     }
 
     func checkUserToken() {
         Task {
             do {
-                let userNetworkDataSource = UserNetworkDataSource()
+                let userNetworkDataSource = UserContainer.userNetworkDataSource()
                 try await userNetworkDataSource.checkUserAccessToken()
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.coordinator.showHome()
                 }
             } catch {
-                let secureStorage = SecureStorage()
+                let secureStorage = Container.secureStorage()
                 try? secureStorage.deleteToken()
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }

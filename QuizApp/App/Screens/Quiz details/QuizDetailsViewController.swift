@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import Factory
 
 final class QuizDetailsViewController: UIViewController {
 
@@ -10,7 +11,7 @@ final class QuizDetailsViewController: UIViewController {
 
     }
 
-    private let viewModel: QuizDetailsViewModel
+    private var viewModel: QuizDetailsViewModel
 
     private var cancellables = Set<AnyCancellable>()
 

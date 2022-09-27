@@ -10,14 +10,14 @@ final class QuizListViewController: UIViewController {
         static let horizontalMargin = 32
 
     }
-    
+
     @Injected(QuizContainer.quizListViewModel) private var quizListViewModel
     private var cancellables = Set<AnyCancellable>()
     private var categoryCollectionView: UICollectionView!
     private var quizCollectionView: UICollectionView!
     private var emptyStateView: UIView!
     private var getQuizButton: UIButton!
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTabBar()
