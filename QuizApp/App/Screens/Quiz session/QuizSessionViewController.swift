@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 final class QuizSessionViewController: UIViewController {
 
@@ -9,18 +10,16 @@ final class QuizSessionViewController: UIViewController {
 
     }
 
+    var questionNumber = CurrentValueSubject<Int, Never>(1)
+
+    private var cancellables = Set<AnyCancellable>()
+
     private var questionNumberLabel: UILabel!
     private var progressView: ProgressView!
     private var questionTextLabel: UILabel!
     private var buttonsStackView: UIStackView!
     private var buttons: [UIButton]!
     private var viewModel: QuizSessionViewModel!
-
-    var questionNumber = 1 {
-        didSet {
-            update()
-        }
-    }
 
     init(viewModel: QuizSessionViewModel) {
         self.viewModel = viewModel
@@ -38,7 +37,7 @@ final class QuizSessionViewController: UIViewController {
         styleViews()
         defineLayoutForViews()
         setupNavigationBar()
-        update()
+        addSubscription()
     }
 
 }
@@ -82,9 +81,7 @@ extension QuizSessionViewController: ConstructViewsProtocol {
         buttonsStackView.axis = .vertical
     }
 
-    @objc func buttonTapped(sender: UIButton) {
-        let number = sender.tag
-    }
+    @objc func buttonTapped(sender: UIButton) {}
 
     func defineLayoutForViews() {
         questionNumberLabel.snp.makeConstraints {
@@ -124,11 +121,11 @@ private extension QuizSessionViewController {
         navigationController?.navigationBar.topItem?.title = ""
     }
 
-    func update() {
+    func updateViews() {
         let quiz = viewModel.quiz
         questionNumberLabel.text = "\(questionNumber)/\(quiz.numberOfQuestions)"
         questionTextLabel.text = "\(quiz.description)"
-        progressView.questionNumber = questionNumber
+        progressView.questionNumber = questionNumber.value
     }
 
     func setupButtons() {
@@ -146,6 +143,19 @@ private extension QuizSessionViewController {
             $0.tag = tag
             tag += 1
         }
+    }
+
+    func addSubscription() {
+        questionNumber
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                let quiz = self.viewModel.quiz
+                self.questionNumberLabel.text = "\(self.questionNumber.value)/\(quiz.numberOfQuestions)"
+                self.questionTextLabel.text = "\(quiz.description)"
+                self.progressView.questionNumber = self.questionNumber.value
+            }
+            .store(in: &cancellables)
     }
 
 }

@@ -31,7 +31,7 @@ final class ProgressView: UIView {
 extension ProgressView: ConstructViewsProtocol {
 
     func createViews() {
-        progressViews = addViews()
+        progressViews = generateViews()
 
         stackView = UIStackView()
         addSubview(stackView)
@@ -67,7 +67,7 @@ private extension ProgressView {
         progressViews[index - 1].backgroundColor = .white
     }
 
-    func addViews() -> [UIView] {
+    func generateViews() -> [UIView] {
         var views: [UIView] = []
 
         for _ in 1...numberOfQuestions {
