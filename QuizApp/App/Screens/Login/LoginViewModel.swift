@@ -1,17 +1,13 @@
 import Foundation
 import Combine
+import Factory
 
 final class LoginViewModel {
 
+    @Injected(LoginContainer.loginUseCase) private var loginUseCase
+    @Injected(Container.coordinator) private var coordinator
     @Published var errorMessage = ""
     @Published var isLoginButtonEnabled = false
-    private let coordinator: CoordinatorProtocol
-    private let loginUseCase: LoginUseCaseProtocol
-
-    init(loginUseCase: LoginUseCaseProtocol, coordinator: CoordinatorProtocol) {
-        self.loginUseCase = loginUseCase
-        self.coordinator = coordinator
-    }
 
 }
 

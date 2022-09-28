@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import Factory
 
 final class QuizListViewModel {
 

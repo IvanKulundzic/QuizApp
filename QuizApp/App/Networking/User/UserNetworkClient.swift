@@ -1,4 +1,5 @@
 import Foundation
+import Factory
 
 protocol UserNetworkClientProtocol {
 
@@ -9,13 +10,8 @@ protocol UserNetworkClientProtocol {
 
 final class UserNetworkClient: UserNetworkClientProtocol {
 
-    private let networkClient: NetworkClientProtocol
-    private let secureStorage: SecureStorageProtocol
-
-    init(networkClient: NetworkClientProtocol, secureStorage: SecureStorageProtocol) {
-        self.networkClient = networkClient
-        self.secureStorage = secureStorage
-    }
+    @Injected(Container.networkClient) private var networkClient
+    @Injected(Container.secureStorage) private var secureStorage
 
     var userInfo: UserResponseModel? {
         get async throws {
