@@ -12,6 +12,8 @@
 		EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */; };
 		EB1BE4BF2881608C00E5865B /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */; };
 		EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4C42881805200E5865B /* Coordinator.swift */; };
+		EB1C050428D84A4400F1F95A /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = EB1C050328D84A4400F1F95A /* Factory */; };
+		EB1C050628D84A5F00F1F95A /* AppDelegate+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C050528D84A5F00F1F95A /* AppDelegate+Injection.swift */; };
 		EB2D166228AD00EB0023C71D /* QuizDifficultyNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */; };
 		EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB4E61A4287DB92D009A64E7 /* SnapKit */; };
 		EB4E61A8287DBA84009A64E7 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */; };
@@ -62,7 +64,6 @@
 		EBCB41D62886A2890008C827 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41D52886A2890008C827 /* RequestError.swift */; };
 		EBCB41D92886A3850008C827 /* LoginNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41D82886A3850008C827 /* LoginNetworkClient.swift */; };
 		EBCB41DB2886A9D40008C827 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DA2886A9D40008C827 /* LoginDataSource.swift */; };
-		EBCB41DD2886B2420008C827 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DC2886B2420008C827 /* ServiceFactory.swift */; };
 		EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41DE2886B5A00008C827 /* LoginDataModel.swift */; };
 		EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E12886F79A0008C827 /* LoginValidator.swift */; };
 		EBCB41E42886FB210008C827 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E32886FB210008C827 /* TypeAliases.swift */; };
@@ -87,6 +88,7 @@
 		EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		EB1BE4C42881805200E5865B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EB1C050528D84A5F00F1F95A /* AppDelegate+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Injection.swift"; sourceTree = "<group>"; };
 		EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyNetworkModel.swift; sourceTree = "<group>"; };
 		EB4E61A7287DBA84009A64E7 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		EB4E61A9287DBB20009A64E7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 		EBCB41D52886A2890008C827 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		EBCB41D82886A3850008C827 /* LoginNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkClient.swift; sourceTree = "<group>"; };
 		EBCB41DA2886A9D40008C827 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
-		EBCB41DC2886B2420008C827 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		EBCB41DE2886B5A00008C827 /* LoginDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataModel.swift; sourceTree = "<group>"; };
 		EBCB41E12886F79A0008C827 /* LoginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
 		EBCB41E32886FB210008C827 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 				EBE0E9302893F7E200B7BC4A /* Kingfisher in Frameworks */,
 				EB059B4E28858FE10075AB21 /* KeychainAccess in Frameworks */,
 				EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */,
+				EB1C050428D84A4400F1F95A /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */,
+				EB1C050528D84A5F00F1F95A /* AppDelegate+Injection.swift */,
 				EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */,
 				EB1BE4C42881805200E5865B /* Coordinator.swift */,
 				EBEC75022888398800BD7220 /* TabBarController.swift */,
@@ -402,7 +405,6 @@
 			isa = PBXGroup;
 			children = (
 				EB059B4F28858FF70075AB21 /* SecureStorage.swift */,
-				EBCB41DC2886B2420008C827 /* ServiceFactory.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -545,6 +547,7 @@
 				EB4E61A4287DB92D009A64E7 /* SnapKit */,
 				EB059B4D28858FE10075AB21 /* KeychainAccess */,
 				EBE0E92F2893F7E200B7BC4A /* Kingfisher */,
+				EB1C050328D84A4400F1F95A /* Factory */,
 			);
 			productName = QuizApp;
 			productReference = EBC9BC04287D6A6500052DF9 /* QuizApp.app */;
@@ -578,6 +581,7 @@
 				EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				EB059B4C28858FE10075AB21 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				EBE0E92E2893F7E200B7BC4A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				EB1C050228D84A4400F1F95A /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			productRefGroup = EBC9BC05287D6A6500052DF9 /* Products */;
 			projectDirPath = "";
@@ -665,7 +669,6 @@
 				EB8E119528916B6D000605B4 /* QuizNetworkDataSource.swift in Sources */,
 				EBCB41E72886FBCB0008C827 /* QuizListViewController.swift in Sources */,
 				EB917E19287EB54C00ECD5AD /* UIColor+Extensions.swift in Sources */,
-				EBCB41DD2886B2420008C827 /* ServiceFactory.swift in Sources */,
 				EBCB41E42886FB210008C827 /* TypeAliases.swift in Sources */,
 				EBADB54C2885603A00F7EF81 /* LoginViewModel.swift in Sources */,
 				EBD0F100288AA61C00D34EA8 /* UserResponseModel.swift in Sources */,
@@ -688,6 +691,7 @@
 				EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */,
 				EBDA9DD028AE19F300F6C230 /* QuizDifficultyDataModel.swift in Sources */,
 				EBA79D8128AB966300124183 /* CategoryDataModel.swift in Sources */,
+				EB1C050628D84A5F00F1F95A /* AppDelegate+Injection.swift in Sources */,
 				EBA79D8728AB96CC00124183 /* QuizViewModel.swift in Sources */,
 				EBD0F0FE288AA48700D34EA8 /* UserNetworkClient.swift in Sources */,
 				EBADB54A28855B9D00F7EF81 /* NetworkClient.swift in Sources */,
@@ -912,6 +916,14 @@
 				kind = branch;
 			};
 		};
+		EB1C050228D84A4400F1F95A /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		EB4E61A3287DB92D009A64E7 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -935,6 +947,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB059B4C28858FE10075AB21 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		EB1C050328D84A4400F1F95A /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB1C050228D84A4400F1F95A /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
 		EB4E61A4287DB92D009A64E7 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

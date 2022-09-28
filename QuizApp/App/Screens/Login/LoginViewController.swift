@@ -1,8 +1,11 @@
 import UIKit
 import SnapKit
 import Combine
+import Factory
 
 final class LoginViewController: UIViewController {
+
+    @Injected(LoginContainer.loginViewModel) private var loginViewModel
 
     private var titleLabel: UILabel!
     private var emailInputField: InputField!
@@ -10,16 +13,6 @@ final class LoginViewController: UIViewController {
     private var loginButton: UIButton!
     private var errorLabel: UILabel!
     private var cancellables = Set<AnyCancellable>()
-    private let loginViewModel: LoginViewModel
-
-    init(loginViewModel: LoginViewModel) {
-        self.loginViewModel = loginViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

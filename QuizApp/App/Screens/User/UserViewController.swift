@@ -1,7 +1,10 @@
 import UIKit
 import Combine
+import Factory
 
 final class UserViewController: UIViewController {
+
+    @Injected(UserContainer.userViewModel) private var userViewModel
 
     private var usernameLabel: UILabel!
     private var usernameTextLabel: UILabel!
@@ -9,17 +12,6 @@ final class UserViewController: UIViewController {
     private var nameTextField: UITextField!
     private var logoutButton: UIButton!
     private var cancellables = Set<AnyCancellable>()
-    private let userViewModel: UserViewModel
-
-    init(userViewModel: UserViewModel) {
-        self.userViewModel = userViewModel
-        super.init(nibName: nil, bundle: nil)
-        setupTabBar()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
