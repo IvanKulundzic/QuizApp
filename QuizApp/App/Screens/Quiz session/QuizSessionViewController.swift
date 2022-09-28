@@ -1,5 +1,5 @@
-import UIKit
 import Combine
+import UIKit
 
 final class QuizSessionViewController: UIViewController {
 
@@ -10,8 +10,7 @@ final class QuizSessionViewController: UIViewController {
 
     }
 
-    var questionNumber = CurrentValueSubject<Int, Never>(1)
-
+    private var questionNumber = CurrentValueSubject<Int, Never>(1)
     private var cancellables = Set<AnyCancellable>()
 
     private var questionNumberLabel: UILabel!

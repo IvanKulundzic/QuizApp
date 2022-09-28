@@ -1,5 +1,5 @@
-import UIKit
 import Combine
+import UIKit
 
 final class ProgressView: UIView {
 
