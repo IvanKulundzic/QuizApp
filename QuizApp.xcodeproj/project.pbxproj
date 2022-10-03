@@ -82,6 +82,8 @@
 		EBE6AB1728B371D400551CDB /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */; };
 		EBEC7501288831B800BD7220 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC7500288831B800BD7220 /* EmptyStateView.swift */; };
 		EBEC75032888398800BD7220 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC75022888398800BD7220 /* TabBarController.swift */; };
+		EBF2E93828EAC55F00C45BEE /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = EB1C050328D84A4400F1F95A /* Factory */; };
+		EBF2E93A28EAC60700C45BEE /* AppDelegate+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF2E93928EAC60700C45BEE /* AppDelegate+Injection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +161,7 @@
 		EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		EBEC7500288831B800BD7220 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		EBEC75022888398800BD7220 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		EBF2E93928EAC60700C45BEE /* AppDelegate+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Injection.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,10 +169,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBF2E93828EAC55F00C45BEE /* Factory in Frameworks */,
 				EBE0E9302893F7E200B7BC4A /* Kingfisher in Frameworks */,
 				EB059B4E28858FE10075AB21 /* KeychainAccess in Frameworks */,
 				EB4E61A5287DB92D009A64E7 /* SnapKit in Frameworks */,
-				EB1C050428D84A4400F1F95A /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,8 +392,8 @@
 			isa = PBXGroup;
 			children = (
 				EBC9BC07287D6A6500052DF9 /* AppDelegate.swift */,
-				EB1C050528D84A5F00F1F95A /* AppDelegate+Injection.swift */,
 				EBC9BC09287D6A6500052DF9 /* SceneDelegate.swift */,
+				EBF2E93928EAC60700C45BEE /* AppDelegate+Injection.swift */,
 				EB1BE4C42881805200E5865B /* Coordinator.swift */,
 				EBEC75022888398800BD7220 /* TabBarController.swift */,
 				EB1BE4C62881812700E5865B /* UI components */,
@@ -654,6 +657,7 @@
 				EBCB41D92886A3850008C827 /* LoginNetworkClient.swift in Sources */,
 				EBCB41DB2886A9D40008C827 /* LoginDataSource.swift in Sources */,
 				EB9BF84D288E9CD10031704D /* QuizListViewModel.swift in Sources */,
+				EBF2E93A28EAC60700C45BEE /* AppDelegate+Injection.swift in Sources */,
 				EB2D166228AD00EB0023C71D /* QuizDifficultyNetworkModel.swift in Sources */,
 				EB8E118D28916838000605B4 /* QuizRequestBody.swift in Sources */,
 				EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */,
@@ -708,7 +712,6 @@
 				EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */,
 				EBDA9DD028AE19F300F6C230 /* QuizDifficultyDataModel.swift in Sources */,
 				EBA79D8128AB966300124183 /* CategoryDataModel.swift in Sources */,
-				EB1C050628D84A5F00F1F95A /* AppDelegate+Injection.swift in Sources */,
 				EBA79D8728AB96CC00124183 /* QuizViewModel.swift in Sources */,
 				EBD0F0FE288AA48700D34EA8 /* UserNetworkClient.swift in Sources */,
 				EBADB54A28855B9D00F7EF81 /* NetworkClient.swift in Sources */,

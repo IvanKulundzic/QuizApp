@@ -7,13 +7,8 @@ final class QuizListViewModel {
     var categories: [CategoryViewModel] = [.all, .sport, .movies, .music, .geography]
     @Published var quizzes: [QuizViewModel] = []
     @Published var hideEmptyStateView: Bool = true
-    private let quizUseCase: QuizUseCaseProtocol
-    private let coordinator: CoordinatorProtocol
-
-    init(quizUseCase: QuizUseCaseProtocol, coordinator: CoordinatorProtocol) {
-        self.quizUseCase = quizUseCase
-        self.coordinator = coordinator
-    }
+    @Injected(QuizContainer.quizUseCase) private var quizUseCase
+    @Injected(Container.coordinator) private var coordinator
 
 }
 

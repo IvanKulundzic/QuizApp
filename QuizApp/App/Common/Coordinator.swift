@@ -19,8 +19,8 @@ final class Coordinator: CoordinatorProtocol {
     }
 
     func showQuizDetails(quiz: QuizViewModel) {
-        let viewModel = QuizDetailsViewModel(quiz: quiz, coordinator: self)
-        let viewController = QuizDetailsViewController(viewModel: viewModel)
+        let viewModel = QuizDetailsContainer.quizDetailsViewModel(quiz)
+        let viewController = QuizDetailsContainer.quizDetailsViewController(viewModel)
         viewController.hidesBottomBarWhenPushed = false
         navigationController.pushViewController(viewController, animated: true)
     }

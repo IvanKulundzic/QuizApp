@@ -1,13 +1,13 @@
 import UIKit
+import Factory
 
 final class QuizDetailsViewModel {
 
     @Published var quiz: QuizViewModel
-    private let coordinator: CoordinatorProtocol
+    @Injected(Container.coordinator) private var coordinator
 
-    init(quiz: QuizViewModel, coordinator: CoordinatorProtocol) {
+    init(quiz: QuizViewModel) {
         self.quiz = quiz
-        self.coordinator = coordinator
     }
 
     func startQuiz(quiz: QuizViewModel) {
