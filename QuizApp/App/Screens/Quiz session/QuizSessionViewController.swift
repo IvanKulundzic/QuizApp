@@ -36,7 +36,14 @@ final class QuizSessionViewController: UIViewController {
         styleViews()
         defineLayoutForViews()
         setupNavigationBar()
-        addSubscription()
+        viewModel.startQuizSession {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+
+                self.setupButtons()
+                self.addSubscription()
+            }
+        }
     }
 
 }
@@ -72,15 +79,15 @@ extension QuizSessionViewController: ConstructViewsProtocol {
         questionTextLabel.style(color: .white, alignment: .left, font: Fonts.sourceSansProBold24.font)
         questionTextLabel.numberOfLines = 0
 
-        setupButtons()
-
         buttonsStackView.alignment = .fill
         buttonsStackView.distribution = .fillEqually
         buttonsStackView.spacing = 16
         buttonsStackView.axis = .vertical
     }
 
-    @objc func buttonTapped(sender: UIButton) {}
+    @objc func buttonTapped(sender: UIButton) {
+
+    }
 
     func defineLayoutForViews() {
         questionNumberLabel.snp.makeConstraints {
@@ -120,19 +127,15 @@ private extension QuizSessionViewController {
         navigationController?.navigationBar.topItem?.title = ""
     }
 
-    func updateViews() {
-        let quiz = viewModel.quiz
-        questionNumberLabel.text = "\(questionNumber)/\(quiz.numberOfQuestions)"
-        questionTextLabel.text = "\(quiz.description)"
-        progressView.questionNumber = questionNumber.value
-    }
-
     func setupButtons() {
         var tag = 0
+        var answer = 0
+
         buttons.forEach {
             buttonsStackView.addArrangedSubview($0)
             $0.backgroundColor = .white.withAlphaComponent(0.3)
-            $0.setTitle("Test answer", for: .normal)
+            let title = viewModel.questions[questionNumber.value - 1].answers[answer].answer
+            $0.setTitle(title, for: .normal)
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = Fonts.sourceSansProBold20.font
             $0.contentHorizontalAlignment = .left
@@ -141,6 +144,7 @@ private extension QuizSessionViewController {
             $0.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
             $0.tag = tag
             tag += 1
+            answer += 1
         }
     }
 
@@ -150,8 +154,9 @@ private extension QuizSessionViewController {
                 guard let self = self else { return }
 
                 let quiz = self.viewModel.quiz
+                let question = self.viewModel.questions[self.questionNumber.value - 1].question
                 self.questionNumberLabel.text = "\(self.questionNumber.value)/\(quiz.numberOfQuestions)"
-                self.questionTextLabel.text = "\(quiz.description)"
+                self.questionTextLabel.text = "\(question)"
                 self.progressView.questionNumber = self.questionNumber.value
             }
             .store(in: &cancellables)

@@ -7,6 +7,8 @@ protocol QuizUseCaseProtocol {
 
     func fetchQuizes(for category: CategoryModel) async throws -> [QuizModel]
 
+    func startQuizSession(for id: Int) async throws -> [QuestionModel]
+
 }
 
 final class QuizUseCase: QuizUseCaseProtocol {
@@ -23,6 +25,11 @@ final class QuizUseCase: QuizUseCaseProtocol {
 
         return try await quizNetworkDataSource.fetchQuizes(for: categoryDataModel)
             .map { QuizModel(from: $0) }
+    }
+
+    func startQuizSession(for id: Int) async throws -> [QuestionModel] {
+        return try await quizNetworkDataSource.startQuizSession(for: id)
+            .map { QuestionModel(from: $0) }
     }
 
 }
