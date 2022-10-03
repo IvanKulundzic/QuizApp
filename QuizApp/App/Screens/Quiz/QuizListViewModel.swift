@@ -4,11 +4,16 @@ import Factory
 
 final class QuizListViewModel {
 
-    @Injected(QuizContainer.quizUseCase) private var quizUseCase
-    @Injected(Container.coordinator) private var coordinator
+    var categories: [CategoryViewModel] = [.all, .sport, .movies, .music, .geography]
     @Published var quizzes: [QuizViewModel] = []
     @Published var hideEmptyStateView: Bool = true
-    var categories: [CategoryViewModel] = [.all, .sport, .movies, .music, .geography]
+    private let quizUseCase: QuizUseCaseProtocol
+    private let coordinator: CoordinatorProtocol
+
+    init(quizUseCase: QuizUseCaseProtocol, coordinator: CoordinatorProtocol) {
+        self.quizUseCase = quizUseCase
+        self.coordinator = coordinator
+    }
 
 }
 

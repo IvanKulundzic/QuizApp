@@ -7,4 +7,6 @@ protocol CoordinatorProtocol {
     func showHome()
 
     func showQuizDetails(quiz: QuizViewModel)
+
+    func showQuizSession(quiz: QuizViewModel)
 }

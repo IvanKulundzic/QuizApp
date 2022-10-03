@@ -3,9 +3,15 @@ import UIKit
 final class QuizDetailsViewModel {
 
     @Published var quiz: QuizViewModel
+    private let coordinator: CoordinatorProtocol
 
-    init(quiz: QuizViewModel) {
+    init(quiz: QuizViewModel, coordinator: CoordinatorProtocol) {
         self.quiz = quiz
+        self.coordinator = coordinator
+    }
+
+    func startQuiz(quiz: QuizViewModel) {
+        coordinator.showQuizSession(quiz: quiz)
     }
 
 }
