@@ -36,14 +36,7 @@ final class QuizSessionViewController: UIViewController {
         styleViews()
         defineLayoutForViews()
         setupNavigationBar()
-        viewModel.startQuizSession {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-
-                self.setupButtons()
-                self.addSubscription()
-            }
-        }
+        startSession()
     }
 
 }
@@ -160,6 +153,15 @@ private extension QuizSessionViewController {
                 self.progressView.questionNumber = self.questionNumber.value
             }
             .store(in: &cancellables)
+    }
+
+    @MainActor
+    func startSession() {
+        Task {
+            await viewModel.getQuestions()
+            setupButtons()
+            addSubscription()
+        }
     }
 
 }

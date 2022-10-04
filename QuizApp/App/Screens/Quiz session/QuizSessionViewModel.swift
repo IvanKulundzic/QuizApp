@@ -11,15 +11,12 @@ final class QuizSessionViewModel {
         self.quizUseCase = quizUseCase
     }
 
-    func startQuizSession(completion: @escaping EmpytCallback) {
-        Task {
-            do {
-                questions = try await quizUseCase.startQuizSession(for: quiz.id)
-                    .map { QuestionViewModel(from: $0) }
-                completion()
-            } catch {
-                print("Error: \(error.localizedDescription)")
-            }
+    func getQuestions() async {
+        do {
+            questions = try await quizUseCase.getQuestions(for: quiz.id)
+                .map { QuestionViewModel(from: $0) }
+        } catch {
+            print("Error: \(error.localizedDescription)")
         }
     }
 
