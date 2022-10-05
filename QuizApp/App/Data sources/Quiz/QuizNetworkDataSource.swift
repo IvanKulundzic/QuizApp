@@ -7,6 +7,8 @@ protocol QuizNetworkDataSourceProtocol {
 
     func fetchQuizes(for category: CategoryDataModel) async throws -> [QuizDataModel]
 
+    func getQuestions(for quizId: Int) async throws -> [QuestionDataModel]
+
 }
 
 final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
@@ -23,6 +25,11 @@ final class QuizNetworkDataSource: QuizNetworkDataSourceProtocol {
 
         return try await quizNetworkClient.fetchQuizes(for: categoryNetworkModel)
             .map { QuizDataModel(from: $0) }
+    }
+
+    func getQuestions(for quizId: Int) async throws -> [QuestionDataModel] {
+        return try await quizNetworkClient.startQuizSession(for: quizId)
+            .map { QuestionDataModel(from: $0) }
     }
 
 }
