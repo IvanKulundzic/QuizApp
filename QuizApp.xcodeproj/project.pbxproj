@@ -69,6 +69,7 @@
 		EBCB41E22886F79A0008C827 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E12886F79A0008C827 /* LoginValidator.swift */; };
 		EBCB41E42886FB210008C827 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E32886FB210008C827 /* TypeAliases.swift */; };
 		EBCB41E72886FBCB0008C827 /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB41E62886FBCB0008C827 /* QuizListViewController.swift */; };
+		EBCC600E28EEAA41005C1238 /* Gesture+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCC600D28EEAA41005C1238 /* Gesture+Extensions.swift */; };
 		EBD0F0F9288AA34600D34EA8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0F0F8288AA34600D34EA8 /* UserViewModel.swift */; };
 		EBD0F0FB288AA42800D34EA8 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0F0FA288AA42800D34EA8 /* UserUseCase.swift */; };
 		EBD0F0FE288AA48700D34EA8 /* UserNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0F0FD288AA48700D34EA8 /* UserNetworkClient.swift */; };
@@ -154,6 +155,7 @@
 		EBCB41E12886F79A0008C827 /* LoginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
 		EBCB41E32886FB210008C827 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		EBCB41E62886FBCB0008C827 /* QuizListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListViewController.swift; sourceTree = "<group>"; };
+		EBCC600D28EEAA41005C1238 /* Gesture+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gesture+Extensions.swift"; sourceTree = "<group>"; };
 		EBD0F0F8288AA34600D34EA8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		EBD0F0FA288AA42800D34EA8 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		EBD0F0FD288AA48700D34EA8 /* UserNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkClient.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		EB917E1A287ED42500ECD5AD /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				EBCC600D28EEAA41005C1238 /* Gesture+Extensions.swift */,
 				EB917E18287EB54C00ECD5AD /* UIColor+Extensions.swift */,
 				EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */,
 				EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */,
@@ -735,6 +738,7 @@
 				EBA79D8728AB96CC00124183 /* QuizViewModel.swift in Sources */,
 				EBD0F0FE288AA48700D34EA8 /* UserNetworkClient.swift in Sources */,
 				EBADB54A28855B9D00F7EF81 /* NetworkClient.swift in Sources */,
+				EBCC600E28EEAA41005C1238 /* Gesture+Extensions.swift in Sources */,
 				EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */,
 				EB9BF84B288E98750031704D /* CategoryNetworkModel.swift in Sources */,
 			);
