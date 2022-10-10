@@ -31,4 +31,13 @@ final class Coordinator: CoordinatorProtocol {
         navigationController.pushViewController(viewController, animated: true)
     }
 
+    func showLeaderboard() {
+        let viewController = LeaderboardContainer.leaderboardViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func close() {
+        navigationController.popViewController(animated: true)
+    }
+
 }

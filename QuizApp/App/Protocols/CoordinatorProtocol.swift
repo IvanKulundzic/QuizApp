@@ -9,4 +9,9 @@ protocol CoordinatorProtocol {
     func showQuizDetails(quiz: QuizViewModel)
 
     func showQuizSession(quiz: QuizViewModel)
+
+    func showLeaderboard()
+
+    func close()
+
 }
