@@ -10,8 +10,6 @@ final class QuizSessionViewController: UIViewController {
 
     }
 
-    @Published private var isCorrect: Bool?
-    @Published private var questionNumber = 1
     private var cancellables = Set<AnyCancellable>()
     private var buttonsCancellables = Set<AnyCancellable>()
 
@@ -38,6 +36,16 @@ final class QuizSessionViewController: UIViewController {
         defineLayoutForViews()
         setupNavigationBar()
         startSession()
+    }
+
+    @MainActor
+    func startSession() {
+        Task {
+            await viewModel.getQuestions()
+
+            let firstQuestion = viewModel.questions[0]
+            display(question: firstQuestion)
+        }
     }
 
 }
@@ -101,7 +109,7 @@ extension QuizSessionViewController: ConstructViewsProtocol {
 
 private extension QuizSessionViewController {
 
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         title = "PopQuiz"
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -110,101 +118,125 @@ private extension QuizSessionViewController {
         navigationController?.navigationBar.topItem?.title = ""
     }
 
-    func setupButtons() {
-        guard questionNumber <= viewModel.questions.count else { return }
+    private func display(question: QuestionViewModel) {
+        guard let index = viewModel.questions.firstIndex(where: { $0.id == question.id }) else { return }
 
-        let answers = viewModel.questions[questionNumber - 1].answers
+        questionNumberLabel.text = "\(index + 1)/\(viewModel.quiz.numberOfQuestions)"
+        questionTextLabel.text = question.question
+        progressView.questionNumber = index + 1
 
-        buttonsStackView.subviews.forEach { view in
-            buttonsStackView.removeArrangedSubview(view)
-        }
+        createButtons(for: question, atIndex: index)
+    }
 
-        answers.forEach { answer in
-            let button = UIButton()
-            configureButton(button: button, title: answer.answer)
+    private func createButtons(for question: QuestionViewModel, atIndex questionIndex: Int) {
+        buttonsCancellables = []
 
-            button
-                .throttledTap()
-                .sink { [weak self] in
-                    guard let self = self else { return }
+        buttonsStackView
+            .subviews
+            .forEach { $0.removeFromSuperview() }
 
-                    guard self.questionNumber <= self.viewModel.questions.count else { return }
+        question
+            .answers
+            .forEach { answer in
+                let answerViewModel = AnswerViewModel(id: answer.id, answer: answer.answer)
+                let answerButton = AnswerButton(withAnswer: answerViewModel)
+                buttonsStackView.addArrangedSubview(answerButton)
 
-                    let tappedAnswerId = answer.id
-                    let correctAnswerId = self.viewModel.questions[self.questionNumber - 1].correctAnswerId
+                answerButton
+                    .throttledTap()
+                    .sink { [weak self] _ in
+                        guard let self = self else { return }
 
-                    self.evaluateAnswer(answerId: tappedAnswerId, correctId: correctAnswerId)
+                        let answeredCorrectly = answer.id == question.correctAnswerId
+                        answerButton.backgroundColor = answeredCorrectly ? .correctGreen : .incorrectRed
 
-                    if let isCorrect = self.isCorrect {
-                        button.backgroundColor = isCorrect ? .correctGreen: .incorrectRed
+                        self.updateProgressView(at: questionIndex, answeredCorrectly: answeredCorrectly)
+
+                        if !answeredCorrectly {
+                            self.markCorrectAnswer(correctAnswerId: question.correctAnswerId)
+                        }
+
+                        self.progressToNextQuestion(from: question)
                     }
-
-                    _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.questionNumber += 1
-                        self.setupButtons()
-                    }
-                }
-                .store(in: &buttonsCancellables)
-        }
-    }
-
-    func configureButton(button: UIButton, title: String) {
-        button.backgroundColor = .white.withAlphaComponent(0.3)
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = Fonts.sourceSansProBold20.font
-        button.contentHorizontalAlignment = .left
-        button.titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
-        button.layer.cornerRadius = 24
-        buttonsStackView.addArrangedSubview(button)
-    }
-
-    func evaluateAnswer(answerId: Int, correctId: Int) {
-        isCorrect = answerId == correctId ? true : false
-    }
-
-    func addSubscription() {
-        $questionNumber
-            .sink { [weak self] value in
-                guard let self = self else { return }
-
-                guard value <= self.viewModel.questions.count else { return }
-
-                let quiz = self.viewModel.quiz
-                let question = self.viewModel.questions[value - 1].question
-                self.questionNumberLabel.text = "\(value)/\(quiz.numberOfQuestions)"
-                self.questionTextLabel.text = "\(question)"
-                self.progressView.questionNumber = value
+                    .store(in: &buttonsCancellables)
             }
-            .store(in: &cancellables)
+    }
 
-        $isCorrect
-            .sink { value in
-                guard let value = value else { return }
+    private func updateProgressView(at index: Int, answeredCorrectly: Bool) {
+        let progressSubview = progressView.progressViews[index]
+        progressSubview.backgroundColor = answeredCorrectly ? .correctGreen : .incorrectRed
+    }
 
-                self.updateViews(for: value)
+    private func progressToNextQuestion(from question: QuestionViewModel) {
+        guard
+            let currentIndex = viewModel.questions.firstIndex(where: { $0.id == question.id }),
+            currentIndex + 1 < viewModel.questions.count
+        else {
+            //finish quiz
+            return
+        }
+
+        let nextQuestion = viewModel.questions[currentIndex + 1]
+
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+            self?.display(question: nextQuestion)
+        }
+    }
+
+    private func markCorrectAnswer(correctAnswerId: Int) {
+        buttonsStackView
+            .subviews
+            .forEach { subview in
+                guard
+                    let answerButton = subview as? AnswerButton,
+                    answerButton.viewModel.id == correctAnswerId
+                else { return }
+
+                answerButton.backgroundColor = .correctGreen
             }
-            .store(in: &cancellables)
     }
 
-    func updateViews(for answer: Bool) {
-        let progressSubview = progressView.progressViews[questionNumber - 1]
+}
 
-        switch answer {
-        case true:
-            progressSubview.backgroundColor = .correctGreen
-        case false:
-            progressSubview.backgroundColor = .incorrectRed
-        }
+struct AnswerViewModel {
+
+    let id: Int
+    let answer: String
+
+}
+
+class AnswerButton: UIButton {
+
+    private(set) var viewModel: AnswerViewModel!
+
+    convenience init(withAnswer viewModel: AnswerViewModel) {
+        self.init()
+
+        self.viewModel = viewModel
+        buildViews()
     }
 
-    @MainActor
-    func startSession() {
-        Task {
-            await viewModel.getQuestions()
-            addSubscription()
-            setupButtons()
-        }
+}
+
+extension AnswerButton: ConstructViewsProtocol {
+
+    func buildViews() {
+        createViews()
+        styleViews()
+        defineLayoutForViews()
     }
 
+    func createViews() {}
+
+    func styleViews() {
+        backgroundColor = .white.withAlphaComponent(0.3)
+        setTitle(viewModel.answer, for: .normal)
+        setTitleColor(.white, for: .normal)
+        titleLabel?.font = Fonts.sourceSansProBold20.font
+        contentHorizontalAlignment = .left
+        titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
+        layer.cornerRadius = 24
+    }
+
+    func defineLayoutForViews() {}
 }
