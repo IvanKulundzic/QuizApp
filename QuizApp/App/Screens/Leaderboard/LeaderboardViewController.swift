@@ -5,6 +5,7 @@ final class LeaderboardViewController: UIViewController {
 
     private var leaderboradTableView: UITableView!
     private var cancellables = Set<AnyCancellable>()
+    private var buttonsCancellables = Set<AnyCancellable>()
     private var viewModel: LeaderboardViewModel
 
     init(viewModel: LeaderboardViewModel) {
@@ -30,6 +31,7 @@ final class LeaderboardViewController: UIViewController {
         defineLayoutForViews()
         addTableViewDelegateAndDatasource()
         addSubscription()
+        setupNavigationBar()
     }
 
 }
@@ -41,12 +43,13 @@ extension LeaderboardViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: LeaderboardCell.reuseIdentifier,
-            for: indexPath
-        ) as? LeaderboardCell else { return UITableViewCell() }
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: LeaderboardCell.reuseIdentifier,
+                for: indexPath) as? LeaderboardCell
+        else { return UITableViewCell() }
 
-        cell.layoutMargins = UIEdgeInsets.zero
+        cell.layoutMargins = .zero
         cell.preservesSuperviewLayoutMargins = false
 
         cell.set(for: viewModel.leaderboardEntries[indexPath.row], index: indexPath.row)
@@ -68,13 +71,22 @@ extension LeaderboardViewController: ConstructViewsProtocol {
     func createViews() {
         leaderboradTableView = UITableView()
         view.addSubview(leaderboradTableView)
+
+        leaderboradTableView.register(LeaderboardCell.self, forCellReuseIdentifier: LeaderboardCell.reuseIdentifier )
+        leaderboradTableView.register(
+            LeaderboardHeader.self,
+            forHeaderFooterViewReuseIdentifier: LeaderboardHeader.reuseIdentifier
+        )
     }
 
     func styleViews() {
         view.applyGradientWith([UIColor.loginBackgroundTop.cgColor, UIColor.loginBackgroundBottom.cgColor])
 
-        setupNavigationBar()
-        setupTableView()
+        leaderboradTableView.backgroundColor = .clear
+        leaderboradTableView.rowHeight = 63
+        leaderboradTableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
+        leaderboradTableView.separatorColor = .white
+        leaderboradTableView.estimatedSectionHeaderHeight = 50
     }
 
     func defineLayoutForViews() {
@@ -118,26 +130,19 @@ private extension LeaderboardViewController {
             image: UIImage.closeIcon,
             style: .plain,
             target: self,
-            action: #selector(closeTapped)
+            action: nil
         )
+
+        closeBarButton
+            .tap
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                self.viewModel.closeLeaderboard()
+            }
+            .store(in: &buttonsCancellables)
+
         navigationItem.rightBarButtonItem = closeBarButton
-    }
-
-    @objc func closeTapped() {
-        viewModel.closeLeaderboard()
-    }
-
-    func setupTableView() {
-        leaderboradTableView.backgroundColor = .clear
-        leaderboradTableView.register(LeaderboardCell.self, forCellReuseIdentifier: LeaderboardCell.reuseIdentifier )
-        leaderboradTableView.register(
-            LeaderboardHeader.self,
-            forHeaderFooterViewReuseIdentifier: LeaderboardHeader.reuseIdentifier
-        )
-        leaderboradTableView.rowHeight = 63
-        leaderboradTableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
-        leaderboradTableView.separatorColor = .white
-        leaderboradTableView.estimatedSectionHeaderHeight = 50
     }
 
 }

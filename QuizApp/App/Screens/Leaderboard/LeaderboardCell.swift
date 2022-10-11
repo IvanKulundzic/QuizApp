@@ -29,8 +29,9 @@ final class LeaderboardCell: UITableViewCell {
             ]
         )
         let attributedLeaderboardString = NSAttributedString(string: leaderboard.name)
+        let attributedText = NSAttributedString.combine(left: attributedString, right: attributedLeaderboardString)
 
-        nameLabel.attributedText = combine(left: attributedString, right: attributedLeaderboardString)
+        nameLabel.attributedText = attributedText
         pointsLabel.text = leaderboard.points
     }
 
@@ -49,15 +50,16 @@ extension LeaderboardCell: ConstructViewsProtocol {
     func styleViews() {
         backgroundColor = .clear
 
-        nameLabel.style(with: "test", color: .white, alignment: .left, font: Fonts.sourceSansProSemiBold18.font)
+        nameLabel.style(color: .white, alignment: .left, font: Fonts.sourceSansProSemiBold18.font)
 
-        pointsLabel.style(with: "12345", color: .white, alignment: .left, font: Fonts.sourceSansProSemiBold18.font)
+        pointsLabel.style(color: .white, alignment: .left, font: Fonts.sourceSansProSemiBold18.font)
     }
 
     func defineLayoutForViews() {
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().inset(80)
             $0.bottom.equalToSuperview()
         }
 
@@ -66,17 +68,6 @@ extension LeaderboardCell: ConstructViewsProtocol {
             $0.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview()
         }
-    }
-
-}
-
-private extension LeaderboardCell {
-
-    func combine(left: NSAttributedString, right: NSAttributedString) -> NSAttributedString {
-        let result = NSMutableAttributedString()
-        result.append(left)
-        result.append(right)
-        return result
     }
 
 }
