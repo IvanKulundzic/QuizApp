@@ -10,8 +10,6 @@ final class QuizSessionViewController: UIViewController {
 
     }
 
-    @Published private var isCorrect: Bool?
-    @Published private var questionNumber = 1
     private var cancellables = Set<AnyCancellable>()
     private var buttonsCancellables = Set<AnyCancellable>()
 
@@ -38,6 +36,16 @@ final class QuizSessionViewController: UIViewController {
         defineLayoutForViews()
         setupNavigationBar()
         startSession()
+    }
+
+    @MainActor
+    func startSession() {
+        Task {
+            await viewModel.getQuestions()
+
+            let firstQuestion = viewModel.questions[0]
+            display(question: firstQuestion)
+        }
     }
 
 }
@@ -110,100 +118,63 @@ private extension QuizSessionViewController {
         navigationController?.navigationBar.topItem?.title = ""
     }
 
-    func setupButtons() {
-        guard questionNumber <= viewModel.questions.count else { return }
+    func display(question: QuestionViewModel) {
+        questionNumberLabel.text = "\(question.id) / \(viewModel.quiz.numberOfQuestions)"
+        questionTextLabel.text = question.question
 
-        let answers = viewModel.questions[questionNumber - 1].answers
+        createButtons(for: question, atIndex: question.id - 1)
+    }
 
-        buttonsStackView.subviews.forEach { view in
-            buttonsStackView.removeArrangedSubview(view)
-        }
+    func createButtons(for question: QuestionViewModel, atIndex: Int) {
+        buttonsCancellables = []
 
-        answers.forEach { answer in
-            let button = UIButton()
-            configureButton(button: button, title: answer.answer)
+        buttonsStackView
+            .subviews
+            .forEach { $0.removeFromSuperview() }
 
-            button
-                .throttledTap()
-                .sink { [weak self] in
-                    guard let self = self else { return }
+        question
+            .answers
+            .forEach { answer in
+                let answerViewState = AnswerViewState(id: answer.id, answer: answer.answer)
+                let button = AnswerButton(withState: answerViewState)
 
-                    guard self.questionNumber <= self.viewModel.questions.count else { return }
+                buttonsStackView.addArrangedSubview(button)
 
-                    let tappedAnswerId = answer.id
-                    let correctAnswerId = self.viewModel.questions[self.questionNumber - 1].correctAnswerId
+                button
+                    .throttledTap()
+                    .sink { [weak self] _ in
+                        guard let self = self else { return }
+                        let isCorrectAnswer = answer.id == question.correctAnswerId
+                        button.backgroundColor = isCorrectAnswer ? .correctGreen : .incorrectRed
 
-                    self.evaluateAnswer(answerId: tappedAnswerId, correctId: correctAnswerId)
-
-                    if let isCorrect = self.isCorrect {
-                        button.backgroundColor = isCorrect ? .correctGreen: .incorrectRed
+                        self.updateProgressViews(for: isCorrectAnswer, atIndex: question.id - 1)
+                        self.progressToNextQuestion(from: question)
                     }
-
-                    _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.questionNumber += 1
-                        self.setupButtons()
-                    }
-                }
-                .store(in: &buttonsCancellables)
-        }
-    }
-
-    func configureButton(button: UIButton, title: String) {
-        button.backgroundColor = .white.withAlphaComponent(0.3)
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = Fonts.sourceSansProBold20.font
-        button.contentHorizontalAlignment = .left
-        button.titleEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 0)
-        button.layer.cornerRadius = 24
-        buttonsStackView.addArrangedSubview(button)
-    }
-
-    func evaluateAnswer(answerId: Int, correctId: Int) {
-        isCorrect = answerId == correctId ? true : false
-    }
-
-    func addSubscription() {
-        $questionNumber
-            .sink { [weak self] value in
-                guard let self = self else { return }
-
-                guard value <= self.viewModel.questions.count else { return }
-
-                let quiz = self.viewModel.quiz
-                let question = self.viewModel.questions[value - 1].question
-                self.questionNumberLabel.text = "\(value)/\(quiz.numberOfQuestions)"
-                self.questionTextLabel.text = "\(question)"
-                self.progressView.questionNumber = value
+                    .store(in: &buttonsCancellables)
             }
-            .store(in: &cancellables)
 
-        $isCorrect
-            .sink { value in
-                guard let value = value else { return }
-
-                self.updateViews(for: value)
-            }
-            .store(in: &cancellables)
     }
 
-    func updateViews(for answer: Bool) {
-        let progressSubview = progressView.progressViews[questionNumber - 1]
+    func updateProgressViews(for answer: Bool, atIndex: Int) {
+        let subview = progressView.progressViews[atIndex]
+        subview.backgroundColor = answer ? .correctGreen : .incorrectRed
+    }
 
-        switch answer {
-        case true:
-            progressSubview.backgroundColor = .correctGreen
-        case false:
-            progressSubview.backgroundColor = .incorrectRed
+    func progressToNextQuestion(from question: QuestionViewModel) {
+        guard
+            let currentQuestion = viewModel.questions.firstIndex(where: { $0.id == question.id }),
+            currentQuestion  + 1 < viewModel.questions.count
+        else {
+            viewModel.goToQuizResult()
+            return
         }
-    }
 
-    @MainActor
-    func startSession() {
-        Task {
-            await viewModel.getQuestions()
-            addSubscription()
-            setupButtons()
+        let nextQuestion = viewModel.questions[currentQuestion + 1]
+
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+            guard let self = self else { return }
+
+            self.display(question: nextQuestion)
         }
     }
 

@@ -59,3 +59,9 @@ final class QuizDetailsContainer: SharedContainer {
     }
 
 }
+
+final class QuizResultContainer: SharedContainer {
+
+    static let quizResultViewController = Factory { QuizResultViewController() }
+
+}
