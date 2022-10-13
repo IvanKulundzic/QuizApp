@@ -59,15 +59,19 @@ extension LeaderboardCell: ConstructViewsProtocol {
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().inset(80)
+            $0.trailing.equalTo(pointsLabel.snp.leading)
             $0.bottom.equalToSuperview()
         }
+
+        nameLabel.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
 
         pointsLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview()
         }
+
+        pointsLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 
 }

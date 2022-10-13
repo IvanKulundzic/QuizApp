@@ -30,7 +30,7 @@ final class LeaderboardViewController: UIViewController {
         styleViews()
         defineLayoutForViews()
         addTableViewDelegateAndDatasource()
-        addSubscription()
+        bindViewModel()
         setupNavigationBar()
     }
 
@@ -106,14 +106,13 @@ private extension LeaderboardViewController {
         leaderboradTableView.delegate = self
     }
 
-    func addSubscription() {
+    func bindViewModel() {
         viewModel
             .$leaderboardEntries
             .sink { [weak self] _ in
                 guard let self = self else { return }
 
                 self.leaderboradTableView.reloadData()
-
             }
             .store(in: &cancellables)
     }

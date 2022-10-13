@@ -11,7 +11,7 @@ final class LeaderboardViewModel {
 
     func fetchLeaderboard() {
         let results = [
-            LeaderboardModel(name: "Ivan", points: "5000"),
+            LeaderboardModel(name: "Ivan Ivan Ivan Ivan Ivan Ivan Ivan Ivan Ivan Ivan Ivan Ivan", points: "5000"),
             LeaderboardModel(name: "Kiki", points: "4312"),
             LeaderboardModel(name: "MarinM", points: "1890"),
             LeaderboardModel(name: "Marin", points: "2450"),
