@@ -119,10 +119,13 @@ private extension QuizSessionViewController {
     }
 
     func display(question: QuestionViewModel) {
-        questionNumberLabel.text = "\(question.id) / \(viewModel.quiz.numberOfQuestions)"
-        questionTextLabel.text = question.question
+        guard let index = viewModel.questions.firstIndex(where: { $0.id == question.id }) else { return }
 
-        createButtons(for: question, atIndex: question.id - 1)
+        questionNumberLabel.text = "\(index + 1)/\(viewModel.quiz.numberOfQuestions)"
+        questionTextLabel.text = question.question
+        progressView.questionNumber = index + 1
+
+        createButtons(for: question, atIndex: index)
     }
 
     func createButtons(for question: QuestionViewModel, atIndex: Int) {
@@ -144,8 +147,13 @@ private extension QuizSessionViewController {
                     .throttledTap()
                     .sink { [weak self] _ in
                         guard let self = self else { return }
+
                         let isCorrectAnswer = answer.id == question.correctAnswerId
                         button.backgroundColor = isCorrectAnswer ? .correctGreen : .incorrectRed
+
+                        if !isCorrectAnswer {
+                            self.markCorrectAnswer(correctAnswerId: question.correctAnswerId)
+                        }
 
                         self.updateProgressViews(for: isCorrectAnswer, atIndex: question.id - 1)
                         self.progressToNextQuestion(from: question)
@@ -163,9 +171,13 @@ private extension QuizSessionViewController {
     func progressToNextQuestion(from question: QuestionViewModel) {
         guard
             let currentQuestion = viewModel.questions.firstIndex(where: { $0.id == question.id }),
-            currentQuestion  + 1 < viewModel.questions.count
+            currentQuestion + 1 < viewModel.questions.count
         else {
-            viewModel.goToQuizResult()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+                guard let self = self else { return }
+
+                self.viewModel.goToQuizResult()
+            }
             return
         }
 
@@ -176,6 +188,19 @@ private extension QuizSessionViewController {
 
             self.display(question: nextQuestion)
         }
+    }
+
+    private func markCorrectAnswer(correctAnswerId: Int) {
+        buttonsStackView
+            .subviews
+            .forEach { subview in
+                guard
+                    let answerButton = subview as? AnswerButton,
+                    answerButton.viewState.id == correctAnswerId
+                else { return }
+
+                answerButton.backgroundColor = .correctGreen
+            }
     }
 
 }

@@ -9,7 +9,7 @@ struct AnswerViewState {
 
 final class AnswerButton: UIButton {
 
-    private var viewState: AnswerViewState!
+    private(set) var viewState: AnswerViewState!
 
     convenience init(withState viewState: AnswerViewState) {
         self.init()
