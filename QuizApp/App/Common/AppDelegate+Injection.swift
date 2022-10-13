@@ -52,11 +52,18 @@ final class QuizContainer: SharedContainer {
 final class QuizDetailsContainer: SharedContainer {
 
     static let quizDetailsViewModel = ParameterFactory<QuizViewModel, QuizDetailsViewModel> { quiz in
-        QuizDetailsViewModel(quiz: quiz)
+        QuizDetailsViewModel(quiz: quiz, coordinator: Container.coordinator())
     }
     static let quizDetailsViewController = ParameterFactory<QuizDetailsViewModel, QuizDetailsViewController> { model in
         QuizDetailsViewController(viewModel: model)
     }
+
+}
+
+final class LeaderboardContainer: SharedContainer {
+
+    static let leaderboardViewModel = Factory { LeaderboardViewModel(coordinator: Container.coordinator()) }
+    static let leaderboardViewController = Factory { LeaderboardViewController(viewModel: leaderboardViewModel()) }
 
 }
 

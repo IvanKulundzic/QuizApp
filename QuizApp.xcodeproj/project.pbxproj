@@ -9,11 +9,18 @@
 /* Begin PBXBuildFile section */
 		EB059B4E28858FE10075AB21 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = EB059B4D28858FE10075AB21 /* KeychainAccess */; };
 		EB059B5028858FF70075AB21 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB059B4F28858FF70075AB21 /* SecureStorage.swift */; };
+		EB0FCE6528F3FF4000B83217 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FCE6428F3FF4000B83217 /* LeaderboardViewController.swift */; };
+		EB0FCE6728F4019B00B83217 /* LeaderboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FCE6628F4019B00B83217 /* LeaderboardViewModel.swift */; };
+		EB0FCE6928F4022400B83217 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FCE6828F4022400B83217 /* LeaderboardCell.swift */; };
+		EB0FCE6C28F420C600B83217 /* LeaderboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FCE6B28F420C600B83217 /* LeaderboardModel.swift */; };
+		EB0FCE6E28F4280900B83217 /* LeaderboardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FCE6D28F4280900B83217 /* LeaderboardHeader.swift */; };
 		EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */; };
 		EB1BE4BF2881608C00E5865B /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */; };
 		EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1BE4C42881805200E5865B /* Coordinator.swift */; };
 		EB1C050B28D879C500F1F95A /* QuizSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C050A28D879C500F1F95A /* QuizSessionViewController.swift */; };
 		EB1C050D28D88B2E00F1F95A /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C050C28D88B2E00F1F95A /* ProgressView.swift */; };
+		EB1C380228F54CF9003E5F7C /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C380128F54CF9003E5F7C /* NSAttributedString+Extensions.swift */; };
+		EB1C380428F54E96003E5F7C /* Gesture+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C380328F54E96003E5F7C /* Gesture+Extensions.swift */; };
 		EB1C380628F57450003E5F7C /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C380528F57450003E5F7C /* AnswerButton.swift */; };
 		EB1C380828F57F55003E5F7C /* QuizResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C380728F57F55003E5F7C /* QuizResultViewController.swift */; };
 		EB2D166228AD00EB0023C71D /* QuizDifficultyNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */; };
@@ -96,11 +103,18 @@
 
 /* Begin PBXFileReference section */
 		EB059B4F28858FF70075AB21 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
+		EB0FCE6428F3FF4000B83217 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		EB0FCE6628F4019B00B83217 /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
+		EB0FCE6828F4022400B83217 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		EB0FCE6B28F420C600B83217 /* LeaderboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardModel.swift; sourceTree = "<group>"; };
+		EB0FCE6D28F4280900B83217 /* LeaderboardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardHeader.swift; sourceTree = "<group>"; };
 		EB1BE4BC28815B3700E5865B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		EB1BE4BE2881608C00E5865B /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		EB1BE4C42881805200E5865B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		EB1C050A28D879C500F1F95A /* QuizSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewController.swift; sourceTree = "<group>"; };
 		EB1C050C28D88B2E00F1F95A /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		EB1C380128F54CF9003E5F7C /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		EB1C380328F54E96003E5F7C /* Gesture+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gesture+Extensions.swift"; sourceTree = "<group>"; };
 		EB1C380528F57450003E5F7C /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		EB1C380728F57F55003E5F7C /* QuizResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultViewController.swift; sourceTree = "<group>"; };
 		EB2D166128AD00EB0023C71D /* QuizDifficultyNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDifficultyNetworkModel.swift; sourceTree = "<group>"; };
@@ -195,6 +209,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB0FCE6328F3FF2C00B83217 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				EB0FCE6828F4022400B83217 /* LeaderboardCell.swift */,
+				EB0FCE6D28F4280900B83217 /* LeaderboardHeader.swift */,
+				EB0FCE6428F3FF4000B83217 /* LeaderboardViewController.swift */,
+				EB0FCE6628F4019B00B83217 /* LeaderboardViewModel.swift */,
+			);
+			path = Leaderboard;
+			sourceTree = "<group>";
+		};
+		EB0FCE6A28F420BA00B83217 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				EB0FCE6B28F420C600B83217 /* LeaderboardModel.swift */,
+			);
+			path = Leaderboard;
+			sourceTree = "<group>";
+		};
 		EB1BE4C62881812700E5865B /* UI components */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +283,7 @@
 				EBE06E6328BE0194004F3F3F /* Quiz details */,
 				EB1C050928D879B300F1F95A /* Quiz session */,
 				EB1C380928F57F5B003E5F7C /* Quiz result */,
+				EB0FCE6328F3FF2C00B83217 /* Leaderboard */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -305,6 +339,7 @@
 		EB73ADE128B78DD60015FEDE /* Use cases */ = {
 			isa = PBXGroup;
 			children = (
+				EB0FCE6A28F420BA00B83217 /* Leaderboard */,
 				EB73ADE928B78F5F0015FEDE /* Quiz */,
 				EB73ADE828B78F590015FEDE /* User */,
 				EB73ADE728B78F540015FEDE /* Login */,
@@ -414,6 +449,7 @@
 				EB917E1B287ED42F00ECD5AD /* UIView+Extensions.swift */,
 				EB93D9FF28BF77AE00413031 /* UIImageView+Extensions.swift */,
 				EB93DA0128BF78FB00413031 /* UILabel+Extensions.swift */,
+				EB1C380328F54E96003E5F7C /* Gesture+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -571,6 +607,7 @@
 			isa = PBXGroup;
 			children = (
 				EBE6AB1628B371D400551CDB /* Sequence+Extensions.swift */,
+				EB1C380128F54CF9003E5F7C /* NSAttributedString+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -691,8 +728,11 @@
 				EBCB41D92886A3850008C827 /* LoginNetworkClient.swift in Sources */,
 				EBCB41DB2886A9D40008C827 /* LoginDataSource.swift in Sources */,
 				EB9BF84D288E9CD10031704D /* QuizListViewModel.swift in Sources */,
+				EB0FCE6528F3FF4000B83217 /* LeaderboardViewController.swift in Sources */,
+				EB0FCE6C28F420C600B83217 /* LeaderboardModel.swift in Sources */,
 				EBF2E93A28EAC60700C45BEE /* AppDelegate+Injection.swift in Sources */,
 				EB2D166228AD00EB0023C71D /* QuizDifficultyNetworkModel.swift in Sources */,
+				EB0FCE6928F4022400B83217 /* LeaderboardCell.swift in Sources */,
 				EB8E118D28916838000605B4 /* QuizRequestBody.swift in Sources */,
 				EB1BE4C52881805200E5865B /* Coordinator.swift in Sources */,
 				EB917E23287EFDC200ECD5AD /* InputField.swift in Sources */,
@@ -733,15 +773,18 @@
 				EB059B5028858FF70075AB21 /* SecureStorage.swift in Sources */,
 				EB1BE4BD28815B3700E5865B /* UIImage+Extensions.swift in Sources */,
 				EBCB41DF2886B5A00008C827 /* LoginDataModel.swift in Sources */,
+				EB0FCE6728F4019B00B83217 /* LeaderboardViewModel.swift in Sources */,
 				EB8E1191289168FE000605B4 /* QuizDataModel.swift in Sources */,
 				EBEC75032888398800BD7220 /* TabBarController.swift in Sources */,
 				EB93DA0028BF77AE00413031 /* UIImageView+Extensions.swift in Sources */,
 				EB93D9FE28BF594D00413031 /* QuizDetailsViewModel.swift in Sources */,
 				EBB6F6F8288AE67A00790DC0 /* UserModel.swift in Sources */,
 				EBE6AB1728B371D400551CDB /* Sequence+Extensions.swift in Sources */,
+				EB1C380428F54E96003E5F7C /* Gesture+Extensions.swift in Sources */,
 				EBA79D8328AB968600124183 /* CategoryModel.swift in Sources */,
 				EB87B0512892789B00BE1A39 /* QuizUseCase.swift in Sources */,
 				EB9476EB2889974800BC20C2 /* CheckNetworkClient.swift in Sources */,
+				EB0FCE6E28F4280900B83217 /* LeaderboardHeader.swift in Sources */,
 				EBCB41D62886A2890008C827 /* RequestError.swift in Sources */,
 				EBA79D8528AB96A400124183 /* CategoryViewModel.swift in Sources */,
 				EBC3A84E28C6159F00805649 /* QuizSectionHeaderView.swift in Sources */,
@@ -756,6 +799,7 @@
 				EB1C380828F57F55003E5F7C /* QuizResultViewController.swift in Sources */,
 				EBCC600E28EEAA41005C1238 /* Gesture+Extensions.swift in Sources */,
 				EBC9BC0A287D6A6500052DF9 /* SceneDelegate.swift in Sources */,
+				EB1C380228F54CF9003E5F7C /* NSAttributedString+Extensions.swift in Sources */,
 				EB9BF84B288E98750031704D /* CategoryNetworkModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

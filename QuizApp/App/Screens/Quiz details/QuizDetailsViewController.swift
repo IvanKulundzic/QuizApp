@@ -162,7 +162,9 @@ private extension QuizDetailsViewController {
         imageView.kf.setImage(with: imageUrl)
     }
 
-    @objc func leaderboardButtonTapped() { }
+    @objc func leaderboardButtonTapped() {
+        viewModel.goToLeaderboard()
+    }
 
     @objc func startButtonTapped() {
         viewModel.startQuiz(quiz: viewModel.quiz)
