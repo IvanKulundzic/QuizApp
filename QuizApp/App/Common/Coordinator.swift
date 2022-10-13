@@ -26,8 +26,17 @@ final class Coordinator: CoordinatorProtocol {
     }
 
     func showQuizSession(quiz: QuizViewModel) {
-        let viewModel = QuizSessionViewModel(quiz: quiz, quizUseCase: QuizContainer.quizUseCase())
+        let viewModel = QuizSessionViewModel(
+            quiz: quiz,
+            quizUseCase: QuizContainer.quizUseCase(),
+            coordinator: Container.coordinator()
+        )
         let viewController = QuizSessionViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func showQuizResult() {
+        let viewController = QuizResultContainer.quizResultViewController()
         navigationController.pushViewController(viewController, animated: true)
     }
 

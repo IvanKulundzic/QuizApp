@@ -3,7 +3,7 @@ import UIKit
 
 final class ProgressView: UIView {
 
-    private var progressViews: [UIView]!
+    private(set) var progressViews: [UIView]!
     private var stackView: UIStackView!
     private var numberOfQuestions: Int
 
