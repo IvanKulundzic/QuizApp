@@ -66,3 +66,9 @@ final class LeaderboardContainer: SharedContainer {
     static let leaderboardViewController = Factory { LeaderboardViewController(viewModel: leaderboardViewModel()) }
 
 }
+
+final class QuizResultContainer: SharedContainer {
+
+    static let quizResultViewController = Factory { QuizResultViewController() }
+
+}

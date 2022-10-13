@@ -14,4 +14,6 @@ protocol CoordinatorProtocol {
 
     func close()
 
+    func showQuizResult()
+
 }
