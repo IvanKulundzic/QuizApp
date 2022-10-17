@@ -11,6 +11,7 @@ extension Container {
     // MARK: - Services
     static let networkClient = Factory(scope: .singleton) { NetworkClient() as NetworkClientProtocol }
     static let secureStorage = Factory(scope: .singleton) { SecureStorage() as SecureStorageProtocol }
+    static let realmService = Factory(scope: .singleton) { RealmManager() as RealmManagerProtocol }
     static let checkNetworkClient = Factory(scope: .singleton) { CheckNetworkClient() as CheckNetworkClientProtocol }
 
 }
