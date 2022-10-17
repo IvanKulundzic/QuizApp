@@ -99,12 +99,11 @@ struct GesturePublisher: Publisher {
         self.gestureType = gestureType
     }
 
-    func receive<S>(subscriber: S) where S: Subscriber,
-                                         GesturePublisher.Failure == S.Failure,
-                                         GesturePublisher.Output == S.Input {
-                                             let subscription = GestureSubscription(subscriber: subscriber, view: view, gestureType: gestureType)
-                                             subscriber.receive(subscription: subscription)
-                                         }
+    func receive<S>(subscriber: S) where S: Subscriber, GesturePublisher.Failure == S.Failure,
+                                            GesturePublisher.Output == S.Input {
+        let subscription = GestureSubscription(subscriber: subscriber, view: view, gestureType: gestureType)
+        subscriber.receive(subscription: subscription)
+    }
 
 }
 
@@ -152,9 +151,9 @@ struct BarItemGesturePublisher: Publisher {
     func receive<S>(subscriber: S) where S: Subscriber,
                                          GesturePublisher.Failure == S.Failure,
                                          GesturePublisher.Output == S.Input {
-                                             let subscription = BarItemGestureSubscription(subscriber: subscriber, barItem: barItem)
-                                             subscriber.receive(subscription: subscription)
-                                         }
+        let subscription = BarItemGestureSubscription(subscriber: subscriber, barItem: barItem)
+        subscriber.receive(subscription: subscription)
+    }
 
 }
 

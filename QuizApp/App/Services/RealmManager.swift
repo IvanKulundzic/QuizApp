@@ -4,9 +4,9 @@ protocol RealmManagerProtocol {
 
     func write(quizzes: [QuizDatabaseModel])
 
-    func fetchQuizzes() -> Results<QuizDatabaseModel>
+    func fetchQuizzes() -> [QuizDatabaseModel]
 
-    func delete<T: Object>(_ object: T)
+    func delete(_ object: QuizDatabaseModel)
 
 }
 
@@ -26,11 +26,11 @@ final class RealmManager: RealmManagerProtocol {
         }
     }
 
-    func fetchQuizzes() -> Results<QuizDatabaseModel> {
-        return realm.objects(QuizDatabaseModel.self)
+    func fetchQuizzes() -> [QuizDatabaseModel] {
+        Array(realm.objects(QuizDatabaseModel.self))
     }
 
-    func delete<T: Object>(_ object: T) {
+    func delete(_ object: QuizDatabaseModel) {
         do {
             try realm.write {
                 realm.delete(object)

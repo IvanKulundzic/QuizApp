@@ -5,7 +5,7 @@ protocol QuizDatabaseDataSourceProtocol {
 
     func save(quizzes: [QuizDatabaseModel])
 
-    func fetchQuizzes() -> Results<QuizDatabaseModel>
+    func fetchQuizzes() -> [QuizDatabaseModel]
 
 }
 
@@ -21,7 +21,7 @@ final class QuizDatabaseDataSource: QuizDatabaseDataSourceProtocol {
         realmManager.write(quizzes: quizzes)
     }
 
-    func fetchQuizzes() -> Results<QuizDatabaseModel> {
+    func fetchQuizzes() -> [QuizDatabaseModel] {
         realmManager.fetchQuizzes()
     }
 

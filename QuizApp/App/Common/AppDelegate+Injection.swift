@@ -11,7 +11,7 @@ extension Container {
     // MARK: - Services
     static let networkClient = Factory(scope: .singleton) { NetworkClient() as NetworkClientProtocol }
     static let secureStorage = Factory(scope: .singleton) { SecureStorage() as SecureStorageProtocol }
-    static let realmService = Factory(scope: .singleton) { RealmManager() as RealmManagerProtocol }
+    static let realmManager = Factory(scope: .singleton) { RealmManager() as RealmManagerProtocol }
     static let checkNetworkClient = Factory(scope: .singleton) { CheckNetworkClient() as CheckNetworkClientProtocol }
 
 }
@@ -44,7 +44,12 @@ final class QuizContainer: SharedContainer {
     static let quizNetworkDataSource = Factory(scope: .singleton) {
         QuizNetworkDataSource() as QuizNetworkDataSourceProtocol
     }
-    static let quizUseCase = Factory(scope: .singleton) { QuizUseCase() as QuizUseCaseProtocol }
+    static let quizDatabaseDataSource = Factory(scope: .singleton) {
+        QuizDatabaseDataSource(realmManager: Container.realmManager())
+    }
+    static let quizUseCase = Factory(scope: .singleton) {
+        QuizUseCase(quizNetworkDataSource: quizNetworkDataSource())
+    }
     static let quizListViewModel = Factory { QuizListViewModel() }
     static let quizListViewController = Factory { QuizListViewController() }
 
