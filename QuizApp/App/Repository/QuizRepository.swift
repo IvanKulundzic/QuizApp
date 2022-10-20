@@ -22,17 +22,17 @@ final class QuizRepository: QuizRepositoryProtocol {
 
     @MainActor
     func fetchQuizzes() async -> [QuizRepositoryModel] {
-        do {
-            let quizzes =  try await networkDataSource.fetchQuizes()
-                .map { QuizRepositoryModel(from: $0) }
-            let quizzesToSave = try await networkDataSource.fetchQuizes()
-                .map { QuizDatabaseModel(from: $0)}
-            saveQuizzes(quizzesToSave)
-            return quizzes
-        } catch {
-            return databaseDataSouce.fetchQuizzes()
-                .map { QuizRepositoryModel(from: $0) }
-        }
+            do {
+                let quizzes = try await networkDataSource.fetchQuizes()
+                    .map { QuizRepositoryModel(from: $0) }
+                let quizzesToSave = try await networkDataSource.fetchQuizes()
+                    .map { QuizDatabaseModel(from: $0)}
+                saveQuizzes(quizzesToSave)
+                return quizzes
+            } catch {
+                return databaseDataSouce.fetchQuizzes()
+                    .map { QuizRepositoryModel(from: $0) }
+            }
     }
 
     func fetchQuizzes(for category: CategoryModel) async -> [QuizRepositoryModel] {

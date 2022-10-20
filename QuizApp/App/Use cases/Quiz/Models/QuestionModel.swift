@@ -1,5 +1,3 @@
-import RealmSwift
-
 struct QuestionModel {
 
     let id: Int
