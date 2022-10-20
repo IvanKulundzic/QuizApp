@@ -47,8 +47,11 @@ final class QuizContainer: SharedContainer {
     static let quizDatabaseDataSource = Factory(scope: .singleton) {
         QuizDatabaseDataSource(realmManager: Container.realmManager())
     }
+    static let quizRepository = Factory(scope: .singleton) {
+        QuizRepository(networkDataSource: quizNetworkDataSource(), databaseDataSouce: quizDatabaseDataSource())
+    }
     static let quizUseCase = Factory(scope: .singleton) {
-        QuizUseCase(quizNetworkDataSource: quizNetworkDataSource())
+        QuizUseCase(quizRepository: quizRepository())
     }
     static let quizListViewModel = Factory { QuizListViewModel() }
     static let quizListViewController = Factory { QuizListViewController() }

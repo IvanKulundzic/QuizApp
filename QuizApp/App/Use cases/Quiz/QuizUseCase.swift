@@ -13,26 +13,24 @@ protocol QuizUseCaseProtocol {
 
 final class QuizUseCase: QuizUseCaseProtocol {
 
-    private let quizNetworkDataSource: QuizNetworkDataSourceProtocol
+    private let quizRepository: QuizRepositoryProtocol
 
-    init(quizNetworkDataSource: QuizNetworkDataSourceProtocol) {
-        self.quizNetworkDataSource = quizNetworkDataSource
+    init(quizRepository: QuizRepositoryProtocol) {
+        self.quizRepository = quizRepository
     }
 
     func fetchQuizes() async throws -> [QuizModel] {
-        return try await quizNetworkDataSource.fetchQuizes()
+        await quizRepository.fetchQuizzes()
             .map { QuizModel(from: $0) }
     }
 
     func fetchQuizes(for category: CategoryModel) async throws -> [QuizModel] {
-        let categoryDataModel = CategoryDataModel(from: category)
-
-        return try await quizNetworkDataSource.fetchQuizes(for: categoryDataModel)
+        await quizRepository.fetchQuizzes(for: category)
             .map { QuizModel(from: $0) }
     }
 
     func getQuestions(for quizId: Int) async throws -> [QuestionModel] {
-        return try await quizNetworkDataSource.getQuestions(for: quizId)
+        await quizRepository.getQuestions(for: quizId)
             .map { QuestionModel(from: $0) }
     }
 

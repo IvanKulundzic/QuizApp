@@ -3,7 +3,7 @@ import RealmSwift
 
 protocol QuizDatabaseDataSourceProtocol {
 
-    func save(quizzes: [QuizDatabaseModel])
+    func save(_ quizzes: [QuizDatabaseModel])
 
     func fetchQuizzes() -> [QuizDatabaseModel]
 
@@ -17,7 +17,7 @@ final class QuizDatabaseDataSource: QuizDatabaseDataSourceProtocol {
         self.realmManager = realmManager
     }
 
-    func save(quizzes: [QuizDatabaseModel]) {
+    func save(_ quizzes: [QuizDatabaseModel]) {
         realmManager.write(quizzes: quizzes)
     }
 

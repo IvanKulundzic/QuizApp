@@ -21,6 +21,21 @@ enum CategoryModel: String {
         }
     }
 
+    init(from category: CategoryDatabaseModel) {
+        switch category {
+        case .all:
+            self = .all
+        case .geography:
+            self = .geography
+        case .movies:
+            self = .movies
+        case .music:
+            self = .music
+        case .sport:
+            self = .sport
+        }
+    }
+
     init(from category: CategoryViewModel) {
         switch category {
         case .all:
