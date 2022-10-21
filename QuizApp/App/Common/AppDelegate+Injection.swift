@@ -75,6 +75,10 @@ final class LeaderboardContainer: SharedContainer {
 
 final class QuizResultContainer: SharedContainer {
 
-    static let quizResultViewController = Factory { QuizResultViewController() }
+    static let quizRezultViewModel = Factory {
+        QuizResultViewModel(quizUseCase: QuizContainer.quizUseCase(), coordinator: Container.coordinator())
+    }
+    static let quizResultViewController = ParameterFactory<EndSessionViewModel, QuizResultViewController> { model in
+        QuizResultViewController(endSessionViewModel: model, viewModel: quizRezultViewModel())}
 
 }

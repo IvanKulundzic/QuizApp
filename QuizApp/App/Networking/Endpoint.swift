@@ -7,6 +7,7 @@ enum EndpointType {
     case account
     case quizList
     case startQuiz(Int)
+    case endQuiz(String)
 
 }
 
@@ -30,6 +31,8 @@ struct Endpoint {
             return "\(NetworkingConstants.baseUrl)api/v1/quiz/list"
         case .startQuiz(let id):
             return "\(NetworkingConstants.baseUrl)api/v1/quiz/\(id)/session/start"
+        case .endQuiz(let id):
+            return "\(NetworkingConstants.baseUrl)api/v1/quiz/\(id)/session/end"
         }
     }
 

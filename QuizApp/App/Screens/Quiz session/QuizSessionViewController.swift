@@ -10,6 +10,7 @@ final class QuizSessionViewController: UIViewController {
 
     }
 
+    var score: Int = 0
     private var cancellables = Set<AnyCancellable>()
     private var buttonsCancellables = Set<AnyCancellable>()
 
@@ -153,6 +154,8 @@ private extension QuizSessionViewController {
 
                         if !isCorrectAnswer {
                             self.markCorrectAnswer(correctAnswerId: question.correctAnswerId)
+                        } else {
+                            self.score += 1
                         }
 
                         self.updateProgressViews(for: isCorrectAnswer, atIndex: question.id - 1)
@@ -176,7 +179,12 @@ private extension QuizSessionViewController {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
                 guard let self = self else { return }
 
-                self.viewModel.goToQuizResult()
+                let endSessionModel = EndSessionViewModel(
+                    sessionId: self.viewModel.sessionId,
+                    score: self.score,
+                    numberOfQuestions: self.viewModel.questions.count
+                )
+                self.viewModel.goToQuizResult(viewModel: endSessionModel)
             }
             return
         }
@@ -202,5 +210,13 @@ private extension QuizSessionViewController {
                 answerButton.backgroundColor = .correctGreen
             }
     }
+
+}
+
+struct EndSessionViewModel {
+
+    let sessionId: String
+    let score: Int
+    let numberOfQuestions: Int
 
 }

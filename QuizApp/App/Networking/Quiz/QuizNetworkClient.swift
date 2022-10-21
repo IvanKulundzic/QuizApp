@@ -7,7 +7,9 @@ protocol QuizNetworkClientProtocol {
 
     func fetchQuizes(for category: CategoryNetworkModel) async throws -> [QuizNetworkModel]
 
-    func startQuizSession(for id: Int) async throws -> [QuestionNetworkModel]
+    func startQuizSession(for id: Int) async throws -> StartQuizSessionResponse
+
+    func endQuizSession(for id: String, correctQuestions: Int) async throws
 
 }
 
@@ -44,7 +46,7 @@ final class QuizNetworkClient: QuizNetworkClientProtocol {
         return try await networkClient.executeUrlRequest(request)
     }
 
-    func startQuizSession(for id: Int) async throws -> [QuestionNetworkModel] {
+    func startQuizSession(for id: Int) async throws -> StartQuizSessionResponse {
         guard let url = URL(string: "\(Endpoint(type: .startQuiz(id)).path)") else {
             throw RequestError.invalidUrl
         }
@@ -56,7 +58,22 @@ final class QuizNetworkClient: QuizNetworkClientProtocol {
         request.httpMethod = HTTPRequestMethods.post.rawValue
 
         let response: StartQuizSessionResponse = try await networkClient.executeUrlRequest(request)
-        return response.questions
+        return response
+    }
+
+    func endQuizSession(for id: String, correctQuestions: Int) async throws {
+        guard let url = URL(string: "\(Endpoint(type: .endQuiz(id)).path)") else {
+            throw RequestError.invalidUrl
+        }
+
+        var request = URLRequest(url: url)
+        let token = secureStorage.accessToken ?? ""
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONEncoder().encode(EndSessionRequestBody(numberOfCorrectQuestions: correctQuestions))
+        request.httpMethod = HTTPRequestMethods.post.rawValue
+
+        return try await networkClient.executeUrlRequest(request)
     }
 
 }

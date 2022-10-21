@@ -14,6 +14,8 @@ protocol CoordinatorProtocol {
 
     func close()
 
-    func showQuizResult()
+    func showQuizResult(viewModel: EndSessionViewModel)
+
+    func popToRoot()
 
 }

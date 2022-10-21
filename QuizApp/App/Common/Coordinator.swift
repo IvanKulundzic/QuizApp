@@ -44,8 +44,13 @@ final class Coordinator: CoordinatorProtocol {
         navigationController.popViewController(animated: true)
     }
 
-    func showQuizResult() {
-        let viewController = QuizResultContainer.quizResultViewController()
+    func showQuizResult(viewModel: EndSessionViewModel) {
+        let viewController = QuizResultContainer.quizResultViewController(viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
+
+    func popToRoot() {
+        navigationController.popToRootViewController(animated: true)
+    }
+
 }
