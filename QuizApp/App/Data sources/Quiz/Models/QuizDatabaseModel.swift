@@ -10,8 +10,9 @@ class QuizDatabaseModel: Object {
     @Persisted var numberOfQuestions: Int
     @Persisted var imageUrl: String
 
-    init(from model: QuizModel) {
-        super.init()
+    convenience init(from model: QuizDataModel) {
+        self.init()
+
         self.id = model.id
         self.name = model.name
         self.desc = model.description

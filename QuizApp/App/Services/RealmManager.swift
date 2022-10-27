@@ -19,7 +19,7 @@ final class RealmManager: RealmManagerProtocol {
     func write(quizzes: [QuizDatabaseModel]) {
         do {
             try realm.write {
-                realm.add(quizzes)
+                realm.add(quizzes, update: .modified)
             }
         } catch {
             print("Error writing to database, \(error.localizedDescription)")
