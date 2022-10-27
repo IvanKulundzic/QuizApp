@@ -3,13 +3,13 @@ import UIKit
 
 final class QuizResultViewController: UIViewController {
 
-    private var endSessionViewModel: EndSessionViewModel
+    private var endSessionViewModel: EndSessionViewState
     private var cancellables = Set<AnyCancellable>()
     private var resultLabel: UILabel!
     private var finishQuizButton: AnswerButton!
     private let viewModel: QuizResultViewModel
 
-    init(endSessionViewModel: EndSessionViewModel, viewModel: QuizResultViewModel) {
+    init(endSessionViewModel: EndSessionViewState, viewModel: QuizResultViewModel) {
         self.endSessionViewModel = endSessionViewModel
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -56,18 +56,6 @@ extension QuizResultViewController: ConstructViewsProtocol {
         finishQuizButton.titleLabel?.font = Fonts.sourceSansProBold16.font
         finishQuizButton.contentHorizontalAlignment = .center
         finishQuizButton.layer.cornerRadius = 24
-
-        finishQuizButton
-            .throttledTap()
-            .sink { [weak self] in
-                guard let self = self else { return }
-
-                self.viewModel.endQuizSession(
-                    for: self.endSessionViewModel.sessionId,
-                    correctQuestions: self.endSessionViewModel.score
-                )
-            }
-            .store(in: &cancellables)
     }
 
     func defineLayoutForViews() {
@@ -90,6 +78,20 @@ private extension QuizResultViewController {
 
     func styleNavigationBar() {
         navigationItem.hidesBackButton = true
+    }
+
+    func bindViews() {
+        finishQuizButton
+            .throttledTap()
+            .sink { [weak self] in
+                guard let self = self else { return }
+
+                self.viewModel.endQuizSession(
+                    for: self.endSessionViewModel.sessionId,
+                    correctQuestions: self.endSessionViewModel.score
+                )
+            }
+            .store(in: &cancellables)
     }
 
 }

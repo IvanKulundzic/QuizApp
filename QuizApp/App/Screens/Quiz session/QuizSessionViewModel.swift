@@ -17,15 +17,15 @@ final class QuizSessionViewModel {
     func getQuestions() async {
         do {
             let session = try await quizUseCase.getQuestions(for: quiz.id)
-            questions = session.0
+            questions = session.questions
                 .map { QuestionViewModel(from: $0) }
-            sessionId = session.1
+            sessionId = session.sessionId
         } catch {
             print("Error: \(error.localizedDescription)")
         }
     }
 
-    func goToQuizResult(viewModel: EndSessionViewModel) {
+    func goToQuizResult(viewModel: EndSessionViewState) {
         coordinator.showQuizResult(viewModel: viewModel)
     }
 

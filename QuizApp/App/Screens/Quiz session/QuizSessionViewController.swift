@@ -179,7 +179,7 @@ private extension QuizSessionViewController {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
                 guard let self = self else { return }
 
-                let endSessionModel = EndSessionViewModel(
+                let endSessionModel = EndSessionViewState(
                     sessionId: self.viewModel.sessionId,
                     score: self.score,
                     numberOfQuestions: self.viewModel.questions.count
@@ -213,7 +213,7 @@ private extension QuizSessionViewController {
 
 }
 
-struct EndSessionViewModel {
+struct EndSessionViewState {
 
     let sessionId: String
     let score: Int
