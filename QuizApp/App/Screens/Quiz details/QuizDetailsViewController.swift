@@ -159,7 +159,7 @@ private extension QuizDetailsViewController {
         titleLabel.text = quiz.name
         descriptionLabel.text = quiz.description
         let imageUrl = URL(string: quiz.imageUrl)
-//        imageView.kf.setImage(with: imageUrl)
+        imageView.kf.setImage(with: imageUrl)
     }
 
     @objc func leaderboardButtonTapped() {
